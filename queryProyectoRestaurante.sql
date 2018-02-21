@@ -105,6 +105,7 @@ comentario varchar(100) not null,
 
 CREATE TABLE EncabezadoFactura
 (id int not null identity,
+idRestaurante int not null,
 idUsuario varchar(60) not null,
 nombreCliente varchar(60) not null,
 fecha datetime not null,
@@ -154,3 +155,176 @@ alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_usuario FOREIGN 
 alter table detallePedido add CONSTRAINT FK_DetallePedido_EncabezadoPedido FOREIGN key (idEncabezadoPedido) references EncabezadoPedido(id);
 
 
+--Procedimientos almacenados
+--Mostrar EstadoMesa
+CREATE PROCEDURE [dbo].[PA_SeleccionarEstadoMesa] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from estadoMesa;
+END
+
+
+--Mostrar EstadoPedido
+CREATE PROCEDURE [dbo].[PA_SeleccionarEstadoPedido] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from estadoPedido;
+END
+
+
+--Mostrar Mesa
+CREATE PROCEDURE [dbo].[PA_SeleccionarMesas] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from mesa;
+END
+
+
+--Mostrar Productos
+CREATE PROCEDURE [dbo].[PA_SeleccionarProductos] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from producto;
+END
+
+
+--Mostrar ProductoRestaurante
+CREATE PROCEDURE [dbo].[PA_SeleccionarProductoRestaurante] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from productoRestaurante;
+END
+
+
+--Mostrar Restaurante
+CREATE PROCEDURE [dbo].[PA_SeleccionarRestaurantes] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from restaurante;
+END
+
+
+
+--Mostrar RestauranteUsuario
+CREATE PROCEDURE [dbo].[PA_SeleccionarRestauranteUsuario] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from restauranteUsuario;
+END
+
+
+
+--Mostrar Roles
+CREATE PROCEDURE [dbo].[PA_SeleccionarRol] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from rol;
+END
+
+
+
+--Mostrar TipoPagos
+CREATE PROCEDURE [dbo].[PA_SeleccionarTipoPagos] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from tipoPago;
+END
+
+
+--Mostrar TipoProductos
+CREATE PROCEDURE [dbo].[PA_SeleccionarTipoProductos] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from tipoProducto;
+END
+
+
+--Mostrar Usuarios
+CREATE PROCEDURE [dbo].[PA_SeleccionarUsuarios] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from usuario;
+END
+
+
+
+--Mostrar EncabezadoFactura
+CREATE PROCEDURE [dbo].[PA_SeleccionarEncabezadosFactura] 
+ @idRestaurante int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from EncabezadoFactura where idRestaurante = @idRestaurante;
+END
+
+
+--Mostrar DetalleFactura
+CREATE PROCEDURE [dbo].[PA_SeleccionarDetallesFactura] 
+ @idEncabezadoFactura int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from detalleFactura where idEncabezadoFactura = @idEncabezadoFactura;
+END
+
+
+
+--Mostrar EncabezadoPedido
+CREATE PROCEDURE [dbo].[PA_SeleccionarEncabezadosPedido] 
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from EncabezadoPedido;
+END
+
+
+
+--Mostrar DetallePedido
+CREATE PROCEDURE [dbo].[PA_SeleccionarDetallesPedido] 
+ @idEncabezadoPedido int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select * from detallePedido where idEncabezadoPedido = @idEncabezadoPedido;
+END
