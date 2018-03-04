@@ -1,5 +1,6 @@
 --Alexander Fernandez Quesada, 1-1133-0996
--- Creacion de Base de Datos "Tarea1"
+--Daniel Céspedes Ávila, 2-0735-0628
+-- Creacion de Base de Datos "Proyecto ASPX Restaurante"
 CREATE DATABASE [proyecto_Restaurante] 
 ON  PRIMARY 
 	( NAME = 'proyectoName', 
@@ -105,6 +106,7 @@ comentario varchar(100) not null,
 
 CREATE TABLE EncabezadoFactura
 (id int not null identity,
+idEncabezadoPedido int not null,
 idRestaurante int not null,
 idUsuario varchar(60) not null,
 nombreCliente varchar(60) not null,
@@ -112,13 +114,13 @@ fecha datetime not null,
 idTipoPago int not null,
 )
 
-CREATE TABLE detalleFactura
+/*CREATE TABLE detalleFactura
 (id int not null identity,
 idEncabezadoFactura int not null,
 idProducto int not null,
 cantidad int not null,
 precio float not null,
-)
+)*/
 
 --Adicion de los Primary Key por medio del alter table
 alter table  restaurante add Primary key (id)
@@ -135,7 +137,7 @@ alter table tipoPago add Primary key (id)
 alter table EncabezadoPedido add Primary key (id)
 alter table detallePedido add Primary key (id)
 alter table EncabezadoFactura add Primary key (id)
-alter table detalleFactura add Primary key (id)
+--alter table detalleFactura add Primary key (id)
 
 
 --Adicion de los Foreign key por medio del alter table
@@ -147,13 +149,14 @@ alter table mesa add CONSTRAINT FK_Mesa_EstadoMesa FOREIGN key (idEstadoMesa) re
 alter table productoRestaurante add CONSTRAINT FK_ProductoRestaurante_Producto FOREIGN key (idProducto) references producto(id);
 alter table productoRestaurante add CONSTRAINT FK_ProductoRestaurante_Restaurante FOREIGN key (idRestaurante) references restaurante(id);
 alter table EncabezadoFactura add CONSTRAINT FK_EncabezadoFactura_TipoPago FOREIGN key (idTipoPago) references tipoPago(id);
-alter table detalleFactura add CONSTRAINT FK_detalleFactura_Producto FOREIGN key (idProducto) references producto(id);
-alter table detalleFactura add CONSTRAINT FK_detalleFactura_EncabezadoFactura FOREIGN key (idEncabezadoFactura) references EncabezadoFactura(id);
+alter table EncabezadoFactura add CONSTRAINT FK_EncabezadoFactura_EncabezadoPedido FOREIGN key (idEncabezadoPedido) references EncabezadoPedido(id);
+--alter table detalleFactura add CONSTRAINT FK_detalleFactura_Producto FOREIGN key (idProducto) references producto(id);
+--alter table detalleFactura add CONSTRAINT FK_detalleFactura_EncabezadoFactura FOREIGN key (idEncabezadoFactura) references EncabezadoFactura(id);
 alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_Mesa FOREIGN key (idMesa) references mesa(id);
 alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_EstadoPedido FOREIGN key (idEstadoPedido) references estadoPedido(id);
 alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_usuario FOREIGN key (idUsuario) references usuario(id);
 alter table detallePedido add CONSTRAINT FK_DetallePedido_EncabezadoPedido FOREIGN key (idEncabezadoPedido) references EncabezadoPedido(id);
-
+alter table detallePedido add CONSTRAINT FK_DetallePedido_Producto FOREIGN key (idProducto) references  producto(id);
 
 --Procedimientos almacenados
 --Mostrar EstadoMesa
@@ -185,7 +188,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select * from mesa;
+	Select m.*, e.descripcion from mesa m, estadoMesa e;
 END
 
 
@@ -196,7 +199,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select * from producto;
+	Select p.*, t.descripcion, t.estado from producto p, tipoProducto t;
 END
 
 
@@ -276,7 +279,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select * from usuario;
+	Select u.*, r.descripcion from usuario u, rol r;
 END
 
 
@@ -289,10 +292,10 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select * from EncabezadoFactura where idRestaurante = @idRestaurante;
+	Select e.*, t.descripcion from EncabezadoFactura e, tipoPago t;
 END
 
-
+/*
 --Mostrar DetalleFactura
 CREATE PROCEDURE [dbo].[PA_SeleccionarDetallesFactura] 
  @idEncabezadoFactura int
@@ -302,7 +305,7 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	Select * from detalleFactura where idEncabezadoFactura = @idEncabezadoFactura;
-END
+END*/
 
 
 
@@ -313,7 +316,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select * from EncabezadoPedido;
+	Select e.*, t.descripcion from EncabezadoPedido e, tipoPago t;
 END
 
 
@@ -326,5 +329,5 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select * from detallePedido where idEncabezadoPedido = @idEncabezadoPedido;
+	Select d.*, p.nombre from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido;
 END
