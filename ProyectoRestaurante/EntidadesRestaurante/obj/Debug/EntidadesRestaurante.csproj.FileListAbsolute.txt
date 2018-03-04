@@ -1,0 +1,5 @@
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\bin\Debug\EntidadesRestaurante.dll
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\bin\Debug\EntidadesRestaurante.pdb
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.dll
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.pdb
