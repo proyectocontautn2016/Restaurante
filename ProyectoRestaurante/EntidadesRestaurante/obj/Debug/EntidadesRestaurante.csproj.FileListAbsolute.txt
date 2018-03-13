@@ -3,3 +3,8 @@ C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\Entida
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.dll
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\EntidadesRestaurante\bin\Debug\EntidadesRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\EntidadesRestaurante\bin\Debug\EntidadesRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\EntidadesRestaurante\obj\Debug\EntidadesRestaurante.pdb

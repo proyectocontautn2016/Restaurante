@@ -22,21 +22,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ejemplo1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ejemplo2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ejemplo3</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ejemplo1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ejemplo2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ejemplo3</a>
+                    </li>
                 </ul>
             </div>
             </nav>
         </header>
         <main role="main" class="container">
-            <div>
+            <div style="margin-top:5%">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
                 </asp:ContentPlaceHolder>

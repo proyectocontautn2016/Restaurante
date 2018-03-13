@@ -35,6 +35,6 @@ C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\P
 C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\ProyectoRestaurante.pdb
 C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.dll
 C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.csprojResolveAssemblyReference.cache
