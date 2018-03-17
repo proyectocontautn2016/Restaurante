@@ -76,6 +76,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="default.aspx" />
     <Content Include="disponibilidadMesas.aspx" />
+    <Content Include="img\fondo.jpg" />
+    <Content Include="img\restaurante.jpg" />
     <Content Include="inicio.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js" />

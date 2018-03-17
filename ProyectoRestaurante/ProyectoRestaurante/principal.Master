@@ -5,34 +5,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Restaurante</title>
-    <script src="~/Scripts/jquery-3.0.0.js"></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.js"></script>
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body style="background-image:url(img/fondo.jpg); background-repeat:no-repeat; background-size:cover">
     <form id="form1" runat="server">
            <header>
             <!-- Fixed navbar -->
-            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="inicio.aspx">Dalex</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ejemplo1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ejemplo2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ejemplo3</a>
-                    </li>
+           <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Dalex</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Ejemplo 1</a></li>
+                  <li><a href="#">Ejemplo 2</a></li>
+                  <li><a href="#">Ejemplo 3</a></li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Ejemplo 4 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Ejemplo 4-1</a></li>
+                      <li><a href="#">Ejemplo 4-2</a></li>
+                      <li><a href="#">Ejemplo 4-3</a></li>
+                    </ul>
+                  </li>
                 </ul>
-            </div>
+                 <div style="text-align:right; margin-top:10px;">
+              <asp:Label ID="lblNombreUsuario" ForeColor="white" Font-Bold="true" runat="server" Text=""></asp:Label>&nbsp;&nbsp;
+             <asp:Label ID="lblFecha" ForeColor="white" Font-Bold="true" runat="server" Text=""></asp:Label>&nbsp;&nbsp;
+             <asp:Button CssClass="btn btn-danger" ID="btnSalir" runat="server" Text="Salir" OnClick="btnSalir_Click" />
+                 </div>
+              
+       
+              </div>
             </nav>
         </header>
         <main role="main" class="container">
@@ -42,6 +50,12 @@
                 </asp:ContentPlaceHolder>
             </div>
         </main>
+
+        <footer class="footer" style="background-color:black">
+      <div class=" bg-light text-center">
+          <span class="text-muted" style="color:white; font-weight:bold; font-size:20px;">Restaurante Dalex Copyrigth&copy;</span>
+      </div>
+    </footer>
     </form>
 </body>
 </html>

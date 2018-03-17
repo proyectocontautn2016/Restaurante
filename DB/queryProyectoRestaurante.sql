@@ -283,6 +283,68 @@ BEGIN
 END
 
 
+--Insertar Usuario
+CREATE PROCEDURE [dbo].[PA_InsertarUsuarios] 
+@id varchar(60),
+@idRol int,
+@nombre varchar(60),
+@direccion varchar(150),
+@correo varchar(50),
+@telefono varchar(50),
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].[usuario]
+           ([id]
+           ,[idRol]
+           ,[nombre]
+           ,[direccion]
+           ,[correo]
+           ,[telefono]
+           ,[estado])
+     VALUES
+           (@id,
+           @idRol,
+           @nombre,
+           @direccion,
+           @correo,
+           @telefono,
+           @estado);
+
+END
+
+--Modificar Usuario
+CREATE PROCEDURE [dbo].[PA_ModificarUsuarios] 
+@id varchar(60),
+@idRol int,
+@nombre varchar(60),
+@direccion varchar(150),
+@correo varchar(50),
+@telefono varchar(50),
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+UPDATE [dbo].[usuario]
+   SET [idRol] = @idRol,
+       [nombre] = @nombre,
+       [direccion] = @direccion,
+       [correo] = @correo,
+       [telefono] = @telefono,
+       [estado] = @estado
+ WHERE [id] = @id
+     
+
+END
+
 
 --Mostrar EncabezadoFactura
 CREATE PROCEDURE [dbo].[PA_SeleccionarEncabezadosFactura] 
