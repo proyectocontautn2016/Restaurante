@@ -188,7 +188,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select m.*, e.descripcion from mesa m, estadoMesa e;
+	Select m.*, e.descripcion from mesa m, estadoMesa e where m.idEstadoMesa = e.id;
 END
 
 

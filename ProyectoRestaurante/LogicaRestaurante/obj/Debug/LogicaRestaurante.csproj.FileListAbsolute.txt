@@ -1,0 +1,9 @@
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\bin\Debug\LogicaRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\bin\Debug\LogicaRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\bin\Debug\DatosRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\bin\Debug\EntidadesRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\bin\Debug\DatosRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\bin\Debug\EntidadesRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\obj\Debug\LogicaRestaurante.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\obj\Debug\LogicaRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\LogicaRestaurante\obj\Debug\LogicaRestaurante.pdb

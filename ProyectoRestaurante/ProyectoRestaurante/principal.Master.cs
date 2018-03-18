@@ -28,6 +28,7 @@ namespace ProyectoRestaurante
         protected void btnSalir_Click(object sender, EventArgs e)
         {
             Session["nombre"] = null;
+            Session.Remove("nombre");
             Response.Redirect("default.aspx");
         }
     }

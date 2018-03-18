@@ -58,3 +58,9 @@ C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestau
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.dll
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.pdb
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\obj\Debug\ProyectoRestaurante.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\EntidadesRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\LogicaRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\DatosRestaurante.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\EntidadesRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\LogicaRestaurante.pdb
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\DatosRestaurante.pdb

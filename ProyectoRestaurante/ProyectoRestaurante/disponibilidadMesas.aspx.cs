@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EntidadesRestaurante;
+using LogicaRestaurante;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,56 +11,62 @@ namespace ProyectoRestaurante
 {
     public partial class disponibilidadMesas : System.Web.UI.Page
     {
-        //Esto es un ejemplo y se debe retirar
-        private List<string> ListaEjemplo = new List<string>();//Esto es un ejemplo y se debe retirar
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            ListaEjemplo.Add("Ejemplo1");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo2");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo3");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo4");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo5");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo6");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo7");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo8");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo9");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo10");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo11");//Esto es un ejemplo y se debe retirar
-            ListaEjemplo.Add("Ejemplo12");//Esto es un ejemplo y se debe retirar
             organizarMesas();
         }
 
         private void organizarMesas() {
-
-            String hileraTabla = "<table><tr>";
+            List<MesaEntidad> listaMesas = MesaLN.ObtenerTodos();
+            String hileraTabla = "<center><table><tr>";
             int counter = 1;
 
-            foreach (String item in ListaEjemplo) {
+            foreach (MesaEntidad item in listaMesas) {
                 if (counter <= 5) //El 5 determina la cantidad de elementos por fila
                 {
-                    hileraTabla += "<td>";
+                    hileraTabla += "<td style=\"padding:30px\">";
 
-                    hileraTabla += item.ToString() + " ";
+
+                   
+                    hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".png\" height=\"100px\" width=\"100px\"/>";
+                    hileraTabla += "<br/>";
+                    hileraTabla += "<b>Mesa N° " + item.idMesa + "</b>";
+                    hileraTabla += "<br/>";
+                    hileraTabla += item.estadoMesa.descripcion;
+                    hileraTabla += "<br/><br/>";
+                    hileraTabla += "<a href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">Seleccionar mesa</a>";
+
+
+
 
                     hileraTabla += "</td>";
                 }
                 else {
                     hileraTabla += "</tr>";
                     hileraTabla += "<tr>";
-                    hileraTabla += "<td>";
+                    hileraTabla += "<td style=\"padding:30px\">";
 
-                    hileraTabla += item.ToString() + " ";
+
+                    
+                    hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".png\" height=\"100px\" width=\"100px\"/>";
+                    hileraTabla += "<br/>";
+                    hileraTabla += "<b>Mesa N° " + item.idMesa + "</b>";
+                    hileraTabla += "<br/>";
+                    hileraTabla += item.estadoMesa.descripcion;
+                    hileraTabla += "<br/><br/>";
+                    hileraTabla += "<a href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">Seleccionar mesa</a>";
+
 
                     hileraTabla += "</td>";
 
                     counter = 1; //Reinicializa el contador para crear una nueva fila de items
                 }
 
+
                 counter++;
             }
 
-            hileraTabla += "</tr></table>";
+            hileraTabla += "</tr></table></center>";
 
 
             idOrganizacionMesas.InnerHtml = hileraTabla;

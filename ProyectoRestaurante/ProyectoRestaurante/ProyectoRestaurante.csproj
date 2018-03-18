@@ -68,6 +68,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accionMesa.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -76,6 +77,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="default.aspx" />
     <Content Include="disponibilidadMesas.aspx" />
+    <Content Include="img\estadoMesas\1.png" />
+    <Content Include="img\estadoMesas\2.png" />
+    <Content Include="img\estadoMesas\3.png" />
+    <Content Include="img\estadoMesas\4.png" />
+    <Content Include="img\estadoMesas\5.png" />
     <Content Include="img\fondo.jpg" />
     <Content Include="img\restaurante.jpg" />
     <Content Include="inicio.aspx" />
@@ -138,6 +144,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="accionMesa.aspx.cs">
+      <DependentUpon>accionMesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accionMesa.aspx.designer.cs">
+      <DependentUpon>accionMesa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -171,6 +184,17 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntidadesRestaurante\EntidadesRestaurante.csproj">
+      <Project>{335D8594-0148-4897-A42E-961234A99047}</Project>
+      <Name>EntidadesRestaurante</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicaRestaurante\LogicaRestaurante.csproj">
+      <Project>{4B72718F-2FD5-4734-BB03-A5D1ADBE53E6}</Project>
+      <Name>LogicaRestaurante</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
