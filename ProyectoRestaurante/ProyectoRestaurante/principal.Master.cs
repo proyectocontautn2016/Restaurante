@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntidadesRestaurante;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,9 +14,9 @@ namespace ProyectoRestaurante
         {
             try
             {
-                String nombre = Session["nombre"].ToString();
+                UsuarioEntidad usuario = (UsuarioEntidad)Session["usuario"];
                 DateTime fecha = DateTime.Today;
-                this.lblNombreUsuario.Text = nombre;
+                this.lblNombreUsuario.Text = usuario.nombre;
                 this.lblFecha.Text = fecha.ToString("dd/MM/yyyy");
             }
             catch (Exception)
@@ -27,8 +28,8 @@ namespace ProyectoRestaurante
 
         protected void btnSalir_Click(object sender, EventArgs e)
         {
-            Session["nombre"] = null;
-            Session.Remove("nombre");
+            Session["usuario"] = null;
+            Session.Remove("usuario");
             Response.Redirect("default.aspx");
         }
     }

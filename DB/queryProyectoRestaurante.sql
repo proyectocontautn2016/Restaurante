@@ -40,7 +40,8 @@ nombre varchar(60) not null,
 direccion varchar(150) not null,
 correo varchar(50) not null,
 telefono varchar(50) not null,
-estado binary not null,
+estado int not null,
+password varchar(50) not null
 )
 
 CREATE TABLE tipoProducto

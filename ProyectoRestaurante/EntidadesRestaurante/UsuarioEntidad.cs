@@ -14,7 +14,8 @@ namespace EntidadesRestaurante
         public String direccion { get; set; }
         public String email { get; set; }
         public String  telefono { get; set; }
-        public Boolean estado { get; set; }
+        public int estado { get; set; }
+        public String password { get; set; }
 
         public UsuarioEntidad()
         {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EntidadesRestaurante;
+using LogicaRestaurante;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,24 +18,17 @@ namespace ProyectoRestaurante
 
         protected void login_Click(object sender, EventArgs e)
         {
+
             try
             {
-                Boolean condi = false;
-                    if ((this.txtUsuario.Text == "usuario") && (this.txtPassword.Text == "12345"))
-                    {
-                        condi = true;
-                        Session["nombre"] = this.txtUsuario.Text;
-                        
-                    }
-              
-
-                if (condi)
+                UsuarioEntidad usuario = UsuarioLN.Login(txtUsuario.Text, txtPassword.Text);
+               
+                if (usuario != null)
                 {
-
+                    Session["usuario"] = usuario;
                     Response.Redirect("disponibilidadMesas.aspx");
-                }
-                else
-                {
+
+                }else{
                     this.lblMensaje.Text = "Usuario o Contraseña no concuerdan";
                 }
 

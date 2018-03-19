@@ -12,7 +12,13 @@ namespace LogicaRestaurante
     public class UsuarioLN
     {
 
-
+        public static UsuarioEntidad Login(String pUsuario, String pPassword)
+        {
+            List<UsuarioEntidad> lista = new List<UsuarioEntidad>();
+            lista = ObtenerTodos();
+            UsuarioEntidad usuario = (lista.Find(elemento => (elemento.idUsuario.ToUpper() == pUsuario.ToUpper()) && (elemento.password == pPassword)));
+            return usuario;
+        }
 
         public static List<UsuarioEntidad> ObtenerTodos()
         {
@@ -31,7 +37,8 @@ namespace LogicaRestaurante
                 elemento.direccion = fila["direccion"].ToString();
                 elemento.email = fila["correo"].ToString();
                 elemento.telefono = fila["telefono"].ToString();
-                elemento.estado = Convert.ToBoolean(fila["estado"].ToString());
+                elemento.estado = Convert.ToInt16(fila["estado"].ToString());
+                elemento.password = fila["password"].ToString();
 
                 lista.Add(elemento);
             }
