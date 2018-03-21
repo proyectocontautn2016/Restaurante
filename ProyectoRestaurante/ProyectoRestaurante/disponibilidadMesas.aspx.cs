@@ -14,6 +14,27 @@ namespace ProyectoRestaurante
         protected void Page_Load(object sender, EventArgs e)
         {
             organizarMesas();
+            mostrarEstados();
+        }
+
+        private void mostrarEstados()
+        {
+            List<EstadoMesaEntidad> listaEstadosMesas = EstadoMesaLN.ObtenerTodos();
+            String hilera = "<center><table style='border:solid 1px black'>";
+
+            foreach(EstadoMesaEntidad item in listaEstadosMesas)
+            {
+                hilera += "<tr><td style=\"padding:5px\">";
+                hilera += "<strong>" + item.descripcion + "</strong>" + "</td>"; 
+                hilera += "<td style=\"padding:5px\">";
+                hilera += "<img src=\"img/estadoMesas/" + (item.estadoMesa + 9) + ".jpg\" height=\"30px\" width=\"30px\"/>";
+                hilera += "</td></tr>";
+            }
+
+            hilera += "</table></center>";
+
+
+            idEstadosMesas.InnerHtml = hilera;
         }
 
         private void organizarMesas() {
@@ -24,17 +45,17 @@ namespace ProyectoRestaurante
             foreach (MesaEntidad item in listaMesas) {
                 if (counter <= 5) //El 5 determina la cantidad de elementos por fila
                 {
-                    hileraTabla += "<td style=\"padding:30px\">";
+                    hileraTabla += "<td style=\"padding:15px\">";
 
 
-                   
-                    hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".png\" height=\"100px\" width=\"100px\"/>";
+                    hileraTabla += "<a class='btn btn-warning' href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">";
+                     hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".jpg\" height=\"100px\" width=\"100px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>Mesa N° " + item.idMesa + "</b>";
                     hileraTabla += "<br/>";
                     hileraTabla += item.estadoMesa.descripcion;
                     hileraTabla += "<br/><br/>";
-                    hileraTabla += "<a href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">Seleccionar mesa</a>";
+                    hileraTabla += "</a>";
 
 
 
@@ -44,17 +65,16 @@ namespace ProyectoRestaurante
                 else {
                     hileraTabla += "</tr>";
                     hileraTabla += "<tr>";
-                    hileraTabla += "<td style=\"padding:30px\">";
+                    hileraTabla += "<td style=\"padding:15px\">";
 
 
-                    
-                    hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".png\" height=\"100px\" width=\"100px\"/>";
+                    hileraTabla += "<a class='btn btn-warning' href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">";
+                    hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".jpg\" height=\"100px\" width=\"100px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>Mesa N° " + item.idMesa + "</b>";
                     hileraTabla += "<br/>";
                     hileraTabla += item.estadoMesa.descripcion;
-                    hileraTabla += "<br/><br/>";
-                    hileraTabla += "<a href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">Seleccionar mesa</a>";
+                    hileraTabla += "</a>";
 
 
                     hileraTabla += "</td>";

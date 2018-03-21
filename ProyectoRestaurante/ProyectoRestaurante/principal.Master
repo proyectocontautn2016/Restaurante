@@ -9,6 +9,24 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+             .btn-warning {
+              color: black;
+              background-color:  #FFFFFF;
+              border-color: #D8D8D8;
+            }
+            .btn-warning:focus,
+            .btn-warning.focus {
+              color: #FA58AC;
+              background-color: #A9BCF5;
+              border-color: #D8D8D8;
+            }
+            .btn-warning:hover {
+              color: #FA58AC;
+              background-color: #A9BCF5;
+              border-color: #D8D8D8;
+            }
+    </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

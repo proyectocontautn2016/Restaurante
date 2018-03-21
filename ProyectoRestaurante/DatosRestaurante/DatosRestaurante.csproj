@@ -50,6 +50,7 @@
     <Compile Include="ProductoDatos.cs" />
     <Compile Include="RestauranteDatos.cs" />
     <Compile Include="RolDatos.cs" />
+    <Compile Include="MontoPorTipoPagoDatos.cs" />
     <Compile Include="TipoPagoDatos.cs" />
     <Compile Include="TipoProductoDatos.cs" />
     <Compile Include="UsuarioDatos.cs" />

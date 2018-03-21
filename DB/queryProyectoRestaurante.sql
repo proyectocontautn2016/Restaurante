@@ -94,6 +94,7 @@ CREATE TABLE EncabezadoPedido
 idMesa int not null,
 idUsuario varchar(60) not null,
 idEstadoPedido int not null,
+estado binary not null,
 )
 
 CREATE TABLE detallePedido
@@ -103,6 +104,7 @@ idProducto int not null,
 cantidad int not null,
 precio float not null,
 comentario varchar(100) not null,
+estado binary not null,
 )
 
 CREATE TABLE EncabezadoFactura
@@ -112,8 +114,15 @@ idRestaurante int not null,
 idUsuario varchar(60) not null,
 nombreCliente varchar(60) not null,
 fecha datetime not null,
-idTipoPago int not null,
 )
+
+CREATE TABLE EncabezadoFacturaTipoPago
+(idEncabezadoFactura int not null,
+idTipoPago int not null,
+monto float not null 
+)
+
+
 
 /*CREATE TABLE detalleFactura
 (id int not null identity,
@@ -138,7 +147,9 @@ alter table tipoPago add Primary key (id)
 alter table EncabezadoPedido add Primary key (id)
 alter table detallePedido add Primary key (id)
 alter table EncabezadoFactura add Primary key (id)
+alter table  EncabezadoFacturaTipoPago add Primary key (idEncabezadoFactura,idTipoPago)
 --alter table detalleFactura add Primary key (id)
+
 
 
 --Adicion de los Foreign key por medio del alter table
@@ -149,7 +160,8 @@ alter table restauranteUsuario add CONSTRAINT FK_RestauranteUsuario_Restaurante 
 alter table mesa add CONSTRAINT FK_Mesa_EstadoMesa FOREIGN key (idEstadoMesa) references estadoMesa(id);
 alter table productoRestaurante add CONSTRAINT FK_ProductoRestaurante_Producto FOREIGN key (idProducto) references producto(id);
 alter table productoRestaurante add CONSTRAINT FK_ProductoRestaurante_Restaurante FOREIGN key (idRestaurante) references restaurante(id);
-alter table EncabezadoFactura add CONSTRAINT FK_EncabezadoFactura_TipoPago FOREIGN key (idTipoPago) references tipoPago(id);
+--alter table EncabezadoFactura add CONSTRAINT FK_EncabezadoFactura_TipoPago FOREIGN key (idTipoPago) references tipoPago(id);
+--ALTER TABLE EncabezadoFactura DROP CONSTRAINT FK_EncabezadoFactura_TipoPago;
 alter table EncabezadoFactura add CONSTRAINT FK_EncabezadoFactura_EncabezadoPedido FOREIGN key (idEncabezadoPedido) references EncabezadoPedido(id);
 --alter table detalleFactura add CONSTRAINT FK_detalleFactura_Producto FOREIGN key (idProducto) references producto(id);
 --alter table detalleFactura add CONSTRAINT FK_detalleFactura_EncabezadoFactura FOREIGN key (idEncabezadoFactura) references EncabezadoFactura(id);
@@ -158,6 +170,8 @@ alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_EstadoPedido FOR
 alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_usuario FOREIGN key (idUsuario) references usuario(id);
 alter table detallePedido add CONSTRAINT FK_DetallePedido_EncabezadoPedido FOREIGN key (idEncabezadoPedido) references EncabezadoPedido(id);
 alter table detallePedido add CONSTRAINT FK_DetallePedido_Producto FOREIGN key (idProducto) references  producto(id);
+alter table EncabezadoFacturaTipoPago add CONSTRAINT FK_EncabezadoFacturaTipoPago_EncabezadoFactura FOREIGN key (idEncabezadoFactura) references EncabezadoFactura(id);
+alter table EncabezadoFacturaTipoPago add CONSTRAINT FK_EncabezadoFacturaTipoPago_TipoPago FOREIGN key (idTipoPago) references tipoPago(id);
 
 --Procedimientos almacenados
 --Mostrar EstadoMesa
@@ -169,6 +183,19 @@ BEGIN
 	SET NOCOUNT ON;
 	Select * from estadoMesa;
 END
+
+
+
+CREATE PROCEDURE [dbo].[PA_SeleccionarEncabezadoFacturaTipoPago] 
+@idEncabezadoFactura int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Select e.*, t.descripcion from EncabezadoFacturaTipoPago e, tipoPago t where idEncabezadoFactura = @idEncabezadoFactura;
+END
+
 
 
 --Mostrar EstadoPedido
@@ -193,6 +220,42 @@ BEGIN
 END
 
 
+--Insertar Mesa
+CREATE PROCEDURE [dbo].[PA_InsertarMesa] 
+@idEstadoMesa int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].mesa
+           ([idEstadoMesa]
+           )
+     VALUES
+           (@idEstadoMesa);
+           
+END
+
+--Modificar Usuario
+CREATE PROCEDURE [dbo].[PA_ModificarMesa] 
+@id int,
+@idEstadoMesa int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+UPDATE [dbo].mesa
+   SET [idEstadoMesa] = @idEstadoMesa
+ WHERE [id] = @id;
+     
+
+END
+
+
 --Mostrar Productos
 CREATE PROCEDURE [dbo].[PA_SeleccionarProductos] 
 AS
@@ -201,6 +264,61 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	Select p.*, t.descripcion, t.estado from producto p, tipoProducto t;
+END
+
+
+--Insertar Productos
+CREATE PROCEDURE [dbo].[PA_InsertarProductos] 
+@idTipoProducto int,
+@nombre varchar(60),
+@precio float,
+@imagen varchar(50),
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].producto
+           ([idTipoProducto]
+           ,[nombre]
+           ,[precio]
+           ,[imagen]
+           ,[estado])
+     VALUES
+           (@idTipoProducto,
+           @nombre,
+           @precio,
+           @imagen,
+		   @estado);
+
+END
+
+--Modificar Productos
+CREATE PROCEDURE [dbo].[PA_ModificarProductos] 
+@id int,
+@idTipoProducto int,
+@nombre varchar(60),
+@precio float,
+@imagen varchar(50),
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+UPDATE [dbo].producto
+   SET [idTipoProducto] = @idTipoProducto,
+       [nombre] = @nombre,
+       [precio] = @precio,
+       [imagen] = @imagen,
+       [estado] = @estado
+ WHERE [id] = @id
+     
+
 END
 
 
@@ -213,6 +331,7 @@ BEGIN
 	SET NOCOUNT ON;
 	Select * from productoRestaurante;
 END
+
 
 
 --Mostrar Restaurante
@@ -358,6 +477,62 @@ BEGIN
 	Select e.*, t.descripcion from EncabezadoFactura e, tipoPago t;
 END
 
+
+--Insertar EncabezadoFactura
+CREATE PROCEDURE [dbo].[PA_InsertarEncabezadoFactura] 
+@idEncabezadoPedido int,
+@idRestaurante int,
+@idUsuario varchar(60),
+@nombreCliente varchar(60),
+@fecha datetime
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].EncabezadoFactura
+           ([idEncabezadoPedido]
+		   ,[idRestaurante]
+           ,[idUsuario]
+		   ,[nombreCliente]
+		   ,[fecha])
+     VALUES
+           (@idEncabezadoPedido,
+           @idRestaurante,
+           @idUsuario,
+           @nombreCliente,
+		   @fecha);
+
+END
+
+
+--Modificar EncabezadoFactura
+CREATE PROCEDURE [dbo].[PA_ModificarEncabezadoFactura] 
+@id int,
+@idEncabezadoPedido int,
+@idRestaurante int,
+@idUsuario varchar(60),
+@nombreCliente varchar(60),
+@fecha datetime
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+UPDATE [dbo].EncabezadoFactura
+   SET [idEncabezadoPedido] = @idEncabezadoPedido,
+       [idRestaurante] = @idRestaurante,
+	   [idUsuario] = @idUsuario,
+       [nombreCliente] = @nombreCliente,
+	   [fecha] = @fecha
+ WHERE [id] = @id
+     
+
+END
+
 /*
 --Mostrar DetalleFactura
 CREATE PROCEDURE [dbo].[PA_SeleccionarDetallesFactura] 
@@ -384,6 +559,58 @@ END
 
 
 
+--Insertar EncabezadoPedido
+CREATE PROCEDURE [dbo].[PA_InsertarEncabezadoPedido] 
+@idMesa int,
+@idUsuario varchar(60),
+@idEstadoPedido int,
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].EncabezadoPedido
+           ([idMesa]
+           ,[idUsuario]
+		   ,[idEstadoPedido]
+           ,[estado])
+     VALUES
+           (@idMesa,
+           @idUsuario,
+           @idEstadoPedido,
+           @estado);
+
+END
+
+
+--Modificar EncabezadoPedido
+CREATE PROCEDURE [dbo].[PA_ModificarEncabezadoPedido] 
+@id int,
+@idMesa int,
+@idUsuario varchar(60),
+@idEstadoPedido int,
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+UPDATE [dbo].EncabezadoPedido
+   SET [idMesa] = @idMesa,
+       [idUsuario] = @idUsuario,
+	   [idEstadoPedido] = @idEstadoPedido,
+       [estado] = @estado
+ WHERE [id] = @id
+     
+
+END
+
+
+
 --Mostrar DetallePedido
 CREATE PROCEDURE [dbo].[PA_SeleccionarDetallesPedido] 
  @idEncabezadoPedido int
@@ -393,4 +620,64 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 	Select d.*, p.nombre from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido;
+END
+
+
+--Insertar DetallePedido
+CREATE PROCEDURE [dbo].[PA_InsertarDetallesPedido] 
+@idEncabezadoPedido int,
+@idProducto int,
+@cantidad int,
+@precio float,
+@comentario varchar(100),
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].detallePedido
+           ([idEncabezadoPedido]
+           ,[idProducto]
+		   ,[cantidad]
+           ,[precio]
+           ,[comentario]
+           ,[estado])
+     VALUES
+           (@idEncabezadoPedido,
+           @idProducto,
+           @cantidad,
+           @precio,
+		   @comentario,
+		   @estado);
+
+END
+
+--Modificar DetallePedido
+CREATE PROCEDURE [dbo].[PA_ModificarDetallesPedido] 
+@id int,
+@idEncabezadoPedido int,
+@idProducto int,
+@cantidad int,
+@precio float,
+@comentario varchar(100),
+@estado binary(1)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	
+UPDATE [dbo].detallePedido
+   SET [idEncabezadoPedido] = @idEncabezadoPedido,
+       [idProducto] = @idProducto,
+	   [cantidad] = @cantidad,
+       [precio] = @precio,
+       [comentario] = @comentario,
+       [estado] = @estado
+ WHERE [id] = @id
+     
+
 END

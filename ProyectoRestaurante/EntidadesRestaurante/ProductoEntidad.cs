@@ -13,7 +13,7 @@ namespace EntidadesRestaurante
         public String nombre { get; set; }
         public Decimal precio { get; set; }
         public String imagen { get; set; }
-        public int MyProperty { get; set; }
+        public Boolean estado { get; set; }
 
         public ProductoEntidad()
         {

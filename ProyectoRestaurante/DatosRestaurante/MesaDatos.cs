@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntidadesRestaurante;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,6 +18,28 @@ namespace DatosRestaurante
             comando.CommandType = CommandType.StoredProcedure;
             DataSet ds = db.ExecuteReader(comando, "mesa");
             return ds;
+        }
+
+        public static void Insertar(MesaEntidad mesa)
+        {
+            Database db = DatabaseFactory.CreateDatabase("Default");
+
+            SqlCommand comando = new SqlCommand("PA_InsertarMesa");
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idEstadoMesa", mesa.estadoMesa);
+            db.ExecuteNonQuery(comando);
+
+          }
+
+
+        public static void Modificar(MesaEntidad mesa)
+        {
+            Database db = DatabaseFactory.CreateDatabase("Default");
+            SqlCommand comando = new SqlCommand("PA_ModificarMesa");
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@id", mesa.idMesa);
+            comando.Parameters.AddWithValue("@idEstadoMesa", mesa.estadoMesa);
+            db.ExecuteNonQuery(comando);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace ProyectoRestaurante
             catch (Exception)
             {
 
-                throw;
+                this.lblMensaje.Text = "Existe un problema con la conexión a base de datos";
             }
         }
 

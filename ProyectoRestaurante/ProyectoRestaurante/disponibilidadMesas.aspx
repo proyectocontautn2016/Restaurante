@@ -3,10 +3,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row" style="background-color:white">
-        <div class="col-md-12">
+        <div class="col-md-10" style="background-color:#FFFFFF">
+            <center><h2>Disponibilidad de Mesas del Restaurante</h2></center>
+            
             <div id="idOrganizacionMesas" runat="server" style="margin-top:5%">
 
             </div>
+        </div>
+        <div class="col-md-2">
+            <center><h2>Estados</h2></center>
+            <br /><br />
+
+            <div id="idEstadosMesas" runat="server">
         </div>
 
     </div>

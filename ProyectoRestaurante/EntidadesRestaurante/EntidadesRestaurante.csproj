@@ -44,6 +44,7 @@
     <Compile Include="DetallePedidoEntidad.cs" />
     <Compile Include="EncabezadoFacturaEntidad.cs" />
     <Compile Include="EncabezadoPedidoEntidad.cs" />
+    <Compile Include="MontoPorTipoPagoEntidad.cs" />
     <Compile Include="TipoPagoEntidad.cs" />
     <Compile Include="MesaEntidad.cs" />
     <Compile Include="EstadoMesaEntidad.cs" />

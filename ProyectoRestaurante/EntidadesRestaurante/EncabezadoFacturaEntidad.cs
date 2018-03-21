@@ -11,15 +11,15 @@ namespace EntidadesRestaurante
         public int idEncabezadoFactura { get; set; }
         public EncabezadoPedidoEntidad encabezadoPedido { get; set; }
         public RestauranteEntidad restaurante { get; set; }
-        public String identificacionCliente { get; set; }
+        public UsuarioEntidad usuario { get; set; }
         public String nombreCliente { get; set; }
         public DateTime fecha { get; set; }
-        public TipoPagoEntidad tipoPago { get; set; }
+        public List<MontoPorTipoPagoEntidad> listaFormaPago { get; set; }
         public EncabezadoFacturaEntidad()
         {
             encabezadoPedido = new EncabezadoPedidoEntidad();
             restaurante = new RestauranteEntidad();
-            tipoPago = new TipoPagoEntidad();
+            usuario = new UsuarioEntidad();
         }
     }
 }

@@ -45,5 +45,15 @@ namespace LogicaRestaurante
 
             return lista;
         }
+
+        public static void Nuevo(UsuarioEntidad usuario)
+        {
+            UsuarioDatos.Insertar(usuario);
+        }
+
+        public static void Modificar(UsuarioEntidad usuario)
+        {
+            UsuarioDatos.Modificar(usuario);
+        }
     }
 }

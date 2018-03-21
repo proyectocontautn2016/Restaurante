@@ -40,6 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetallePedidoLN.cs" />
+    <Compile Include="EncabezadoFacturaLN.cs" />
+    <Compile Include="EncabezadoPedidoLN.cs" />
+    <Compile Include="EstadoMesaLN.cs" />
+    <Compile Include="EstadoPedidoLN.cs" />
+    <Compile Include="ProductoLN.cs" />
+    <Compile Include="RestauranteLN.cs" />
+    <Compile Include="RolLN.cs" />
+    <Compile Include="MontoPorTipoPagoLN.cs" />
+    <Compile Include="TipoPagoLN.cs" />
+    <Compile Include="TipoProductoLN.cs" />
     <Compile Include="MesaLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioLN.cs" />

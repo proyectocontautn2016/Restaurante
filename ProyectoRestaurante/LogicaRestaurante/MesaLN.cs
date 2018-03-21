@@ -32,5 +32,16 @@ namespace LogicaRestaurante
 
             return lista;
         }
+
+
+        public static void Nuevo(MesaEntidad mesa)
+        {
+            MesaDatos.Insertar(mesa);
+        }
+
+        public static void Modificar(MesaEntidad mesa)
+        {
+            MesaDatos.Modificar(mesa);
+        }
     }
 }
