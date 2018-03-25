@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row" style="background-color:white">
+    <div class="row divRedondear" style="background-color:white">
         <div class="col-md-2"></div>
         <div class="col-md-4">
             <asp:Label ID="lblNumeroMesa" runat="server" Text="" Font-Bold="True" Font-Size="Larger"></asp:Label>

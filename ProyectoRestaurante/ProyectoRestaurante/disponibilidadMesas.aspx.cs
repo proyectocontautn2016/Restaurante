@@ -27,7 +27,7 @@ namespace ProyectoRestaurante
                 hilera += "<tr><td style=\"padding:5px\">";
                 hilera += "<strong>" + item.descripcion + "</strong>" + "</td>"; 
                 hilera += "<td style=\"padding:5px\">";
-                hilera += "<img src=\"img/estadoMesas/" + (item.estadoMesa + 9) + ".jpg\" height=\"30px\" width=\"30px\"/>";
+                hilera += "<img src=\"img/Mesas/" + (item.estadoMesa + 9) + ".jpg\" height=\"30px\" width=\"30px\"/>";
                 hilera += "</td></tr>";
             }
 
@@ -49,9 +49,11 @@ namespace ProyectoRestaurante
 
 
                     hileraTabla += "<a class='btn btn-warning' href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">";
-                     hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".jpg\" height=\"100px\" width=\"100px\"/>";
+                     hileraTabla += "<img src=\"img/Mesas/" + item.estadoMesa.estadoMesa + ".jpg\" height=\"100px\" width=\"100px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>Mesa N° " + item.idMesa + "</b>";
+                    hileraTabla += "<br/>";
+                    hileraTabla += item.cantidadPersonas + " Personas";
                     hileraTabla += "<br/>";
                     hileraTabla += item.estadoMesa.descripcion;
                     hileraTabla += "<br/><br/>";
@@ -69,9 +71,11 @@ namespace ProyectoRestaurante
 
 
                     hileraTabla += "<a class='btn btn-warning' href=\"accionMesa.aspx?idMesa=" + item.idMesa + "\">";
-                    hileraTabla += "<img src=\"img/estadoMesas/" + item.estadoMesa.estadoMesa + ".jpg\" height=\"100px\" width=\"100px\"/>";
+                    hileraTabla += "<img src=\"img/Mesas/" + item.estadoMesa.estadoMesa + ".jpg\" height=\"100px\" width=\"100px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>Mesa N° " + item.idMesa + "</b>";
+                    hileraTabla += "<br/>";
+                    hileraTabla += item.cantidadPersonas + " Personas";
                     hileraTabla += "<br/>";
                     hileraTabla += item.estadoMesa.descripcion;
                     hileraTabla += "</a>";

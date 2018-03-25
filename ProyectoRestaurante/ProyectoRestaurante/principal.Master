@@ -26,11 +26,93 @@
               background-color: #A9BCF5;
               border-color: #D8D8D8;
             }
+
+            .divRedondear{
+                border-radius: 32px 32px 32px 32px;
+                -moz-border-radius: 32px 32px 32px 32px;
+                -webkit-border-radius: 32px 32px 32px 32px;
+                border: 0px solid #000000;
+            }
+            .mGrid {  
+            width: 100%;  
+            background-color: black;  
+            margin: 5px 0 10px 0;  
+            border: solid 1px #525252;  
+            border-collapse: collapse;  
+        }  
+  
+            .mGrid td {  
+                padding: 2px;  
+                border: solid 1px #c1c1c1;  
+                color: black;  
+                text-align:center;
+                font-size:medium;
+                font-weight:bold;
+                background-color: #D8D8D8 
+            }  
+  
+            .mGrid th {  
+                padding: 4px 2px;  
+                color: #fff;  
+                background: #424242 url(grd_head.png) repeat-x top;  
+                border-left: solid 1px #525252;  
+                font-size: large;  
+                text-align:center
+            }  
+  
+            .mGrid .alt {  
+                background: #fcfcfc url(grd_alt.png) repeat-x top;  
+            }  
+  
+            .mGrid .pgr {  
+                background: #424242 url(grd_pgr.png) repeat-x top;  
+            }  
+  
+                .mGrid .pgr table {  
+                    margin: 5px 0;  
+                }  
+  
+                .mGrid .pgr td {  
+                    border-width: 0;  
+                    padding: 0 6px;  
+                    border-left: solid 1px #666;  
+                    font-weight: bold;  
+                    color: #fff;  
+                    line-height: 12px;  
+                }  
+  
+                .mGrid .pgr a {  
+                    color: #666;  
+                    text-decoration: none;  
+                }  
+  
+            .mGrid .pgr a:hover {  
+                color: #000;  
+                text-decoration: none;  
+            }  
+            .dropdown-menu{
+                background-color: #2E2E2E;
+                color: white;
+                font-weight:bold;
+            }
+
+             .dropdown-menu:focus{
+                background-color: white;
+                color: black;
+                font-weight:bold
+            }
+
+             .dropdown-menu > li > a{
+                color: white;
+                height:30px;
+            }
+              
+
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body style="background-image:url(img/fondo.jpg); background-repeat:no-repeat; background-size:cover">
+<body style="background-image:url(img/infoRestaurante/fondo.jpg); background-repeat:no-repeat; background-size:cover">
     <form id="form1" runat="server">
            <header>
             <!-- Fixed navbar -->
@@ -40,14 +122,14 @@
                   <a class="navbar-brand" href="#">Dalex</a>
                 </div>
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="disponibilidadMesas.aspx">Disponibilidad Mesas</a></li>
+                  <li class=""><a href="disponibilidadMesas.aspx">Disponibilidad Mesas</a></li>
                   <li><a href="#">Ejemplo 2</a></li>
                   <li><a href="#">Ejemplo 3</a></li>
-                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Ejemplo 4 <span class="caret"></span></a>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Ejemplo 4-1</a></li>
-                      <li><a href="#">Ejemplo 4-2</a></li>
-                      <li><a href="#">Ejemplo 4-3</a></li>
+                      <li><a href="MantenimientoUsuarios.aspx">Mantenimiento Usuarios</a></li>
+                      <li><a href="#">Mantenimiento Productos</a></li>
+                      <li><a href="MantenimientoMesas.aspx">Mantenimiento Mesas</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -62,7 +144,7 @@
             </nav>
         </header>
         <main role="main" class="container">
-            <div style="margin-top:5%">
+            <div class="divRedondear" style="margin-top:5%">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
                 </asp:ContentPlaceHolder>

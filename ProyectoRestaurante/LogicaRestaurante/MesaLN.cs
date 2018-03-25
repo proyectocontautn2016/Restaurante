@@ -20,15 +20,35 @@ namespace LogicaRestaurante
             {
                 MesaEntidad elemento = new MesaEntidad();
                 elemento.idMesa = Convert.ToInt16(fila["id"].ToString());
+                elemento.cantidadPersonas = Convert.ToInt16(fila["cantidadPersonas"].ToString());
 
                 EstadoMesaEntidad estadoMesa = new EstadoMesaEntidad();
                 estadoMesa.estadoMesa = Convert.ToInt16(fila["idEstadoMesa"].ToString());
                 estadoMesa.descripcion = fila["descripcion"].ToString();
-
+  
                 elemento.estadoMesa = estadoMesa;
 
                 lista.Add(elemento);
             }
+
+            return lista;
+        }
+
+        public static MesaEntidad ObtenerMesa(int numero)
+        {
+
+            List<MesaEntidad> listaMesas = MesaLN.ObtenerTodos();
+            MesaEntidad mesa = (listaMesas.Find(elemento => (elemento.idMesa == numero)));
+
+            return mesa;
+        }
+
+        public static List<MesaEntidad> ObtenerMesasEstado(int estado)
+        {
+
+            List<MesaEntidad> listaMesas = MesaLN.ObtenerTodos();
+            List<MesaEntidad> lista;
+            lista = listaMesas.Where(elemento => elemento.estadoMesa.estadoMesa == estado).ToList();
 
             return lista;
         }

@@ -10,6 +10,7 @@ namespace EntidadesRestaurante
     {
         public int idMesa { get; set; }
         public EstadoMesaEntidad estadoMesa { get; set; }
+        public int cantidadPersonas { get; set; }
 
         public MesaEntidad()
         {

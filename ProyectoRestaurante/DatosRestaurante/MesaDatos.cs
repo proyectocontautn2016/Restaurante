@@ -26,7 +26,8 @@ namespace DatosRestaurante
 
             SqlCommand comando = new SqlCommand("PA_InsertarMesa");
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@idEstadoMesa", mesa.estadoMesa);
+            comando.Parameters.AddWithValue("@idEstadoMesa", mesa.estadoMesa.estadoMesa);
+            comando.Parameters.AddWithValue("@cantidadPersonas", mesa.cantidadPersonas);
             db.ExecuteNonQuery(comando);
 
           }
@@ -38,7 +39,8 @@ namespace DatosRestaurante
             SqlCommand comando = new SqlCommand("PA_ModificarMesa");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", mesa.idMesa);
-            comando.Parameters.AddWithValue("@idEstadoMesa", mesa.estadoMesa);
+            comando.Parameters.AddWithValue("@idEstadoMesa", mesa.estadoMesa.estadoMesa);
+            comando.Parameters.AddWithValue("@cantidadPersonas", mesa.cantidadPersonas);
             db.ExecuteNonQuery(comando);
         }
     }

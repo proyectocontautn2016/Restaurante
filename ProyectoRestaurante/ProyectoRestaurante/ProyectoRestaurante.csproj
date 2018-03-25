@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="accionMesa.aspx" />
+    <Content Include="AgregarMesa.aspx" />
+    <Content Include="AgregarUsuario.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -77,14 +79,23 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="default.aspx" />
     <Content Include="disponibilidadMesas.aspx" />
-    <Content Include="img\estadoMesas\1.png" />
-    <Content Include="img\estadoMesas\2.png" />
-    <Content Include="img\estadoMesas\3.png" />
-    <Content Include="img\estadoMesas\4.png" />
-    <Content Include="img\estadoMesas\5.png" />
-    <Content Include="img\fondo.jpg" />
-    <Content Include="img\restaurante.jpg" />
+    <Content Include="EditarMesa.aspx" />
+    <Content Include="EditarUsuario.aspx" />
+    <Content Include="img\infoRestaurante\fondo.jpg" />
+    <Content Include="img\infoRestaurante\restaurante.jpg" />
+    <Content Include="img\Mesas\1.jpg" />
+    <Content Include="img\Mesas\10.jpg" />
+    <Content Include="img\Mesas\11.jpg" />
+    <Content Include="img\Mesas\12.jpg" />
+    <Content Include="img\Mesas\13.jpg" />
+    <Content Include="img\Mesas\14.jpg" />
+    <Content Include="img\Mesas\2.jpg" />
+    <Content Include="img\Mesas\3.jpg" />
+    <Content Include="img\Mesas\4.jpg" />
+    <Content Include="img\Mesas\5.jpg" />
     <Content Include="inicio.aspx" />
+    <Content Include="MantenimientoMesas.aspx" />
+    <Content Include="MantenimientoUsuarios.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -151,6 +162,20 @@
     <Compile Include="accionMesa.aspx.designer.cs">
       <DependentUpon>accionMesa.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgregarMesa.aspx.cs">
+      <DependentUpon>AgregarMesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarMesa.aspx.designer.cs">
+      <DependentUpon>AgregarMesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarUsuario.aspx.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarUsuario.aspx.designer.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,12 +190,40 @@
     <Compile Include="disponibilidadMesas.aspx.designer.cs">
       <DependentUpon>disponibilidadMesas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EditarMesa.aspx.cs">
+      <DependentUpon>EditarMesa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarMesa.aspx.designer.cs">
+      <DependentUpon>EditarMesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.designer.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="inicio.aspx.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="inicio.aspx.designer.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoMesas.aspx.cs">
+      <DependentUpon>MantenimientoMesas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoMesas.aspx.designer.cs">
+      <DependentUpon>MantenimientoMesas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoUsuarios.aspx.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoUsuarios.aspx.designer.cs">
+      <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="principal.Master.cs">
       <DependentUpon>principal.Master</DependentUpon>
@@ -185,6 +238,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DatosRestaurante\DatosRestaurante.csproj">
+      <Project>{F684A16A-5AA7-4787-9935-F971B3EE9E84}</Project>
+      <Name>DatosRestaurante</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntidadesRestaurante\EntidadesRestaurante.csproj">
       <Project>{335D8594-0148-4897-A42E-961234A99047}</Project>
       <Name>EntidadesRestaurante</Name>

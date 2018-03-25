@@ -32,6 +32,7 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@nombre", usuario.nombre);
             comando.Parameters.AddWithValue("@direccion", usuario.direccion);
             comando.Parameters.AddWithValue("@correo", usuario.email);
+            comando.Parameters.AddWithValue("@password", usuario.password);
             comando.Parameters.AddWithValue("@telefono", usuario.telefono);
             comando.Parameters.AddWithValue("@estado", usuario.estado);
             db.ExecuteNonQuery(comando);
@@ -48,6 +49,7 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@nombre", usuario.nombre);
             comando.Parameters.AddWithValue("@direccion", usuario.direccion);
             comando.Parameters.AddWithValue("@correo", usuario.email);
+            comando.Parameters.AddWithValue("@password", usuario.password);
             comando.Parameters.AddWithValue("@telefono", usuario.telefono);
             comando.Parameters.AddWithValue("@estado", usuario.estado);
             db.ExecuteNonQuery(comando);

@@ -77,6 +77,7 @@ descripcion varchar(50) not null,
 CREATE TABLE mesa
 (id int not null identity,
 idEstadoMesa int not null,
+cantidadPersonas int not null
 )
 
 CREATE TABLE estadoPedido
@@ -222,7 +223,8 @@ END
 
 --Insertar Mesa
 CREATE PROCEDURE [dbo].[PA_InsertarMesa] 
-@idEstadoMesa int
+@idEstadoMesa int,
+@cantidadPersonas int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -231,16 +233,19 @@ BEGIN
 
 	INSERT INTO [dbo].mesa
            ([idEstadoMesa]
+		   ,[cantidadPersonas]
            )
      VALUES
-           (@idEstadoMesa);
+           (@idEstadoMesa, @cantidadPersonas);
            
 END
+
 
 --Modificar Usuario
 CREATE PROCEDURE [dbo].[PA_ModificarMesa] 
 @id int,
-@idEstadoMesa int
+@idEstadoMesa int,
+@cantidadPersonas int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -249,7 +254,8 @@ BEGIN
 
 	
 UPDATE [dbo].mesa
-   SET [idEstadoMesa] = @idEstadoMesa
+   SET [idEstadoMesa] = @idEstadoMesa,
+	   [cantidadPersonas] = @cantidadPersonas
  WHERE [id] = @id;
      
 
@@ -399,7 +405,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select u.*, r.descripcion from usuario u, rol r;
+	Select u.*, r.descripcion from usuario u, rol r where u.idRol = r.id;
 END
 
 
@@ -410,6 +416,7 @@ CREATE PROCEDURE [dbo].[PA_InsertarUsuarios]
 @nombre varchar(60),
 @direccion varchar(150),
 @correo varchar(50),
+@password varchar(50),
 @telefono varchar(50),
 @estado binary(1)
 AS
@@ -424,6 +431,7 @@ BEGIN
            ,[nombre]
            ,[direccion]
            ,[correo]
+		   ,[password]
            ,[telefono]
            ,[estado])
      VALUES
@@ -432,10 +440,12 @@ BEGIN
            @nombre,
            @direccion,
            @correo,
+		   @password,
            @telefono,
            @estado);
 
 END
+
 
 --Modificar Usuario
 CREATE PROCEDURE [dbo].[PA_ModificarUsuarios] 
@@ -444,6 +454,7 @@ CREATE PROCEDURE [dbo].[PA_ModificarUsuarios]
 @nombre varchar(60),
 @direccion varchar(150),
 @correo varchar(50),
+@password varchar(50),
 @telefono varchar(50),
 @estado binary(1)
 AS
@@ -458,6 +469,7 @@ UPDATE [dbo].[usuario]
        [nombre] = @nombre,
        [direccion] = @direccion,
        [correo] = @correo,
+	   [password] = @password,
        [telefono] = @telefono,
        [estado] = @estado
  WHERE [id] = @id

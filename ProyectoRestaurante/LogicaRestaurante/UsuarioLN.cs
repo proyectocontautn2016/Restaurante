@@ -20,6 +20,34 @@ namespace LogicaRestaurante
             return usuario;
         }
 
+        public static UsuarioEntidad obtenerUsuarioId(String pUsuario)
+        {
+            List<UsuarioEntidad> lista = new List<UsuarioEntidad>();
+            lista = ObtenerTodos();
+            UsuarioEntidad usuario = (lista.Find(elemento => (elemento.idUsuario == pUsuario)));
+            return usuario;
+        }
+
+        public static List<UsuarioEntidad> ObtenerUsuarioEstado(int estado)
+        {
+
+            List<UsuarioEntidad> listaUsuarios = UsuarioLN.ObtenerTodos();
+            List<UsuarioEntidad> lista;
+            lista = listaUsuarios.Where(elemento => elemento.estado == estado).ToList();
+
+            return lista;
+        }
+
+        public static List<UsuarioEntidad> ObtenerUsuarioRol(int rol)
+        {
+
+            List<UsuarioEntidad> listaUsuarios = UsuarioLN.ObtenerTodos();
+            List<UsuarioEntidad> lista;
+            lista = listaUsuarios.Where(elemento => elemento.rol.idRol == rol).ToList();
+
+            return lista;
+        }
+
         public static List<UsuarioEntidad> ObtenerTodos()
         {
             List<UsuarioEntidad> lista = new List<UsuarioEntidad>();
@@ -32,6 +60,7 @@ namespace LogicaRestaurante
 
                 RolEntidad role = new RolEntidad();
                 role.idRol = Convert.ToInt16(fila["idRol"].ToString());
+                role.descripcion = fila["descripcion"].ToString();
                 elemento.rol = role;
                 elemento.nombre = fila["nombre"].ToString();
                 elemento.direccion = fila["direccion"].ToString();

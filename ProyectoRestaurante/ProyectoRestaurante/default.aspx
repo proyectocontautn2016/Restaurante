@@ -9,7 +9,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
 </head>
-<body style="background-image:url(img/restaurante.jpg); background-repeat:no-repeat; background-size:cover">
+<body style="background-image:url(img/infoRestaurante/restaurante.jpg); background-repeat:no-repeat; background-size:cover">
     <form id="form" runat="server">  
         <div class="container" style="margin-top:15%">
             <div class="row">
