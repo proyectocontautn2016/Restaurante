@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="accionMesa.aspx" />
+    <Content Include="AgregarComanda.aspx" />
     <Content Include="AgregarMesa.aspx" />
     <Content Include="AgregarUsuario.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -93,6 +94,7 @@
     <Content Include="img\Mesas\3.jpg" />
     <Content Include="img\Mesas\4.jpg" />
     <Content Include="img\Mesas\5.jpg" />
+    <Content Include="img\productos\sushi.jpeg" />
     <Content Include="inicio.aspx" />
     <Content Include="MantenimientoMesas.aspx" />
     <Content Include="MantenimientoUsuarios.aspx" />
@@ -161,6 +163,13 @@
     </Compile>
     <Compile Include="accionMesa.aspx.designer.cs">
       <DependentUpon>accionMesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarComanda.aspx.cs">
+      <DependentUpon>AgregarComanda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarComanda.aspx.designer.cs">
+      <DependentUpon>AgregarComanda.aspx</DependentUpon>
     </Compile>
     <Compile Include="AgregarMesa.aspx.cs">
       <DependentUpon>AgregarMesa.aspx</DependentUpon>

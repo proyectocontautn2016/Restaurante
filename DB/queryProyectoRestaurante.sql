@@ -47,7 +47,7 @@ password varchar(50) not null
 CREATE TABLE tipoProducto
 (id int not null identity,
 descripcion varchar(50) not null,
-estado binary not null,
+estado int not null,
 )
 
 CREATE TABLE producto
@@ -56,7 +56,7 @@ idTipoProducto int not null,
 nombre varchar(60) not null,
 precio float not null,
 imagen varchar(50) not null,
-estado binary not null,
+estado int not null,
 )
 
 CREATE TABLE productoRestaurante
