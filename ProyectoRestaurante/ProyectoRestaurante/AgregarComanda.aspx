@@ -27,11 +27,17 @@
             <div class="col-md-12">
                 <h3>Productos</h3>
                 <br/>
+                <center>
+                    <label runat="server" id="Label3" for="">Listar productos por</label>
+                    <br/>
+                    <asp:DropDownList ID="ddlTipoProducto" OnSelectedIndexChanged="ddlTipoProducto_SelectedIndexChanged1" runat="server"></asp:DropDownList>
+                </center>
+                <br/>
                 <div id="idListadoProductos" runat="server">
 
                 </div>
             </div>
         </div>
-
+        <asp:HiddenField ID="hdfIdMesa" runat="server"/>
     </div>
 </asp:Content>

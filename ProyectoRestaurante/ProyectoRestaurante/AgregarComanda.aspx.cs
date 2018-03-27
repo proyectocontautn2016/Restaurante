@@ -20,6 +20,11 @@ namespace ProyectoRestaurante
                 ddlMesas.DataValueField = "idMesa";
                 ddlMesas.DataBind();
 
+                ddlTipoProducto.DataSource = TipoProductoLN.ObtenerTodos();
+                ddlTipoProducto.DataTextField = "descripcion";
+                ddlTipoProducto.DataValueField = "idTipoProducto";
+                ddlTipoProducto.DataBind();
+
                 try
                 {
                     int pIdMesa = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
@@ -27,19 +32,45 @@ namespace ProyectoRestaurante
                     {
                         ddlMesas.SelectedValue = pIdMesa.ToString();
                         ddlMesas.Enabled = false;
+                        hdfIdMesa.Value = pIdMesa.ToString();
+                        cargarProductos();
+
+                        if (Session["pedido"] == null)
+                        {
+                            EncabezadoPedidoEntidad pedido= new EncabezadoPedidoEntidad();
+                            pedido.mesa.idMesa = pIdMesa;
+                            pedido.usuario = (UsuarioEntidad)Session["usuario"];
+                            Session.Add("pedido", pedido);
+                        }
+
+                        if (Session["tipoProducto"] != null)
+                        {
+                            ddlTipoProducto.SelectedValue = ((TipoProductoEntidad)Session["tipoProducto"]).idTipoProducto.ToString();
+                        }
+                        else {
+                            ddlTipoProducto.SelectedIndex = 0;
+                        }
+
                     }
                 }
                 catch (Exception)
                 {
-                    
+                    Response.Redirect("disponibilidadMesas.aspx");
                 }
-
-                cargarProductos();
             }
         }
 
         private void cargarProductos() {
-            List<ProductoEntidad> listaProductos = ProductoLN.ObtenerTodos();            
+
+            List<ProductoEntidad> listaProductos = null;
+            if (Session["tipoProducto"] != null)
+            {
+                listaProductos = ProductoLN.ObtenerProductoTipo(((TipoProductoEntidad)Session["Recetas"]).idTipoProducto);
+            }
+            else {
+                listaProductos = ProductoLN.ObtenerProductoTipo(1);
+            }
+                       
             String hileraTabla = "<center><table><tr>";
             int counter = 1;
             foreach (ProductoEntidad item in listaProductos)
@@ -48,7 +79,7 @@ namespace ProyectoRestaurante
                 {
                     hileraTabla += "<td style=\"padding:15px\">";
 
-                    hileraTabla += "<a class='btn btn-warning' href=\"incluirProducto.aspx?idProducto=" + item.idProducto + "\">";
+                    hileraTabla += "<a class='btn btn-warning' href=\"seleccionarProducto.aspx?idProducto=" + item.idProducto + "&idMesa=" + hdfIdMesa.Value + "\">";
                     hileraTabla += "<img src=\"img/productos/" + item.imagen + "\" height=\"200px\" width=\"200px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>" + item.nombre + "</b>";
@@ -65,7 +96,7 @@ namespace ProyectoRestaurante
                     hileraTabla += "<tr>";
                     hileraTabla += "<td style=\"padding:15px\">";
 
-                    hileraTabla += "<a class='btn btn-warning' href=\"incluirProducto.aspx?idProducto=" + item.idProducto + "\">";
+                    hileraTabla += "<a class='btn btn-warning' href=\"seleccionarProducto.aspx?idProducto=" + item.idProducto + "&idMesa=" + hdfIdMesa.Value +"\">";
                     hileraTabla += "<img src=\"img/productos/" + item.imagen + "\" height=\"200px\" width=\"200px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>" + item.nombre + "</b>";
@@ -87,6 +118,19 @@ namespace ProyectoRestaurante
             hileraTabla += "</tr></table></center>";
 
             idListadoProductos.InnerHtml = hileraTabla;
+        }
+
+
+        protected void ddlTipoProducto_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            TipoProductoEntidad tipoProducto = null;
+            if (Session["tipoProducto"] != null)
+            {
+                tipoProducto = (TipoProductoEntidad)Session["tipoProducto"];
+                Session.Remove("tipoProducto");
+            }
+            Session.Add("tipoProducto", tipoProducto);
+            Response.Redirect("AgregarComanda.aspx?idMesa=" + hdfIdMesa.Value);
         }
     }
 }

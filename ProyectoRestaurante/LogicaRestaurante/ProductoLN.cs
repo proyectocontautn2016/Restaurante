@@ -70,6 +70,16 @@ namespace LogicaRestaurante
             return lista;
         }
 
+        public static ProductoEntidad ObtenerProducto(int pIdProducto)
+        {
+
+            List<ProductoEntidad> listaProductos = ProductoLN.ObtenerTodos();
+            ProductoEntidad producto;
+            producto = listaProductos.Find(elemento => (elemento.idProducto == pIdProducto));
+
+            return producto;
+        }
+
 
         public static void Nuevo(ProductoEntidad producto)
         {

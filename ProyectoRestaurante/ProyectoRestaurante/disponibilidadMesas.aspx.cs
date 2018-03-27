@@ -13,6 +13,10 @@ namespace ProyectoRestaurante
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["pedido"] != null)
+            {
+                Session.Remove("pedido");
+            }
             organizarMesas();
             mostrarEstados();
         }

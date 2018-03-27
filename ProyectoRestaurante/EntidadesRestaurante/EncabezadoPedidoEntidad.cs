@@ -19,6 +19,7 @@ namespace EntidadesRestaurante
             mesa = new MesaEntidad();
             usuario = new UsuarioEntidad();
             estadoPedido = new EstadoPedidoEntidad();
+            listaDetalles = new List<DetallePedidoEntidad>();
         }
     }
 }

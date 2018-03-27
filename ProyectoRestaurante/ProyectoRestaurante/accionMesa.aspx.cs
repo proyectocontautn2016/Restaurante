@@ -15,6 +15,10 @@ namespace ProyectoRestaurante
         {
             try
             {
+                if (Session["pedido"] != null)
+                {
+                    Session.Remove("pedido");
+                }
                 llenarCampos();
             }
             catch (Exception)
