@@ -71,6 +71,7 @@
     <Content Include="accionMesa.aspx" />
     <Content Include="AgregarComanda.aspx" />
     <Content Include="AgregarMesa.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="AgregarUsuario.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -81,22 +82,58 @@
     <Content Include="default.aspx" />
     <Content Include="disponibilidadMesas.aspx" />
     <Content Include="EditarMesa.aspx" />
+    <Content Include="EditarProducto.aspx" />
     <Content Include="EditarUsuario.aspx" />
     <Content Include="img\infoRestaurante\fondo.jpg" />
     <Content Include="img\infoRestaurante\restaurante.jpg" />
-    <Content Include="img\Mesas\1.jpg" />
-    <Content Include="img\Mesas\10.jpg" />
-    <Content Include="img\Mesas\11.jpg" />
-    <Content Include="img\Mesas\12.jpg" />
-    <Content Include="img\Mesas\13.jpg" />
-    <Content Include="img\Mesas\14.jpg" />
-    <Content Include="img\Mesas\2.jpg" />
-    <Content Include="img\Mesas\3.jpg" />
-    <Content Include="img\Mesas\4.jpg" />
-    <Content Include="img\Mesas\5.jpg" />
-    <Content Include="img\productos\sushi.jpeg" />
+    <Content Include="img\mesaEstados\1.jpg" />
+    <Content Include="img\mesaEstados\10.jpg" />
+    <Content Include="img\mesaEstados\2.jpg" />
+    <Content Include="img\mesaEstados\3.jpg" />
+    <Content Include="img\mesaEstados\4.jpg" />
+    <Content Include="img\mesaEstados\5.jpg" />
+    <Content Include="img\mesaEstados\7.jpg" />
+    <Content Include="img\mesaEstados\8.jpg" />
+    <Content Include="img\mesaEstados\9.jpg" />
+    <Content Include="img\mesaEstados\E1.jpg" />
+    <Content Include="img\mesaEstados\E10.jpg" />
+    <Content Include="img\mesaEstados\E2.jpg" />
+    <Content Include="img\mesaEstados\E3.jpg" />
+    <Content Include="img\mesaEstados\E4.jpg" />
+    <Content Include="img\mesaEstados\E5.jpg" />
+    <Content Include="img\mesaEstados\E7.jpg" />
+    <Content Include="img\mesaEstados\E8.jpg" />
+    <Content Include="img\mesaEstados\E9.jpg" />
+    <Content Include="img\productos\Bebidas\bebida.jpg" />
+    <Content Include="img\productos\Bebidas\cerveza.jpg" />
+    <Content Include="img\productos\Bebidas\Cóctele.jpg" />
+    <Content Include="img\productos\Bebidas\mai thai.jpg" />
+    <Content Include="img\productos\Bebidas\sake.jpg" />
+    <Content Include="img\productos\Bebidas\te-verde.jpg" />
+    <Content Include="img\productos\Entradas\onigiri.jpg" />
+    <Content Include="img\productos\Entradas\Oyakodon.jpg" />
+    <Content Include="img\productos\Entradas\ramen.jpg" />
+    <Content Include="img\productos\Entradas\sashimi.jpg" />
+    <Content Include="img\productos\Entradas\takoyaki.jpg" />
+    <Content Include="img\productos\Postres\dorayaki.jpg" />
+    <Content Include="img\productos\Postres\hanami_dango.jpg" />
+    <Content Include="img\productos\Postres\Pai.jpg" />
+    <Content Include="img\productos\Postres\Pastel.jpg" />
+    <Content Include="img\productos\Sushi\alaskan.jpg" />
+    <Content Include="img\productos\Sushi\arcoIris.jpg" />
+    <Content Include="img\productos\Sushi\california.jpg" />
+    <Content Include="img\productos\Sushi\dragon.jpg" />
+    <Content Include="img\productos\Sushi\kappa.jpg" />
+    <Content Include="img\productos\Sushi\nigiri.jpg" />
+    <Content Include="img\productos\Sushi\sushi-jalapeno.jpg" />
+    <Content Include="img\productos\Sushi\sushi_huevas .jpg" />
+    <Content Include="img\productos\Sushi\sushi_tempu.jpg" />
+    <Content Include="img\productos\Sushi\tablet_nigiri.jpg" />
+    <Content Include="img\productos\Sushi\tekkamaki.jpg" />
+    <Content Include="img\productos\Sushi\Tekkamaki2.jpg" />
     <Content Include="inicio.aspx" />
     <Content Include="MantenimientoMesas.aspx" />
+    <Content Include="MantenimientoProductos.aspx" />
     <Content Include="MantenimientoUsuarios.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -178,6 +215,13 @@
     <Compile Include="AgregarMesa.aspx.designer.cs">
       <DependentUpon>AgregarMesa.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarUsuario.aspx.cs">
       <DependentUpon>AgregarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,6 +250,13 @@
     <Compile Include="EditarMesa.aspx.designer.cs">
       <DependentUpon>EditarMesa.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EditarProducto.aspx.cs">
+      <DependentUpon>EditarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarProducto.aspx.designer.cs">
+      <DependentUpon>EditarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditarUsuario.aspx.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,6 +277,13 @@
     </Compile>
     <Compile Include="MantenimientoMesas.aspx.designer.cs">
       <DependentUpon>MantenimientoMesas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoProductos.aspx.cs">
+      <DependentUpon>MantenimientoProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoProductos.aspx.designer.cs">
+      <DependentUpon>MantenimientoProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="MantenimientoUsuarios.aspx.cs">
       <DependentUpon>MantenimientoUsuarios.aspx</DependentUpon>

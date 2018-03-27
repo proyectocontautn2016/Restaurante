@@ -16,6 +16,7 @@ namespace LogicaRestaurante
             /*public int idProducto { get; set; }
             public TipoProductoEntidad tipoProducto { get; set; }
             public String nombre { get; set; }
+            public String descripcion { get; set; }
             public Decimal precio { get; set; }
             public String imagen { get; set; }
             public int estado { get; set; }*/
@@ -28,8 +29,9 @@ namespace LogicaRestaurante
                 ProductoEntidad elemento = new ProductoEntidad();
                 elemento.idProducto = Convert.ToInt16(fila["id"].ToString());
                 elemento.tipoProducto.idTipoProducto = Convert.ToInt16(fila["idTipoProducto"].ToString());
-                elemento.tipoProducto.descripcion = fila["descripcion"].ToString();
+                elemento.tipoProducto.descripcion = fila["descriTipoProducto"].ToString();
                 elemento.nombre = fila["nombre"].ToString();
+                elemento.descripcion = fila["descripcion"].ToString();
                 elemento.precio = Convert.ToDecimal(fila["precio"].ToString());
                 elemento.imagen = fila["imagen"].ToString();
 
@@ -44,6 +46,26 @@ namespace LogicaRestaurante
                 lista.Add(elemento);
             }
 
+
+            return lista;
+        }
+
+        public static List<ProductoEntidad> ObtenerProductoEstado(Boolean estado)
+        {
+
+            List<ProductoEntidad> listaProductos = ProductoLN.ObtenerTodos();
+            List<ProductoEntidad> lista;
+            lista = listaProductos.Where(elemento => elemento.estado == estado).ToList();
+
+            return lista;
+        }
+
+        public static List<ProductoEntidad> ObtenerProductoTipo(int tipo)
+        {
+
+            List<ProductoEntidad> listaProductos = ProductoLN.ObtenerTodos();
+            List<ProductoEntidad> lista;
+            lista = listaProductos.Where(elemento => elemento.tipoProducto.idTipoProducto == tipo).ToList();
 
             return lista;
         }

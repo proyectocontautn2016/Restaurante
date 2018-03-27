@@ -11,6 +11,7 @@ namespace EntidadesRestaurante
         public int idProducto { get; set; }
         public TipoProductoEntidad tipoProducto { get; set; }
         public String nombre { get; set; }
+        public String descripcion { get; set; }
         public Decimal precio { get; set; }
         public String imagen { get; set; }
         public Boolean estado { get; set; }

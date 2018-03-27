@@ -29,6 +29,7 @@ namespace DatosRestaurante
 
             comando.Parameters.AddWithValue("@idTipoProducto", producto.tipoProducto.idTipoProducto);
             comando.Parameters.AddWithValue("@nombre", producto.nombre);
+            comando.Parameters.AddWithValue("@descripcion", producto.descripcion);
             comando.Parameters.AddWithValue("@precio", producto.precio);
             comando.Parameters.AddWithValue("@imagen", producto.imagen);
 
@@ -50,6 +51,7 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@id", producto.idProducto);
             comando.Parameters.AddWithValue("@idTipoProducto", producto.tipoProducto.idTipoProducto);
             comando.Parameters.AddWithValue("@nombre", producto.nombre);
+            comando.Parameters.AddWithValue("@descripcion", producto.descripcion);
             comando.Parameters.AddWithValue("@precio", producto.precio);
             comando.Parameters.AddWithValue("@imagen", producto.imagen);
 

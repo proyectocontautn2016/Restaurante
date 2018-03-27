@@ -269,7 +269,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select p.*, t.descripcion, t.estado from producto p, tipoProducto t;
+	Select p.*, t.descripcion as 'descriTipoProducto', t.estado from producto p, tipoProducto t where p.idTipoProducto = t.id;
 END
 
 
@@ -277,9 +277,10 @@ END
 CREATE PROCEDURE [dbo].[PA_InsertarProductos] 
 @idTipoProducto int,
 @nombre varchar(60),
+@descripcion varchar(200),
 @precio float,
 @imagen varchar(50),
-@estado binary(1)
+@estado int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -289,26 +290,30 @@ BEGIN
 	INSERT INTO [dbo].producto
            ([idTipoProducto]
            ,[nombre]
+		   ,[descripcion]
            ,[precio]
            ,[imagen]
            ,[estado])
      VALUES
            (@idTipoProducto,
            @nombre,
+		   @descripcion,
            @precio,
            @imagen,
 		   @estado);
 
 END
 
+
 --Modificar Productos
 CREATE PROCEDURE [dbo].[PA_ModificarProductos] 
 @id int,
 @idTipoProducto int,
 @nombre varchar(60),
+@descripcion varchar(200),
 @precio float,
 @imagen varchar(50),
-@estado binary(1)
+@estado int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -319,6 +324,7 @@ BEGIN
 UPDATE [dbo].producto
    SET [idTipoProducto] = @idTipoProducto,
        [nombre] = @nombre,
+	   [descripcion] = @descripcion,
        [precio] = @precio,
        [imagen] = @imagen,
        [estado] = @estado

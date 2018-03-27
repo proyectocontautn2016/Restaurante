@@ -32,7 +32,7 @@ namespace ProyectoRestaurante
             txtCantidadPersonas.Text = mesa.cantidadPersonas.ToString();
             txtEstado.Text = mesa.estadoMesa.descripcion;
             cargarComboAccionMesa(mesa.estadoMesa.estadoMesa);
-            imgEstadoMesa.ImageUrl = "~/img/Mesas/" + mesa.estadoMesa.estadoMesa + ".jpg";
+            imgEstadoMesa.ImageUrl = "~/img/mesaEstados/" + mesa.estadoMesa.estadoMesa + ".jpg";
         }
 
 
@@ -53,7 +53,7 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(2, new ListItem("Registrar Comanda", "3"));
                 }
 
-                if (pIdEstadoMesa == 5)
+                if (pIdEstadoMesa == 9)
                 {
                     ddlAccionMesa.Items.Insert(0, new ListItem("--Seleccionar acción--", "0"));
                     ddlAccionMesa.Items.Insert(1, new ListItem("Activar Mesa", "1"));
