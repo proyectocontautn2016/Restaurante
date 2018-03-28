@@ -82,10 +82,10 @@ namespace ProyectoRestaurante
             ProductoEntidad producto = new ProductoEntidad();
             int num = Convert.ToInt32(e.CommandArgument);
 
-            producto.idProducto = Convert.ToInt16(grvListado.Rows[num].Cells[0].Text);
+            producto.idProducto = Convert.ToInt16(grvListado.DataKeys[num].Values[0]);
 
 
-            Response.Redirect("EditarProducto.aspx?idIdentificacion=" + producto.idProducto);
+            Response.Redirect("EditarProducto.aspx?idProducto=" + producto.idProducto);
         }
     }
 }

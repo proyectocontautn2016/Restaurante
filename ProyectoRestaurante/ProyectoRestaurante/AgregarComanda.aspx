@@ -5,7 +5,7 @@
 
     <div class="container-fluid divRedondear" style="background-color:white">
         <div class="row">
-            <center><h2>Modulo de Agragar Comanda</h2></center>
+            <center><h2>Modulo de Agregar Comanda</h2></center>
             <div class="col-md-1"></div>
             <div class="col-md-6">
                 <br /><br />
@@ -15,7 +15,7 @@
                     <label runat="server" style="font-size:large" id="Label1" for="">Número de mesa</label>
                     </div>
                     <div class="col-md-8">
-                        <asp:DropDownList ID="ddlMesas" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlMesas" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
                     </div>
                 </div>
             </div>
@@ -25,12 +25,12 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h3>Productos</h3>
+                <center><h3>Productos</h3></center>
                 <br/>
                 <center>
-                    <label runat="server" id="Label3" for="">Listar productos por</label>
-                    <br/>
-                    <asp:DropDownList ID="ddlTipoProducto" OnSelectedIndexChanged="ddlTipoProducto_SelectedIndexChanged1" runat="server"></asp:DropDownList>
+                    <label runat="server" id="Label3" style="font-size:large" for="">Listar productos por</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:DropDownList ID="ddlTipoProducto" Font-Size="Large" OnSelectedIndexChanged="ddlTipoProducto_SelectedIndexChanged1" runat="server" AutoPostBack="true"></asp:DropDownList>
                 </center>
                 <br/>
                 <div id="idListadoProductos" runat="server">

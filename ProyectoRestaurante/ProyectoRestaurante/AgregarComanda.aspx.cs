@@ -65,7 +65,8 @@ namespace ProyectoRestaurante
             List<ProductoEntidad> listaProductos = null;
             if (Session["tipoProducto"] != null)
             {
-                listaProductos = ProductoLN.ObtenerProductoTipo(((TipoProductoEntidad)Session["Recetas"]).idTipoProducto);
+                
+                listaProductos = ProductoLN.ObtenerProductoTipo(((TipoProductoEntidad)Session["tipoProducto"]).idTipoProducto);
             }
             else {
                 listaProductos = ProductoLN.ObtenerProductoTipo(1);
@@ -123,14 +124,20 @@ namespace ProyectoRestaurante
 
         protected void ddlTipoProducto_SelectedIndexChanged1(object sender, EventArgs e)
         {
-            TipoProductoEntidad tipoProducto = null;
-            if (Session["tipoProducto"] != null)
+            //TipoProductoEntidad tipoProducto = null;
+            /*if (Session["tipoProducto"] != null)
             {
                 tipoProducto = (TipoProductoEntidad)Session["tipoProducto"];
                 Session.Remove("tipoProducto");
             }
             Session.Add("tipoProducto", tipoProducto);
-            Response.Redirect("AgregarComanda.aspx?idMesa=" + hdfIdMesa.Value);
+            Response.Redirect("AgregarComanda.aspx?idMesa=" + hdfIdMesa.Value);*/
+
+            int valor = Convert.ToInt16(this.ddlTipoProducto.SelectedValue);
+            TipoProductoEntidad tipoProducto = new TipoProductoEntidad();
+            tipoProducto.idTipoProducto = valor;
+            Session.Add("tipoProducto", tipoProducto);
+            cargarProductos();
         }
     }
 }
