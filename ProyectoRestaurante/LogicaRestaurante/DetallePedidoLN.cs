@@ -35,7 +35,6 @@ namespace LogicaRestaurante
                 elemento.cantidad = Convert.ToInt16(fila["cantidad"].ToString());
                 elemento.precio = Convert.ToDecimal(fila["precio"].ToString());
                 elemento.comentario = fila["comentario"].ToString();
-                elemento.precio = Convert.ToDecimal(fila["precio"].ToString());
 
                 if(Convert.ToInt16(fila["estado"].ToString()) == 1)
                 {

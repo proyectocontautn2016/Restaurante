@@ -15,11 +15,10 @@ namespace ProyectoRestaurante
         {
             if (!IsPostBack)
             {
-                ddlMesas.DataSource = MesaLN.ObtenerTodos();
-                ddlMesas.DataTextField = "idMesa";
-                ddlMesas.DataValueField = "idMesa";
-                ddlMesas.DataBind();
-
+                if (Session["pedido"] == null)
+                {
+                    Response.Redirect("disponibilidadMesas.aspx");
+                }
                 ddlTipoProducto.DataSource = TipoProductoLN.ObtenerTodos();
                 ddlTipoProducto.DataTextField = "descripcion";
                 ddlTipoProducto.DataValueField = "idTipoProducto";
@@ -27,30 +26,17 @@ namespace ProyectoRestaurante
 
                 try
                 {
-                    int pIdMesa = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
-                    if (pIdMesa >= 1)
+                    int pIdMesa = ((EncabezadoPedidoEntidad)Session["pedido"]).mesa.idMesa;
+                   
+                    txtMesa.Text = pIdMesa.ToString();
+                    cargarProductos();
+
+                    if (Session["tipoProducto"] != null)
                     {
-                        ddlMesas.SelectedValue = pIdMesa.ToString();
-                        ddlMesas.Enabled = false;
-                        hdfIdMesa.Value = pIdMesa.ToString();
-                        cargarProductos();
-
-                        if (Session["pedido"] == null)
-                        {
-                            EncabezadoPedidoEntidad pedido= new EncabezadoPedidoEntidad();
-                            pedido.mesa.idMesa = pIdMesa;
-                            pedido.usuario = (UsuarioEntidad)Session["usuario"];
-                            Session.Add("pedido", pedido);
-                        }
-
-                        if (Session["tipoProducto"] != null)
-                        {
-                            ddlTipoProducto.SelectedValue = ((TipoProductoEntidad)Session["tipoProducto"]).idTipoProducto.ToString();
-                        }
-                        else {
-                            ddlTipoProducto.SelectedIndex = 0;
-                        }
-
+                        ddlTipoProducto.SelectedValue = ((TipoProductoEntidad)Session["tipoProducto"]).idTipoProducto.ToString();
+                    }
+                    else {
+                        ddlTipoProducto.SelectedIndex = 0;
                     }
                 }
                 catch (Exception)
@@ -61,7 +47,7 @@ namespace ProyectoRestaurante
         }
 
         private void cargarProductos() {
-
+            int idMesa = ((EncabezadoPedidoEntidad)Session["pedido"]).mesa.idMesa;
             List<ProductoEntidad> listaProductos = null;
             if (Session["tipoProducto"] != null)
             {
@@ -80,7 +66,7 @@ namespace ProyectoRestaurante
                 {
                     hileraTabla += "<td style=\"padding:15px\">";
 
-                    hileraTabla += "<a class='btn btn-warning' href=\"seleccionarProducto.aspx?idProducto=" + item.idProducto + "&idMesa=" + hdfIdMesa.Value + "\">";
+                    hileraTabla += "<a class='btn btn-warning' href=\"seleccionarProducto.aspx?idProducto=" + item.idProducto + "\">";
                     hileraTabla += "<img src=\"img/productos/" + item.imagen + "\" height=\"200px\" width=\"200px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>" + item.nombre + "</b>";
@@ -97,7 +83,7 @@ namespace ProyectoRestaurante
                     hileraTabla += "<tr>";
                     hileraTabla += "<td style=\"padding:15px\">";
 
-                    hileraTabla += "<a class='btn btn-warning' href=\"seleccionarProducto.aspx?idProducto=" + item.idProducto + "&idMesa=" + hdfIdMesa.Value +"\">";
+                    hileraTabla += "<a class='btn btn-warning' href=\"seleccionarProducto.aspx?idProducto=" + item.idProducto + "\">";
                     hileraTabla += "<img src=\"img/productos/" + item.imagen + "\" height=\"200px\" width=\"200px\"/>";
                     hileraTabla += "<br/>";
                     hileraTabla += "<b>" + item.nombre + "</b>";

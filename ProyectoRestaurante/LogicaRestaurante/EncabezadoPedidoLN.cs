@@ -29,8 +29,8 @@ namespace LogicaRestaurante
                 elemento.idEncabezadoPedido = Convert.ToInt16(fila["id"].ToString());
                 elemento.mesa.idMesa = Convert.ToInt16(fila["idMesa"].ToString());
                 elemento.usuario.idUsuario = fila["idUsuario"].ToString();
-                elemento.estadoPedido.idEstadoPedido = Convert.ToInt16(fila["idEstadoPedido"].ToString());
-                elemento.estadoPedido.descripcion = fila["descripcion"].ToString();
+                //elemento.estadoPedido.idEstadoPedido = Convert.ToInt16(fila["idEstadoPedido"].ToString());
+                //elemento.estadoPedido.descripcion = fila["descripcion"].ToString();
 
                 if(Convert.ToInt16(fila["estado"].ToString()) == 1)
                 {
@@ -51,10 +51,37 @@ namespace LogicaRestaurante
             return lista;
         }
 
-
-        public static void Nuevo(EncabezadoPedidoEntidad encabezado)
+        public static EncabezadoPedidoEntidad obtenerEncabezadoPedido(int pIdMesa)
         {
-            EncabezadoPedidoDatos.Insertar(encabezado);
+            List<EncabezadoPedidoEntidad> listaEncabezadoPedidos = ObtenerTodos();
+            EncabezadoPedidoEntidad encabezadoPedido = new EncabezadoPedidoEntidad();
+            encabezadoPedido = (listaEncabezadoPedidos.Find(elemento => (elemento.estado == true) && (elemento.mesa.idMesa == pIdMesa)));
+            return encabezadoPedido;
+        }
+
+
+        public static EncabezadoPedidoEntidad Nuevo(EncabezadoPedidoEntidad encabezado)
+        {
+            DataSet ds = EncabezadoPedidoDatos.Insertar(encabezado);
+            EncabezadoPedidoEntidad elemento = new EncabezadoPedidoEntidad();
+
+            DataRow fila = ds.Tables[0].Rows[0];
+            elemento.idEncabezadoPedido = Convert.ToInt16(fila["id"].ToString());
+            elemento.mesa.idMesa = Convert.ToInt16(fila["idMesa"].ToString());
+            elemento.usuario.idUsuario = fila["idUsuario"].ToString();
+            //elemento.estadoPedido.idEstadoPedido = Convert.ToInt16(fila["idEstadoPedido"].ToString());
+            //elemento.estadoPedido.descripcion = fila["descripcion"].ToString();
+
+            if (Convert.ToInt16(fila["estado"].ToString()) == 1)
+            {
+                elemento.estado = true;
+            }
+            else
+            {
+                elemento.estado = false;
+            }
+
+            return elemento;
         }
 
         public static void Modificar(EncabezadoPedidoEntidad encabezado)

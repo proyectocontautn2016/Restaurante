@@ -14,8 +14,8 @@
                     <div class="col-md-4">
                     <label runat="server" style="font-size:large" id="Label1" for="">Número de mesa</label>
                     </div>
-                    <div class="col-md-8">
-                        <asp:DropDownList ID="ddlMesas" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                    <div class="col-md-8">            
+                        <asp:TextBox ID="txtMesa" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,5 @@
                 </div>
             </div>
         </div>
-        <asp:HiddenField ID="hdfIdMesa" runat="server"/>
     </div>
 </asp:Content>

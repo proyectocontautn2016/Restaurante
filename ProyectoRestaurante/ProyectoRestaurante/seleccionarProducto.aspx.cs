@@ -13,6 +13,10 @@ namespace ProyectoRestaurante
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["pedido"] == null)
+            {
+                Response.Redirect("disponibilidadMesas.aspx");
+            }
             cargarCampos();
         }
 
@@ -20,7 +24,7 @@ namespace ProyectoRestaurante
             try
             {
                 int pIdProducto = Convert.ToInt16(Request.QueryString["idProducto"].ToString());
-                int pIdMesa = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
+
                 if (pIdProducto >= 1)
                 {
                     ProductoEntidad producto = ProductoLN.ObtenerProducto(pIdProducto);
@@ -28,7 +32,6 @@ namespace ProyectoRestaurante
                     imgImagenProducto.ImageUrl = "img/productos/" + producto.imagen;
                     lblPrecioProducto.Text = "Precio: ₡" + producto.precio;
                     hdfIdProducto.Value = pIdProducto.ToString();
-                    hdfIdMesa.Value = pIdMesa.ToString();
                 }
             }
             catch (Exception)
@@ -42,23 +45,19 @@ namespace ProyectoRestaurante
             if (Convert.ToInt16(this.txtCantidad.Text) >= 1 && Convert.ToInt16(this.txtCantidad.Text) <= 10)
             {
                 ProductoEntidad producto = ProductoLN.ObtenerProducto(Convert.ToInt16(hdfIdProducto.Value));
-                EncabezadoPedidoEntidad pedido = new EncabezadoPedidoEntidad();
+                EncabezadoPedidoEntidad pedido = (EncabezadoPedidoEntidad)Session["pedido"];
                 DetallePedidoEntidad detallePedido = new DetallePedidoEntidad();
+                detallePedido.idEncabezadoPedido = pedido.idEncabezadoPedido;
                 detallePedido.producto = producto;
                 detallePedido.cantidad = Convert.ToInt16(txtCantidad.Text);
                 detallePedido.comentario = txtComentario.Text;
+                detallePedido.precio = detallePedido.cantidad * producto.precio;
+                detallePedido.estado = true;
 
+                DetallePedidoLN.Nuevo(detallePedido);
+                Session.Remove("pedido");
 
-
-                if (Session["pedido"] != null)
-                {
-                    pedido = (EncabezadoPedidoEntidad)Session["pedido"];
-                    Session.Remove("pedido");
-                }
-
-                pedido.listaDetalles.Add(detallePedido);
-                Session.Add("pedido", pedido);
-                Response.Redirect("AgregarComanda.aspx?idMesa=" + hdfIdMesa.Value);
+                Response.Redirect("accionMesa.aspx?idMesa=" + pedido.mesa.idMesa);
             }
             else {
                 this.lblMensaje.Text = "La cantidad debe ser mayor a 0 y menor o igual a 10";

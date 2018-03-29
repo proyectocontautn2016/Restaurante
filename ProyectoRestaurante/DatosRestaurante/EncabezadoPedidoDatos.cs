@@ -20,7 +20,7 @@ namespace DatosRestaurante
             return ds;
         }
 
-        public static void Insertar(EncabezadoPedidoEntidad encabezado)
+        public static DataSet Insertar(EncabezadoPedidoEntidad encabezado)
         {
             Database db = DatabaseFactory.CreateDatabase("Default");
 
@@ -28,7 +28,7 @@ namespace DatosRestaurante
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idMesa", encabezado.mesa.idMesa);
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
-            comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
+            //comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
                        
 
             int estado = 0;
@@ -37,7 +37,8 @@ namespace DatosRestaurante
                 estado = 1;
             }
             comando.Parameters.AddWithValue("@estado", estado);
-            db.ExecuteNonQuery(comando);
+            DataSet ds = db.ExecuteReader(comando, "EncabezadoPedido");
+            return ds;
         }
 
 
@@ -49,7 +50,7 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@id", encabezado.idEncabezadoPedido);
             comando.Parameters.AddWithValue("@idMesa", encabezado.mesa.idMesa);
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
-            comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
+            //comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
 
 
             int estado = 0;

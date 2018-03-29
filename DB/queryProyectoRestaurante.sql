@@ -94,8 +94,7 @@ CREATE TABLE EncabezadoPedido
 (id int not null identity,
 idMesa int not null,
 idUsuario varchar(60) not null,
-idEstadoPedido int not null,
-estado binary not null,
+estado int not null,
 )
 
 CREATE TABLE detallePedido
@@ -105,7 +104,7 @@ idProducto int not null,
 cantidad int not null,
 precio float not null,
 comentario varchar(100) not null,
-estado binary not null,
+estado int not null,
 )
 
 CREATE TABLE EncabezadoFactura
@@ -167,7 +166,7 @@ alter table EncabezadoFactura add CONSTRAINT FK_EncabezadoFactura_EncabezadoPedi
 --alter table detalleFactura add CONSTRAINT FK_detalleFactura_Producto FOREIGN key (idProducto) references producto(id);
 --alter table detalleFactura add CONSTRAINT FK_detalleFactura_EncabezadoFactura FOREIGN key (idEncabezadoFactura) references EncabezadoFactura(id);
 alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_Mesa FOREIGN key (idMesa) references mesa(id);
-alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_EstadoPedido FOREIGN key (idEstadoPedido) references estadoPedido(id);
+--alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_EstadoPedido FOREIGN key (idEstadoPedido) references estadoPedido(id);
 alter table EncabezadoPedido add CONSTRAINT FK_EncabezadoPedido_usuario FOREIGN key (idUsuario) references usuario(id);
 alter table detallePedido add CONSTRAINT FK_DetallePedido_EncabezadoPedido FOREIGN key (idEncabezadoPedido) references EncabezadoPedido(id);
 alter table detallePedido add CONSTRAINT FK_DetallePedido_Producto FOREIGN key (idProducto) references  producto(id);
@@ -572,7 +571,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select e.*, t.descripcion from EncabezadoPedido e, tipoPago t;
+	Select * from EncabezadoPedido;
 END
 
 
@@ -581,7 +580,6 @@ END
 CREATE PROCEDURE [dbo].[PA_InsertarEncabezadoPedido] 
 @idMesa int,
 @idUsuario varchar(60),
-@idEstadoPedido int,
 @estado binary(1)
 AS
 BEGIN
@@ -592,13 +590,13 @@ BEGIN
 	INSERT INTO [dbo].EncabezadoPedido
            ([idMesa]
            ,[idUsuario]
-		   ,[idEstadoPedido]
            ,[estado])
      VALUES
            (@idMesa,
            @idUsuario,
-           @idEstadoPedido,
            @estado);
+		   
+	SELECT TOP 1 * FROM EncabezadoPedido ORDER BY id DESC;
 
 END
 
@@ -637,7 +635,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select d.*, p.nombre from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido;
+	Select d.*, p.nombre from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido and d.idProducto = p.id;
 END
 
 

@@ -36,7 +36,6 @@
                 <div class="col-md-4"></div>
               </div>
                 <asp:HiddenField ID="hdfIdProducto" runat="server"></asp:HiddenField>
-                <asp:HiddenField ID="hdfIdMesa" runat="server"/>
         </div>
     </div>
 </asp:Content>
