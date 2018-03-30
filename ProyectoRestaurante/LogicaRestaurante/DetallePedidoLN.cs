@@ -32,8 +32,10 @@ namespace LogicaRestaurante
                 elemento.idEncabezadoPedido = Convert.ToInt16(fila["idEncabezadoPedido"].ToString());
                 elemento.producto.idProducto = Convert.ToInt16(fila["idProducto"].ToString());
                 elemento.producto.nombre = fila["nombre"].ToString();
+                elemento.producto.imagen = fila["imagen"].ToString();
                 elemento.cantidad = Convert.ToInt16(fila["cantidad"].ToString());
                 elemento.precio = Convert.ToDecimal(fila["precio"].ToString());
+                elemento.producto.precio = Convert.ToDecimal(fila["precioProducto"].ToString());
                 elemento.comentario = fila["comentario"].ToString();
 
                 if(Convert.ToInt16(fila["estado"].ToString()) == 1)
@@ -49,6 +51,14 @@ namespace LogicaRestaurante
             }
 
             return lista;
+        }
+
+        public static DetallePedidoEntidad ObtenerDetalle(int pIdDetalle, int pIDEncabezado)
+        {
+            List<DetallePedidoEntidad> listaDetalles = DetallePedidoLN.ObtenerTodos(pIDEncabezado);
+            DetallePedidoEntidad detalle;
+            detalle = listaDetalles.Find(elemento => (elemento.idDetallePedido == pIdDetalle));
+            return detalle;
         }
 
 

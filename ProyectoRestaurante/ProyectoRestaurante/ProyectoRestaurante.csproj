@@ -82,6 +82,7 @@
     <Content Include="default.aspx" />
     <Content Include="disponibilidadMesas.aspx" />
     <Content Include="EditarMesa.aspx" />
+    <Content Include="EditarPedido.aspx" />
     <Content Include="EditarProducto.aspx" />
     <Content Include="EditarUsuario.aspx" />
     <Content Include="img\infoRestaurante\fondo.jpg" />
@@ -250,6 +251,13 @@
     </Compile>
     <Compile Include="EditarMesa.aspx.designer.cs">
       <DependentUpon>EditarMesa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPedido.aspx.cs">
+      <DependentUpon>EditarPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarPedido.aspx.designer.cs">
+      <DependentUpon>EditarPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditarProducto.aspx.cs">
       <DependentUpon>EditarProducto.aspx</DependentUpon>

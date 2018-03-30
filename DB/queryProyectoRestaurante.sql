@@ -635,7 +635,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select d.*, p.nombre from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido and d.idProducto = p.id;
+	Select d.*, p.nombre, p.imagen, p.precio as 'precioProducto' from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido and d.idProducto = p.id;
 END
 
 

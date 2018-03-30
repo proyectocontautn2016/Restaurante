@@ -59,6 +59,14 @@ namespace LogicaRestaurante
             return encabezadoPedido;
         }
 
+        public static EncabezadoPedidoEntidad obtenerEncabezadoPedidoXID(int pIdEncabezado)
+        {
+            List<EncabezadoPedidoEntidad> listaEncabezadoPedidos = ObtenerTodos();
+            EncabezadoPedidoEntidad encabezadoPedido = new EncabezadoPedidoEntidad();
+            encabezadoPedido = (listaEncabezadoPedidos.Find(elemento => (elemento.idEncabezadoPedido == pIdEncabezado)));
+            return encabezadoPedido;
+        }
+
 
         public static EncabezadoPedidoEntidad Nuevo(EncabezadoPedidoEntidad encabezado)
         {

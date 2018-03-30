@@ -49,7 +49,7 @@ namespace DatosRestaurante
         public static void Modificar(DetallePedidoEntidad detalle)
         {
             Database db = DatabaseFactory.CreateDatabase("Default");
-            SqlCommand comando = new SqlCommand("PA_ModificarProductos");
+            SqlCommand comando = new SqlCommand("[PA_ModificarDetallesPedido]");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", detalle.idDetallePedido);
             comando.Parameters.AddWithValue("@idEncabezadoPedido", detalle.idEncabezadoPedido);

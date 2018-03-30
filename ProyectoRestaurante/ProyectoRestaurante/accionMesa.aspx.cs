@@ -11,6 +11,8 @@ namespace ProyectoRestaurante
 {
     public partial class accionMesa : System.Web.UI.Page
     {
+    
+        static int mesaPedido;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -30,6 +32,7 @@ namespace ProyectoRestaurante
         private void llenarCampos() {
             MesaEntidad mesa = new MesaEntidad();
             int numero = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
+            mesaPedido = numero;
             mesa = MesaLN.ObtenerMesa(numero);
             btnAgregarProducto.Enabled = false;
             btnAgregarProducto.Visible = false;
@@ -195,6 +198,22 @@ namespace ProyectoRestaurante
             }
             Session.Add("pedido", pedido);
             Response.Redirect("AgregarComanda.aspx");
+        }
+
+        protected void grvPedido_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            DetallePedidoEntidad detalle = new DetallePedidoEntidad();
+            int num = Convert.ToInt32(e.CommandArgument);
+
+            List<DetallePedidoEntidad> lista = new List<DetallePedidoEntidad>();
+            lista = EncabezadoPedidoLN.obtenerEncabezadoPedido(mesaPedido).listaDetalles;
+
+            int id = Convert.ToInt16(this.grvPedido.DataKeys[num].Values[0]);
+            detalle = lista[num];
+
+
+            Response.Redirect("EditarPedido.aspx?idDetallePedido=" + detalle.idDetallePedido + "&idEncabezadoPedido=" + detalle.idEncabezadoPedido );
+
         }
     }
 }

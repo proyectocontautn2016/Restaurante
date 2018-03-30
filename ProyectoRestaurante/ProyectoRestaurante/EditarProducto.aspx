@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
      <div class="container-fluid divRedondear" style="background-color:white">
+        
         <div class="col-md-offset-1 col-md-10">
 
 
@@ -21,10 +22,12 @@
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="registrar" ControlToValidate="txtNombreProducto" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo Identificación es requerido"></asp:RequiredFieldValidator>
                 <br /><br />
                 <asp:Image ID="imgPrev" runat="server" ImageUrl="''" Height="100px" Width="100px" />
+                    <br />
+                <asp:Label ID="lblImgMensaje" ForeColor="Red" Font-Size="Large" runat="server" Text=""></asp:Label>
                 <br />
-                <asp:FileUpload ID="files" runat="server" />
-                <asp:Button ID="btnVisualizar" runat="server" Text="Pre-Visualizar" OnClick="btnVisualizar_Click" />
-
+                <asp:FileUpload CssClass="btn btn-success" ID="files" runat="server" />
+                <br />
+                <asp:Button CssClass="btn btn-primary" ID="btnVisualizar" runat="server" Text="Pre-Visualizar" OnClick="btnVisualizar_Click" />
             </div>
          </div>
 
@@ -33,7 +36,7 @@
         <label runat="server" style="font-size:large" id="Label1" for="">Tipo Producto</label>
         </div>
         <div class="col-md-8">
-        <asp:DropDownList ID="ddlTipoProducto" CssClass="form-control" Font-Size="Large" runat="server" AutoPostBack="true"></asp:DropDownList>
+        <asp:DropDownList ID="ddlTipoProducto" CssClass="form-control" Font-Size="Large" runat="server"></asp:DropDownList>
          </div>
         </div>
 
@@ -64,7 +67,7 @@
         <label runat="server" style="font-size:large" id="Label2" for="">Estado</label>
         </div>
         <div class="col-md-8">
-        <asp:DropDownList ID="ddlEstado" CssClass="form-control" Font-Size="Large" runat="server" AutoPostBack="true"></asp:DropDownList>
+        <asp:DropDownList ID="ddlEstado" CssClass="form-control" Font-Size="Large" runat="server"></asp:DropDownList>
          </div>
         </div>
 
@@ -79,7 +82,6 @@
     </div>
 
     </div>
-
 
   
 </asp:Content>

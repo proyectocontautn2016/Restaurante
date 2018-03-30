@@ -49,6 +49,15 @@ namespace ProyectoRestaurante {
         protected global::System.Web.UI.WebControls.Image imgPrev;
         
         /// <summary>
+        /// Control lblImgMensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblImgMensaje;
+        
+        /// <summary>
         /// Control files.
         /// </summary>
         /// <remarks>
