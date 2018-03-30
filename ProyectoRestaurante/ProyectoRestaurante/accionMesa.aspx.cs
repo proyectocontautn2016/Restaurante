@@ -112,7 +112,7 @@ namespace ProyectoRestaurante
                 if (pIdEstadoMesa == 9)
                 {
                     ddlAccionMesa.Items.Insert(0, new ListItem("--Seleccionar acción--", "0"));
-                    ddlAccionMesa.Items.Insert(1, new ListItem("Facturar", "10")); //Esto es solamente de ejemplo
+                    ddlAccionMesa.Items.Insert(1, new ListItem("Facturar", "100")); //Esto es solamente de ejemplo
 
                     cargarPedidoEnDataGridView(idMesa);
                 }
@@ -149,6 +149,18 @@ namespace ProyectoRestaurante
                 actualizarEstadoMesa(nuevoEstadoMesa);
                 Response.Redirect("accionMesa.aspx?idMesa=" + idMesa);
             }
+
+            if (nuevoEstadoMesa == 100)
+            {
+                EncabezadoPedidoEntidad pedido = EncabezadoPedidoLN.obtenerEncabezadoPedido(idMesa);
+                if (Session["pedido"] != null)
+                {
+                    Session.Remove("pedido");
+                }
+                Session.Add("pedido", pedido);
+                Response.Redirect("Facturacion.aspx");
+            }
+
         }
 
 

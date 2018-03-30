@@ -114,6 +114,9 @@ idRestaurante int not null,
 idUsuario varchar(60) not null,
 nombreCliente varchar(60) not null,
 fecha datetime not null,
+iv float not null,
+subTotal float not null,
+total float not null
 )
 
 CREATE TABLE EncabezadoFacturaTipoPago
@@ -501,7 +504,10 @@ CREATE PROCEDURE [dbo].[PA_InsertarEncabezadoFactura]
 @idRestaurante int,
 @idUsuario varchar(60),
 @nombreCliente varchar(60),
-@fecha datetime
+@fecha datetime,
+@iv float,
+@subTotal float,
+@total float
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -513,13 +519,19 @@ BEGIN
 		   ,[idRestaurante]
            ,[idUsuario]
 		   ,[nombreCliente]
-		   ,[fecha])
+		   ,[fecha]
+		   ,[iv]
+		   ,[subTotal]
+		   ,[total])
      VALUES
            (@idEncabezadoPedido,
            @idRestaurante,
            @idUsuario,
            @nombreCliente,
-		   @fecha);
+		   @fecha,
+		   @iv,
+		   @subTotal,
+		   @total);
 
 END
 
