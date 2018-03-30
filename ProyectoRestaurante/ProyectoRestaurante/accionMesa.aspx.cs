@@ -70,7 +70,7 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(1, new ListItem("Comanda en proceso", "4"));
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Pendiente", "5"));
                     cargarPedidoEnDataGridView(idMesa);
-
+                    hacerVisibleBotonAgregarProducto();
                 }
 
                 if (pIdEstadoMesa == 4)
@@ -80,6 +80,7 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Entregada", "7"));
 
                     cargarPedidoEnDataGridView(idMesa);
+                    hacerVisibleBotonAgregarProducto();
                 }
 
                 if (pIdEstadoMesa == 5)
@@ -89,6 +90,7 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Entregada", "7"));
 
                     cargarPedidoEnDataGridView(idMesa);
+                    hacerVisibleBotonAgregarProducto();
                 }
 
                 if (pIdEstadoMesa == 7)
@@ -171,6 +173,7 @@ namespace ProyectoRestaurante
                 encabezadoPedidoEntidad.mesa.idMesa = pIdMesa;
                 encabezadoPedidoEntidad.usuario = (UsuarioEntidad)Session["usuario"];
                 encabezadoPedidoEntidad.estado = true;
+                encabezadoPedidoEntidad.facturado = false;
 
                 EncabezadoPedidoEntidad encabezadoPedidoEntidadGuardado = EncabezadoPedidoLN.Nuevo(encabezadoPedidoEntidad);
                 actualizarEstadoMesa(pNuevoEstadomesa);
@@ -192,7 +195,6 @@ namespace ProyectoRestaurante
             lista = EncabezadoPedidoLN.obtenerEncabezadoPedido(pIdMesa).listaDetalles;
             grvPedido.DataSource = lista;
             grvPedido.DataBind();
-            hacerVisibleBotonAgregarProducto();
         }
 
         private void hacerVisibleBotonAgregarProducto() {

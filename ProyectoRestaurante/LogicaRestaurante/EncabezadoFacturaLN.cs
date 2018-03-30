@@ -50,7 +50,23 @@ namespace LogicaRestaurante
 
         public static void Nuevo(EncabezadoFacturaEntidad encabezado)
         {
-            EncabezadoFacturaDatos.Insertar(encabezado);
+
+            DataSet ds = EncabezadoFacturaDatos.Insertar(encabezado); ;
+            EncabezadoFacturaEntidad elemento = new EncabezadoFacturaEntidad();
+
+            DataRow fila = ds.Tables[0].Rows[0];
+            elemento.idEncabezadoFactura = Convert.ToInt16(fila["id"].ToString());
+            elemento.encabezadoPedido.idEncabezadoPedido = Convert.ToInt16(fila["idEncabezadoPedido"].ToString());
+            elemento.restaurante.idRestaurante = Convert.ToInt16(fila["idRestaurante"].ToString());
+            elemento.usuario.idUsuario = fila["idUsuario"].ToString();
+            elemento.nombreCliente = fila["nombreCliente"].ToString();
+            elemento.fecha = Convert.ToDateTime(fila["fecha"].ToString());
+
+            foreach (MontoPorTipoPagoEntidad item in encabezado.listaFormaPago) {
+                item.encabezadoFactura = elemento.idEncabezadoFactura;
+                MontoPorTipoPagoLN.Nuevo(item);
+            }
+
         }
 
         public static void Modificar(EncabezadoFacturaEntidad encabezado)

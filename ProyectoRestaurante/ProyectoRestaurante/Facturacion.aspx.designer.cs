@@ -94,6 +94,33 @@ namespace ProyectoRestaurante {
         protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
+        /// Label5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label5;
+        
+        /// <summary>
+        /// txtNombreCliente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreCliente;
+        
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +137,42 @@ namespace ProyectoRestaurante {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoPago;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
+        /// lblEfectivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEfectivo;
+        
+        /// <summary>
+        /// lblCantidadPagadaEfectivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCantidadPagadaEfectivo;
+        
+        /// <summary>
+        /// txtCantidadPagadaEfectivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadPagadaEfectivo;
         
         /// <summary>
         /// lblPagoTarjeta control.
@@ -184,13 +247,13 @@ namespace ProyectoRestaurante {
         protected global::System.Web.UI.WebControls.TextBox txtAnno;
         
         /// <summary>
-        /// lblCantidadPagada control.
+        /// lblCantidadPagadaTarjeta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCantidadPagada;
+        protected global::System.Web.UI.WebControls.Label lblCantidadPagadaTarjeta;
         
         /// <summary>
         /// txtCantidadPagadaTarjeta control.
@@ -202,30 +265,21 @@ namespace ProyectoRestaurante {
         protected global::System.Web.UI.WebControls.TextBox txtCantidadPagadaTarjeta;
         
         /// <summary>
-        /// lblEfectivo control.
+        /// btnFacturar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEfectivo;
+        protected global::System.Web.UI.WebControls.Button btnFacturar;
         
         /// <summary>
-        /// lblCantidadPagadaEfectivo control.
+        /// btnCancelar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCantidadPagadaEfectivo;
-        
-        /// <summary>
-        /// txtCantidadPagadaEfectivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantidadPagadaEfectivo;
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
     }
 }

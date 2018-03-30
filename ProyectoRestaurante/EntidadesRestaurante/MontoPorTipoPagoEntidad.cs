@@ -11,5 +11,9 @@ namespace EntidadesRestaurante
         public TipoPagoEntidad TipoPago { get; set; }
         public int encabezadoFactura { get; set; }
         public decimal monto { get; set; }
+
+        public MontoPorTipoPagoEntidad() {
+            TipoPago = new TipoPagoEntidad();
+        }
     }
 }

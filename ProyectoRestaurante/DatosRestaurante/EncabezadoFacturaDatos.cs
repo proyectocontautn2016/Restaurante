@@ -20,18 +20,23 @@ namespace DatosRestaurante
             return ds;
         }
 
-        public static void Insertar(EncabezadoFacturaEntidad encabezado)
+        public static DataSet Insertar(EncabezadoFacturaEntidad encabezado)
         {
             Database db = DatabaseFactory.CreateDatabase("Default");
 
-            SqlCommand comando = new SqlCommand("PA_InsertarEncabezadoPedido");
+            SqlCommand comando = new SqlCommand("PA_InsertarEncabezadoFactura");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idEncabezadoPedido", encabezado.encabezadoPedido.idEncabezadoPedido);
             comando.Parameters.AddWithValue("@idRestaurante", encabezado.restaurante.idRestaurante);
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
             comando.Parameters.AddWithValue("@nombreCliente", encabezado.nombreCliente);
             comando.Parameters.AddWithValue("@fecha", encabezado.fecha);
-            db.ExecuteNonQuery(comando);
+            comando.Parameters.AddWithValue("@iv", encabezado.IV);
+            comando.Parameters.AddWithValue("@subTotal", encabezado.Subtotal);
+            comando.Parameters.AddWithValue("@total", encabezado.Subtotal);
+
+            DataSet ds = db.ExecuteReader(comando, "EncabezadoFactura");
+            return ds;
         }
 
 

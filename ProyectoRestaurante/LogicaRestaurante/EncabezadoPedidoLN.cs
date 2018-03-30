@@ -39,7 +39,16 @@ namespace LogicaRestaurante
                 {
                     elemento.estado = false;
                 }
-                
+
+                if (Convert.ToInt16(fila["facturado"].ToString()) == 1)
+                {
+                    elemento.facturado = true;
+                }
+                else
+                {
+                    elemento.facturado = false;
+                }
+
 
                 List<DetallePedidoEntidad> listaDetalles = new List<DetallePedidoEntidad>();
                 listaDetalles = DetallePedidoLN.ObtenerTodos(elemento.idEncabezadoPedido);
@@ -55,7 +64,7 @@ namespace LogicaRestaurante
         {
             List<EncabezadoPedidoEntidad> listaEncabezadoPedidos = ObtenerTodos();
             EncabezadoPedidoEntidad encabezadoPedido = new EncabezadoPedidoEntidad();
-            encabezadoPedido = (listaEncabezadoPedidos.Find(elemento => (elemento.estado == true) && (elemento.mesa.idMesa == pIdMesa)));
+            encabezadoPedido = (listaEncabezadoPedidos.Find(elemento => (elemento.estado == true) && (elemento.mesa.idMesa == pIdMesa) && (elemento.facturado == false)));
             return encabezadoPedido;
         }
 
@@ -87,6 +96,15 @@ namespace LogicaRestaurante
             else
             {
                 elemento.estado = false;
+            }
+
+            if (Convert.ToInt16(fila["facturado"].ToString()) == 1)
+            {
+                elemento.facturado = true;
+            }
+            else
+            {
+                elemento.facturado = false;
             }
 
             return elemento;

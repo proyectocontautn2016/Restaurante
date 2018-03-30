@@ -95,6 +95,7 @@ CREATE TABLE EncabezadoPedido
 idMesa int not null,
 idUsuario varchar(60) not null,
 estado int not null,
+facturado int
 )
 
 CREATE TABLE detallePedido
@@ -532,7 +533,7 @@ BEGIN
 		   @iv,
 		   @subTotal,
 		   @total);
-
+	SELECT TOP 1 * FROM EncabezadoFactura ORDER BY id DESC;
 END
 
 
@@ -592,7 +593,8 @@ END
 CREATE PROCEDURE [dbo].[PA_InsertarEncabezadoPedido] 
 @idMesa int,
 @idUsuario varchar(60),
-@estado binary(1)
+@estado int,
+@facturado int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -602,11 +604,15 @@ BEGIN
 	INSERT INTO [dbo].EncabezadoPedido
            ([idMesa]
            ,[idUsuario]
-           ,[estado])
+           ,[estado]
+		   ,[facturado])
      VALUES
            (@idMesa,
            @idUsuario,
-           @estado);
+           @estado,
+		   @facturado);
+		   
+		   UPDATE [dbo].EncabezadoPedido SET [facturado] = 1 where [id] = @idEncabezadoPedido;
 		   
 	SELECT TOP 1 * FROM EncabezadoPedido ORDER BY id DESC;
 
@@ -618,8 +624,8 @@ CREATE PROCEDURE [dbo].[PA_ModificarEncabezadoPedido]
 @id int,
 @idMesa int,
 @idUsuario varchar(60),
-@idEstadoPedido int,
-@estado binary(1)
+@estado int,
+@facturado int
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -630,8 +636,8 @@ BEGIN
 UPDATE [dbo].EncabezadoPedido
    SET [idMesa] = @idMesa,
        [idUsuario] = @idUsuario,
-	   [idEstadoPedido] = @idEstadoPedido,
-       [estado] = @estado
+       [estado] = @estado,
+	   [facturado] = @facturado
  WHERE [id] = @id
      
 
@@ -708,4 +714,35 @@ UPDATE [dbo].detallePedido
  WHERE [id] = @id
      
 
+END
+
+
+
+
+USE [proyecto_Restaurante]
+GO
+/****** Object:  StoredProcedure [dbo].[PA_InsertarEncabezadoFacturaTipoPago]    Script Date: 30/3/2018 1:10:24 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[PA_InsertarEncabezadoFacturaTipoPago] 
+@idEncabezadoFactura int,
+@idTipoPago int,
+@monto float
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].EncabezadoFacturaTipoPago
+           ([idEncabezadoFactura]
+		   ,[idTipoPago]
+		   ,[monto]
+           )
+     VALUES
+           (@idEncabezadoFactura, @idTipoPago, @monto);
+           
 END

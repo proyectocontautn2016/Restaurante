@@ -119,6 +119,7 @@
 </head>
 <body style="background-image:url(img/infoRestaurante/fondo.jpg); background-repeat:no-repeat; background-size:cover">
     <form  id="form1" runat="server" >
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
            <header>
             <!-- Fixed navbar -->
            <nav class="navbar navbar-inverse">

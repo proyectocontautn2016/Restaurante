@@ -14,6 +14,7 @@ namespace EntidadesRestaurante
         //public EstadoPedidoEntidad estadoPedido { get; set; }
         public List<DetallePedidoEntidad> listaDetalles { get; set; }
         public Boolean estado { get; set; }
+        public Boolean facturado { get; set; }
         public EncabezadoPedidoEntidad()
         {
             mesa = new MesaEntidad();

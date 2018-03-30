@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row divRedondear" style="background-color:white">
+    <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <center>
@@ -62,7 +62,19 @@
                 </div>
 
                 <br/>
-               
+
+                <div class ="row">
+                    <div class="col-md-4">
+                        <div class="form-group row">
+                            <label runat="server" style="font-size:large" id="Label5" for="">Nombre Cliente</label>
+                            <asp:TextBox ID="txtNombreCliente" Font-Size="Large" runat="server" CssClass="form-control" ></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="registrar" ControlToValidate="txtNombreCliente" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Debe ingresar el nombre del cleiente"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                    
+               <br/>
+
                <div class="row">
                     <div class="col-md-3">
                         <div class="form-group row">
@@ -74,68 +86,96 @@
                 </div>
                 
                 <br/><br/>
-                <div class="row">
-                    <div class="row">
-                        <asp:Label ID="lblPagoTarjeta" runat="server" Text="Tarjeta" Font-Bold="True" Font-Size="Medium"></asp:Label>
-                        <br/><br/>
-                    <div/>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <asp:Label ID="lblNumeroTarjeta" runat="server" Text="Número Tarjeta"></asp:Label>
-                                <asp:TextBox ID="txtNumeroTarjeta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-md-1"></div>
 
-                        <div class="col-md-6">
-                            <div class="row">
-                                 <div class="col-md-4">
-                                     <br/>
-                                     <asp:Label ID="lblFechaVencimiento" runat="server" Text="Fecha vencimeinto"></asp:Label>
-                                 </div>
-                                  <div class="col-md-3">
-                                      <div class="form-group row">
-                                        <asp:Label ID="lblMesVencimiento" runat="server" Text="Mes"></asp:Label>
-                                        <asp:TextBox ID="txtMesVencimiento" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                                      </div>
-                                  </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group row">
-                                        <asp:Label ID="lblAnno" runat="server" Text="Año"></asp:Label>
-                                        <asp:TextBox ID="txtAnno" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+
+
+                
+                
+
+
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+                                <div class="row">
+                                    <div class="row">
+                                        <asp:Label ID="lblEfectivo" runat="server" Text="Efectivo" Font-Bold="True" Font-Size="Medium"></asp:Label>
+                                        <br/><br/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group row">
+                                                <asp:Label ID="lblCantidadPagadaEfectivo" runat="server" Text="Cantidad pagada efectivo ₡"></asp:Label>
+                                                <asp:TextBox ID="txtCantidadPagadaEfectivo" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8"></div>
+                                    </div>
+                                </div>
+                                    
+                                <br />
+                            
+                                <div class="row">
+                                    <div class="row">
+                                        <asp:Label ID="lblPagoTarjeta" runat="server" Text="Tarjeta" Font-Bold="True" Font-Size="Medium"></asp:Label>
+                                        <br/><br/>
+                                    <div/>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group row">
+                                                <asp:Label ID="lblNumeroTarjeta" runat="server" Text="Número Tarjeta"></asp:Label>
+                                                <asp:TextBox ID="txtNumeroTarjeta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                 <div class="col-md-4">
+                                                     <br/>
+                                                     <asp:Label ID="lblFechaVencimiento" runat="server" Text="Fecha vencimeinto"></asp:Label>
+                                                 </div>
+                                                  <div class="col-md-3">
+                                                      <div class="form-group row">
+                                                        <asp:Label ID="lblMesVencimiento" runat="server" Text="Mes"></asp:Label>
+                                                        <asp:TextBox ID="txtMesVencimiento" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                                      </div>
+                                                  </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group row">
+                                                        <asp:Label ID="lblAnno" runat="server" Text="Año"></asp:Label>
+                                                        <asp:TextBox ID="txtAnno" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <asp:Label ID="lblCantidadPagadaTarjeta" runat="server" Text="Cantidad pagada con tarjeta ₡"></asp:Label>
+                                            <asp:TextBox ID="txtCantidadPagadaTarjeta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <br/><br/>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnFacturar" OnClick="btnFacturar_Click"  runat="server" Text="Facturar" CssClass="btn btn-success" />
                             </div>
+                            <div class="col-md-2">
+                                <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click"  runat="server" Text="Cancelar" CssClass="btn btn-success" />
+                            </div>
+                            <div class="col-md-3"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group row">
-                            <asp:Label ID="lblCantidadPagada" runat="server" Text="Cantidad pagada con tarjeta ₡"></asp:Label>
-                            <asp:TextBox ID="txtCantidadPagadaTarjeta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-        <br/><br/>
-
-        <div class="row">
-            <div class="row">
-                <asp:Label ID="lblEfectivo" runat="server" Text="Efectivo" Font-Bold="True" Font-Size="Medium"></asp:Label>
-                <br/><br/>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group row">
-                        <asp:Label ID="lblCantidadPagadaEfectivo" runat="server" Text="Cantidad pagada efectivo ₡"></asp:Label>
-                        <asp:TextBox ID="txtCantidadPagadaEfectivo" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </ContentTemplate>
+                <Triggers>
+	                <asp:AsyncPostBackTrigger ControlID="ddlTipoPago" EventName="SelectedIndexChanged" />
+                </Triggers>
+            </asp:UpdatePanel>
         <div class="col-md-1"></div>
     </div>
 </asp:Content>

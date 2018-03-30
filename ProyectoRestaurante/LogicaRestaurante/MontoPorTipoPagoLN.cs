@@ -34,5 +34,10 @@ namespace LogicaRestaurante
 
             return lista;
         }
+
+        public static void Nuevo(MontoPorTipoPagoEntidad pMontoPorTipoPagoEntidad)
+        {
+            MontoPorTipoPagoDatos.Insertar(pMontoPorTipoPagoEntidad);
+        }
     }
 }

@@ -28,15 +28,24 @@ namespace DatosRestaurante
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idMesa", encabezado.mesa.idMesa);
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
+            
             //comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
-                       
+
 
             int estado = 0;
             if (encabezado.estado == true)
             {
                 estado = 1;
             }
+
+            int facturado = 0;
+            if (encabezado.facturado == true)
+            {
+                facturado = 1;
+            }
+
             comando.Parameters.AddWithValue("@estado", estado);
+            comando.Parameters.AddWithValue("@facturado", facturado);
             DataSet ds = db.ExecuteReader(comando, "EncabezadoPedido");
             return ds;
         }
@@ -58,7 +67,16 @@ namespace DatosRestaurante
             {
                 estado = 1;
             }
+
+            int facturado = 0;
+            if (encabezado.facturado == true)
+            {
+                facturado = 1;
+            }
+
             comando.Parameters.AddWithValue("@estado", estado);
+            comando.Parameters.AddWithValue("@facturado", facturado);
+
             db.ExecuteNonQuery(comando);
         }
     }
