@@ -211,9 +211,10 @@ namespace ProyectoRestaurante
             factura.Total = total;
 
             EncabezadoFacturaLN.Nuevo(factura);
+            Session.Add("factura", factura);
 
             actualizarEstadoMesa(1, pedido.mesa.idMesa);
-            Response.Redirect("disponibilidadMesas.aspx");
+            Response.Redirect("FactImprimir.aspx");
         }
 
         private void actualizarEstadoMesa(int pNuevoEstadoMesa, int pIdMesa)

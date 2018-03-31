@@ -10,7 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-             .btn-warning {
+           .btn-warning {
               color: black;
               background-color:  #FFFFFF;
               border-color: #D8D8D8;
@@ -90,10 +90,20 @@
                 color: #000;  
                 text-decoration: none;  
             }  
+
+            .navbar-brand{
+                font-size:17px;
+                font-weight:bold;
+            }
+
+            .navbar-nav> li > a{
+                font-size:17px
+            }
             .dropdown-menu{
                 background-color: #2E2E2E;
                 color: white;
                 font-weight:bold;
+                font-size:17px
             }
 
              .dropdown-menu:focus{
@@ -112,7 +122,6 @@
             margin: 10px 5px 0 0;
           }
               
-
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -125,13 +134,12 @@
            <nav class="navbar navbar-inverse">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <a class="navbar-brand" href="#">Dalex</a>
+                  <a class="navbar-brand" href="inicio.aspx">DALEX |</a>
                 </div>
                 <ul class="nav navbar-nav">
-                  <li class=""><a href="disponibilidadMesas.aspx">Disponibilidad Mesas</a></li>
-                  <li><a href="#">Ejemplo 2</a></li>
-                  <li><a href="#">Ejemplo 3</a></li>
-                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos<span class="caret"></span></a>
+                  <li class=""><a href="disponibilidadMesas.aspx">Disponibilidad Mesas |</a></li>
+                  <li><a href="#">Reportes |</a></li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos |<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="MantenimientoUsuarios.aspx">Mantenimiento Usuarios</a></li>
                       <li><a href="MantenimientoProductos.aspx">Mantenimiento Productos</a></li>
@@ -152,6 +160,7 @@
         <main role="main" class="container">
             <div class="divRedondear" style="margin-top:5%">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    
         
                 </asp:ContentPlaceHolder>
             </div>
@@ -159,7 +168,7 @@
 
         <footer class="footer" style="background-color:black">
       <div class=" bg-light text-center">
-          <span class="text-muted" style="color:white; font-weight:bold; font-size:20px;">Restaurante Dalex Copyrigth&copy;</span>
+          <span class="text-muted" style="color:white; font-weight:bold; font-size:20px;">Restaurante Dalex Copyrigth&copy; &nbsp;<asp:Label ID="lblANIO" runat="server" Text=""></asp:Label></span>
       </div>
     </footer>
     </form>

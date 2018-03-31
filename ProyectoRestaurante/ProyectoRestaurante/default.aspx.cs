@@ -26,7 +26,7 @@ namespace ProyectoRestaurante
                 if (usuario != null)
                 {
                     Session["usuario"] = usuario;
-                    Response.Redirect("disponibilidadMesas.aspx");
+                    Response.Redirect("inicio.aspx");
 
                 }else{
                     this.lblMensaje.Text = "Usuario o Contraseña no concuerdan";

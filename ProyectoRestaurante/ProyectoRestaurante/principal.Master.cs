@@ -18,6 +18,7 @@ namespace ProyectoRestaurante
                 DateTime fecha = DateTime.Today;
                 this.lblNombreUsuario.Text = usuario.nombre;
                 this.lblFecha.Text = fecha.ToString("dd/MM/yyyy");
+                this.lblANIO.Text = fecha.ToString("yyyy");
             }
             catch (Exception)
             {

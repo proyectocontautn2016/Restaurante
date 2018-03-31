@@ -5,7 +5,7 @@
 
 
     <div class="col-md-12 divRedondear" style="background-color :white">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+       
         <center><h2>Listado de Usuarios del Restaurante</h2></center>
 
         <br /> <br />

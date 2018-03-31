@@ -85,6 +85,7 @@
     <Content Include="EditarPedido.aspx" />
     <Content Include="EditarProducto.aspx" />
     <Content Include="EditarUsuario.aspx" />
+    <Content Include="FactImprimir.aspx" />
     <Content Include="Facturacion.aspx" />
     <Content Include="img\infoRestaurante\fondo.jpg" />
     <Content Include="img\infoRestaurante\restaurante.jpg" />
@@ -273,6 +274,13 @@
     </Compile>
     <Compile Include="EditarUsuario.aspx.designer.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FactImprimir.aspx.cs">
+      <DependentUpon>FactImprimir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FactImprimir.aspx.designer.cs">
+      <DependentUpon>FactImprimir.aspx</DependentUpon>
     </Compile>
     <Compile Include="Facturacion.aspx.cs">
       <DependentUpon>Facturacion.aspx</DependentUpon>

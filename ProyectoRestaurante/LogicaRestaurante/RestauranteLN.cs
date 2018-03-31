@@ -37,5 +37,16 @@ namespace LogicaRestaurante
 
             return lista;
         }
+
+
+        public static RestauranteEntidad ObtenerRestaurante(int pIdRest)
+        {
+
+            List<RestauranteEntidad> listaRestaurantes = RestauranteLN.ObtenerTodos();
+            RestauranteEntidad resta;
+            resta = listaRestaurantes.Find(elemento => (elemento.idRestaurante == pIdRest));
+
+            return resta;
+        }
     }
 }

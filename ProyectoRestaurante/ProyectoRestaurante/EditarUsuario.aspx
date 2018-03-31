@@ -79,7 +79,7 @@
         <label runat="server" style="font-size:large" id="Label2" for="">Estado</label>
         </div>
         <div class="col-md-8">
-        <asp:DropDownList ID="ddlEstado" CssClass="form-control" Font-Size="Large" runat="server" AutoPostBack="true"></asp:DropDownList>
+        <asp:DropDownList ID="ddlEstado" CssClass="form-control" Font-Size="Large" runat="server" AutoPostBack="false"></asp:DropDownList>
          </div>
         </div>
 
