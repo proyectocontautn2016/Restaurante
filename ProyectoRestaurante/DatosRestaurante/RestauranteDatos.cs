@@ -12,10 +12,15 @@ namespace DatosRestaurante
     {
         public static DataSet SeleccionarTodos()
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_SeleccionarRestaurantes");
             comando.CommandType = CommandType.StoredProcedure;
-            DataSet ds = db.ExecuteReader(comando, "restaurante");
+          
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "restaurante");
+            }
             return ds;
         }
     }

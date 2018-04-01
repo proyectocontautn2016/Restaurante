@@ -13,17 +13,22 @@ namespace DatosRestaurante
     {
         public static DataSet SeleccionarTodos()
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_SeleccionarEncabezadosFactura");
             comando.CommandType = CommandType.StoredProcedure;
-            DataSet ds = db.ExecuteReader(comando, "EncabezadoFactura");
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "EncabezadoFactura");
+
+            }
+
             return ds;
         }
 
         public static DataSet Insertar(EncabezadoFacturaEntidad encabezado)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
-
+           
             SqlCommand comando = new SqlCommand("PA_InsertarEncabezadoFactura");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idEncabezadoPedido", encabezado.encabezadoPedido.idEncabezadoPedido);
@@ -34,15 +39,21 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@iv", encabezado.IV);
             comando.Parameters.AddWithValue("@subTotal", encabezado.Subtotal);
             comando.Parameters.AddWithValue("@total", encabezado.Subtotal);
+            DataSet ds = null;
 
-            DataSet ds = db.ExecuteReader(comando, "EncabezadoFactura");
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "EncabezadoFactura");
+
+            }
+
             return ds;
         }
 
 
         public static void Modificar(EncabezadoFacturaEntidad encabezado)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
+           
             SqlCommand comando = new SqlCommand("PA_ModificarEncabezadoFactura");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", encabezado.idEncabezadoFactura);
@@ -51,7 +62,13 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
             comando.Parameters.AddWithValue("@nombreCliente", encabezado.nombreCliente);
             comando.Parameters.AddWithValue("@fecha", encabezado.fecha);
-            db.ExecuteNonQuery(comando);
+            
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+
+            }
         }
     }
 }

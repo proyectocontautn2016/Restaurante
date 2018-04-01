@@ -13,21 +13,27 @@ namespace DatosRestaurante
     {
         public static DataSet SeleccionarTodosporID(int idPedido)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
+            //Database db = DatabaseFactory.CreateDatabase("Default");
 
             SqlCommand comando = new SqlCommand("PA_SeleccionarDetallesPedido");
             // Es requerido indicar que el tipo es un StoreProcedure
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idEncabezadoPedido", idPedido);
-            DataSet ds = db.ExecuteReader(comando, "detallePedido");
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+               ds = db.ExecuteReader(comando, "detallePedido");
+               
+            }
+           
             return ds;
         }
 
 
         public static void Insertar(DetallePedidoEntidad detalle)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
-
+           
             SqlCommand comando = new SqlCommand("PA_InsertarDetallesPedido");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idEncabezadoPedido", detalle.idEncabezadoPedido);
@@ -42,13 +48,18 @@ namespace DatosRestaurante
                 estado = 1;
             }
             comando.Parameters.AddWithValue("@estado", estado);
-            db.ExecuteNonQuery(comando);
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+
+            }
         }
 
 
         public static void Modificar(DetallePedidoEntidad detalle)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
+          
             SqlCommand comando = new SqlCommand("[PA_ModificarDetallesPedido]");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", detalle.idDetallePedido);
@@ -64,7 +75,12 @@ namespace DatosRestaurante
                 estado = 1;
             }
             comando.Parameters.AddWithValue("@estado", estado);
-            db.ExecuteNonQuery(comando);
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+
+            }
         }
     }
 }

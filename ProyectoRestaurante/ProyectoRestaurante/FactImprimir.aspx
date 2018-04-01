@@ -8,63 +8,30 @@
         <div class="col-md-10" id="printarea">
 
             <style>
-                 .mGrid {  
-            width: 100%;  
-            background-color: black;  
-            margin: 5px 0 10px 0;  
-            border: solid 1px #525252;  
-            border-collapse: collapse;  
-        }  
-  
-            .mGrid td {  
-                padding: 2px;  
-                border: solid 1px #c1c1c1;  
-                color: black;  
-                text-align:center;
-                font-size:medium;
-                font-weight:bold;
-                background-color: #D8D8D8 
-            }  
-  
-            .mGrid th {  
-                padding: 4px 2px;  
-                color: #fff;  
-                background: #424242 url(grd_head.png) repeat-x top;  
-                border-left: solid 1px #525252;  
-                font-size: large;  
-                text-align:center
-            }  
-  
-            .mGrid .alt {  
-                background: #fcfcfc url(grd_alt.png) repeat-x top;  
-            }  
-  
-            .mGrid .pgr {  
-                background: #424242 url(grd_pgr.png) repeat-x top;  
-            }  
-  
-                .mGrid .pgr table {  
-                    margin: 5px 0;  
-                }  
-  
-                .mGrid .pgr td {  
-                    border-width: 0;  
-                    padding: 0 6px;  
-                    border-left: solid 1px #666;  
-                    font-weight: bold;  
-                    color: #fff;  
-                    line-height: 12px;  
-                }  
-  
-                .mGrid .pgr a {  
-                    color: #666;  
-                    text-decoration: none;  
-                }  
-  
-            .mGrid .pgr a:hover {  
-                color: #000;  
-                text-decoration: none;  
-            }  
+                 table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+	}
+
+	th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+    background-color: black;
+    color:white;
+	}
+
+	td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+
+	}
+
+	tr:nth-child(even) {
+	    background-color: #BDBDBD;
+	}
             </style>
             <center><h2>Factura</h2></center>
 

@@ -13,17 +13,21 @@ namespace DatosRestaurante
     {
         public static DataSet SeleccionarTodos()
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
-            SqlCommand comando = new SqlCommand("PA_SeleccionarUsuarios");
+           SqlCommand comando = new SqlCommand("PA_SeleccionarUsuarios");
             comando.CommandType = CommandType.StoredProcedure;
-            DataSet ds = db.ExecuteReader(comando, "usuario");
+            
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "usuario");
+            }
+
             return ds;
         }
 
         public static void Insertar(UsuarioEntidad usuario)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
-
             SqlCommand comando = new SqlCommand("PA_InsertarUsuarios");
             comando.CommandType = CommandType.StoredProcedure;
 
@@ -35,13 +39,18 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@password", usuario.password);
             comando.Parameters.AddWithValue("@telefono", usuario.telefono);
             comando.Parameters.AddWithValue("@estado", usuario.estado);
-            db.ExecuteNonQuery(comando);
+          
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+
+            }
         }
 
 
         public static void Modificar(UsuarioEntidad usuario)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_ModificarUsuarios");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", usuario.idUsuario);
@@ -52,7 +61,13 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@password", usuario.password);
             comando.Parameters.AddWithValue("@telefono", usuario.telefono);
             comando.Parameters.AddWithValue("@estado", usuario.estado);
-            db.ExecuteNonQuery(comando);
+           
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+
+            }
         }
 
     }

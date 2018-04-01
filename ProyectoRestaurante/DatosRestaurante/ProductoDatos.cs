@@ -13,17 +13,20 @@ namespace DatosRestaurante
     {
         public static DataSet SeleccionarTodos()
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_SeleccionarProductos");
             comando.CommandType = CommandType.StoredProcedure;
-            DataSet ds = db.ExecuteReader(comando, "producto");
+           
+            DataSet ds = null;
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "producto");
+            }
+
             return ds;
         }
 
         public static void Insertar(ProductoEntidad producto)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
-
             SqlCommand comando = new SqlCommand("PA_InsertarProductos");
             comando.CommandType = CommandType.StoredProcedure;
 
@@ -39,13 +42,16 @@ namespace DatosRestaurante
                 estado = 1;
             }
             comando.Parameters.AddWithValue("@estado", estado);
-            db.ExecuteNonQuery(comando);
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+            }
         }
 
 
         public static void Modificar(ProductoEntidad producto)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_ModificarProductos");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", producto.idProducto);
@@ -61,7 +67,11 @@ namespace DatosRestaurante
                 estado = 1;
             }
             comando.Parameters.AddWithValue("@estado", estado);
-            db.ExecuteNonQuery(comando);
+           
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+            }
         }
     }
 }

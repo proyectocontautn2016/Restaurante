@@ -13,25 +13,25 @@ namespace DatosRestaurante
     {
         public static DataSet SeleccionarTodos()
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_SeleccionarEncabezadosPedido");
             comando.CommandType = CommandType.StoredProcedure;
-            DataSet ds = db.ExecuteReader(comando, "EncabezadoPedido");
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "EncabezadoPedido");
+
+            }
             return ds;
         }
 
         public static DataSet Insertar(EncabezadoPedidoEntidad encabezado)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
-
             SqlCommand comando = new SqlCommand("PA_InsertarEncabezadoPedido");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@idMesa", encabezado.mesa.idMesa);
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
-            
             //comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
-
-
             int estado = 0;
             if (encabezado.estado == true)
             {
@@ -43,25 +43,27 @@ namespace DatosRestaurante
             {
                 facturado = 1;
             }
-
             comando.Parameters.AddWithValue("@estado", estado);
             comando.Parameters.AddWithValue("@facturado", facturado);
-            DataSet ds = db.ExecuteReader(comando, "EncabezadoPedido");
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "EncabezadoPedido");
+
+            }
             return ds;
         }
 
 
         public static void Modificar(EncabezadoPedidoEntidad encabezado)
         {
-            Database db = DatabaseFactory.CreateDatabase("Default");
             SqlCommand comando = new SqlCommand("PA_ModificarEncabezadoPedido");
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@id", encabezado.idEncabezadoPedido);
             comando.Parameters.AddWithValue("@idMesa", encabezado.mesa.idMesa);
             comando.Parameters.AddWithValue("@idUsuario", encabezado.usuario.idUsuario);
             //comando.Parameters.AddWithValue("@idEstadoPedido", encabezado.estadoPedido.idEstadoPedido);
-
-
             int estado = 0;
             if (encabezado.estado == true)
             {
@@ -77,7 +79,10 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@estado", estado);
             comando.Parameters.AddWithValue("@facturado", facturado);
 
-            db.ExecuteNonQuery(comando);
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                db.ExecuteNonQuery(comando);
+            } 
         }
     }
 }
