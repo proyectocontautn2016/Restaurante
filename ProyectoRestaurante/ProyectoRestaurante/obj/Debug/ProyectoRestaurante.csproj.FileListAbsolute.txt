@@ -70,3 +70,6 @@ C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestau
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\EntidadesRestaurante.pdb
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\LogicaRestaurante.pdb
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\DatosRestaurante.pdb
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.dll
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.xmlworker.dll
+C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.xml

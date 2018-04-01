@@ -15,17 +15,20 @@ namespace ProyectoRestaurante
         static int mesaPedido;
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
-                if (Session["pedido"] != null)
+                try
                 {
-                    Session.Remove("pedido");
+                    if (Session["pedido"] != null)
+                    {
+                        Session.Remove("pedido");
+                    }
+                    llenarCampos();
                 }
-                llenarCampos();
-            }
-            catch (Exception)
-            {
-                Response.Redirect("disponibilidadMesas.aspx");
+                catch (Exception)
+                {
+                    Response.Redirect("disponibilidadMesas.aspx");
+                }
             }
         }
 

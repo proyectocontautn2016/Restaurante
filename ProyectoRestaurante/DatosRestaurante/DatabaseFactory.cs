@@ -40,8 +40,10 @@ namespace DatosRestaurante
             {
                 ex.Source += " Conexion " + con + "Parámetro :" + nombre;
 
-
                 throw ex;
+
+                //Response.Redirect("MantenimientoMesas.aspx");
+                //throw ex;
 
             }
 
