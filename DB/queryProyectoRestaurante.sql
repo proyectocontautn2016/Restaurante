@@ -489,14 +489,19 @@ END
 
 --Mostrar EncabezadoFactura
 CREATE PROCEDURE [dbo].[PA_SeleccionarEncabezadosFactura] 
- @idRestaurante int
+ @fechaInicial datetime,
+ @fechaFinal datetime
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select e.*, t.descripcion from EncabezadoFactura e, tipoPago t;
+select EF.id, EF.idEncabezadoPedido, EF.idRestaurante, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa from EncabezadoFactura EF, EncabezadoPedido EP where EF.idEncabezadoPedido = EP.id and EF.fecha >= @fechaInicial and EF.fecha <= @fechaFinal
+group by EF.id, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa, EF.idEncabezadoPedido, EF.idRestaurante
 END
+
+--select EF.id, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa from EncabezadoFactura EF, EncabezadoPedido EP, detallePedido d where EF.idEncabezadoPedido = EP.id and EP.id = d.idEncabezadoPedido and d.idProducto = 13 and EF.fecha >= '20180331' and EF.fecha <= '20180403'
+--group by EF.id, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa
 
 
 --Insertar EncabezadoFactura

@@ -11,10 +11,12 @@ namespace DatosRestaurante
 {
     public class EncabezadoFacturaDatos
     {
-        public static DataSet SeleccionarTodos()
+        public static DataSet SeleccionarTodos(DateTime fechaInicial, DateTime fechaFinal)
         {
             SqlCommand comando = new SqlCommand("PA_SeleccionarEncabezadosFactura");
             comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@fechaInicial", fechaInicial);
+            comando.Parameters.AddWithValue("@fechaFinal", fechaFinal);
             DataSet ds = null;
 
             using (Database db = DatabaseFactory.CreateDatabase("Default"))

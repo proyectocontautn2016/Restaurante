@@ -138,7 +138,16 @@
                 </div>
                 <ul class="nav navbar-nav">
                   <li class=""><a href="disponibilidadMesas.aspx">Disponibilidad Mesas |</a></li>
-                  <li><a href="#">Reportes |</a></li>
+                  <li class=""><a href="#">Consultar Comandas Procesadas |</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes |<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="ReporteProductos.aspx">Reporte productos</a></li>
+                      <li><a href="ReporteVentasporUsuario.aspx">Reporte Ventas por Usuario</a></li>
+                      <li><a href="#">Reporte Ventas por Rango Fechas</a></li>
+                      <li><a href="#">Reporte Ventas por Medio de Pago</a></li>
+                      <li><a href="#">Reporte Ventas por Mesa Mesero o Producto</a></li>
+                    </ul>
+                  </li>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos |<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="MantenimientoUsuarios.aspx">Mantenimiento Usuarios</a></li>
@@ -167,8 +176,9 @@
         </main>
 
         <footer class="footer" style="background-color:black">
-      <div class=" bg-light text-center">
-          <span class="text-muted" style="color:white; font-weight:bold; font-size:20px;">Restaurante Dalex Copyrigth&copy; &nbsp;<asp:Label ID="lblANIO" runat="server" Text=""></asp:Label></span>
+      <div class=" bg-light text-center" style="height:80px">
+          <br />
+          <span class="text-muted" style="color:white; font-weight:bold; font-size:20px; margin-top:30px">Restaurante Dalex Copyrigth&copy; &nbsp;<asp:Label ID="lblANIO" runat="server" Text=""></asp:Label></span>
       </div>
     </footer>
     </form>

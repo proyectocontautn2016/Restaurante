@@ -26,7 +26,7 @@ namespace LogicaRestaurante
                 elemento.TipoPago.idTipoPago = Convert.ToInt16(fila["idTipoPago"].ToString());
                 elemento.TipoPago.descripcion = fila["descripcion"].ToString();
                 elemento.encabezadoFactura = Convert.ToInt16(fila["idEncabezadoFactura"].ToString());
-                elemento.monto = Convert.ToInt16(fila["monto"].ToString());
+                elemento.monto = Convert.ToDecimal(fila["monto"].ToString());
                
                 lista.Add(elemento);
             }
