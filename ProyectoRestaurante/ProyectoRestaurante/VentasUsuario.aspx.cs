@@ -9,26 +9,21 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoRestaurante
 {
-    public partial class ReporteVentasporUsuario : System.Web.UI.Page
+    public partial class VentasUsuario : System.Web.UI.Page
     {
-        
+        static String VidUsu;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                List<UsuarioEntidad> lista = UsuarioLN.ObtenerTodos();
-                this.ddlUsuario.DataSource = lista;
-                this.ddlUsuario.DataTextField = "nombre";
-                this.ddlUsuario.DataValueField = "idUsuario";
-                this.ddlUsuario.DataBind();
-                this.ddlUsuario.SelectedIndex = 1;
-
                 DateTime fecha = DateTime.Today;
                 this.txtFechaFinal.Text = fecha.ToString("dd/MM/yyyy");
                 this.txtFechaInicial.Text = fecha.ToString("dd/MM/yyyy");
                 this.lblFecha.Text = fecha.ToString("dd/MM/yyyy");
                 this.imgLogo.ImageUrl = "img/infoRestaurante/FactDALEX.jpg";
-                llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text), this.ddlUsuario.SelectedValue);
+                UsuarioEntidad usuario = (UsuarioEntidad)Session["usuario"];
+                VidUsu = usuario.idUsuario;
+                llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text), usuario.idUsuario);
             }
         }
 
@@ -54,7 +49,6 @@ namespace ProyectoRestaurante
             this.lblTotal.Text = "₡" + (tot + 0.00M);
         }
 
-
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
             Response.Redirect("inicio.aspx");
@@ -62,8 +56,7 @@ namespace ProyectoRestaurante
 
         protected void txtBusqueda_Click(object sender, EventArgs e)
         {
-            llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text), this.ddlUsuario.SelectedValue);
-                    
+            llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text), VidUsu);
         }
     }
 }

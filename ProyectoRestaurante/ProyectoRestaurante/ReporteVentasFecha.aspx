@@ -1,14 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="ReporteVentasporUsuario.aspx.cs" Inherits="ProyectoRestaurante.ReporteVentasporUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="ReporteVentasFecha.aspx.cs" Inherits="ProyectoRestaurante.ReporteVentasFecha" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
 
-    <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
-
-        <div class="col-md-9" id="printarea">
+        <div class="col-md-10" id="printarea">
 
             <style>
                  table {
@@ -36,7 +35,7 @@
 	    background-color: #BDBDBD;
 	}
             </style>
-            <center><h3>Reporte de Ventas por Usuario</h3></center>
+            <center><h3>Reporte de Ventas por Fecha</h3></center>
 
              <br />
                 <div class="row">
@@ -125,15 +124,10 @@
     </div>
 
 
-        <div class="col-md-3" style="margin-top:20px">
-
-
-                  <center><label runat="server" style="font-size:large" id="Label4" for="">Usuario</label></center><br />
-               <center><asp:DropDownList ID="ddlUsuario" Font-Size="Small" runat="server" CssClass=""></asp:DropDownList>
-                    </center> <br /><br />
+        <div class="col-md-2" style="margin-top:60px">
 
             <center><span style="font-size:18px; font-weight:bold">Fecha Inicial</span> <br /><br /><asp:TextBox ID="txtFechaInicial" runat="server"> </asp:TextBox>
-                       <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFechaInicial" Format="dd/MM/yyyy" PopupButtonID="imgPopup"></ajaxToolkit:CalendarExtender>
+                <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFechaInicial" Format="dd/MM/yyyy" PopupButtonID="imgPopup"></ajaxToolkit:CalendarExtender>
                     </center> <br /><br />
                       <center><span style="font-size:18px; font-weight:bold">Fecha Final</span> <br /><br /><asp:TextBox ID="txtFechaFinal" runat="server"></asp:TextBox>
                        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtFechaFinal" Format="dd/MM/yyyy" PopupButtonID="imgPopup"></ajaxToolkit:CalendarExtender>
@@ -168,4 +162,6 @@
 
     }
 </script>
+
+
 </asp:Content>

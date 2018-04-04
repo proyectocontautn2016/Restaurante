@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="ReporteVentasporUsuario.aspx.cs" Inherits="ProyectoRestaurante.ReporteVentasporUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="ReporteVentasxMesaMeseroProducto.aspx.cs" Inherits="ProyectoRestaurante.ReporteVentasxMesaMeseroProducto" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-    <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
+       <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
 
         <div class="col-md-9" id="printarea">
 
@@ -127,11 +127,24 @@
 
         <div class="col-md-3" style="margin-top:20px">
 
-
-                  <center><label runat="server" style="font-size:large" id="Label4" for="">Usuario</label></center><br />
-               <center><asp:DropDownList ID="ddlUsuario" Font-Size="Small" runat="server" CssClass=""></asp:DropDownList>
+              <center><label runat="server" style="font-size:large" id="Label5" for="">Busqueda por Mesa, Mesero o Producto</label></center><br />
+               <center><asp:DropDownList ID="ddlOpcion" Font-Size="Small" runat="server" CssClass="" OnSelectedIndexChanged="ddlOpcion_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     </center> <br /><br />
 
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                        <center>  <asp:Label ID="lblBusqueda" runat="server" Text="" style="font-size:large"></asp:Label> </center> <br />
+                            
+                        <center>  <asp:DropDownList ID="ddlBusqueda" Font-Size="Small" runat="server" CssClass=""></asp:DropDownList> </center>
+                                 <br /><br />
+         
+                        </ContentTemplate>
+                        <Triggers>
+                         <asp:AsyncPostBackTrigger ControlID="ddlOpcion" EventName="SelectedIndexChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+
+            
             <center><span style="font-size:18px; font-weight:bold">Fecha Inicial</span> <br /><br /><asp:TextBox ID="txtFechaInicial" runat="server"> </asp:TextBox>
                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFechaInicial" Format="dd/MM/yyyy" PopupButtonID="imgPopup"></ajaxToolkit:CalendarExtender>
                     </center> <br /><br />
@@ -168,4 +181,6 @@
 
     }
 </script>
+
+
 </asp:Content>

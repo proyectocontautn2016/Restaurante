@@ -10,7 +10,7 @@
 namespace ProyectoRestaurante {
     
     
-    public partial class ReporteVentasporUsuario {
+    public partial class ReporteVentasFecha {
         
         /// <summary>
         /// Control imgLogo.
@@ -101,24 +101,6 @@ namespace ProyectoRestaurante {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotal;
-        
-        /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
-        
-        /// <summary>
-        /// Control ddlUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUsuario;
         
         /// <summary>
         /// Control txtFechaInicial.

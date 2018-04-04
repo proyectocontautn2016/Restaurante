@@ -10,7 +10,7 @@
 namespace ProyectoRestaurante {
     
     
-    public partial class ReporteVentasporUsuario {
+    public partial class ReporteVentasxMesaMeseroProducto {
         
         /// <summary>
         /// Control imgLogo.
@@ -103,22 +103,49 @@ namespace ProyectoRestaurante {
         protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
-        /// Control Label4.
+        /// Control Label5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label5;
         
         /// <summary>
-        /// Control ddlUsuario.
+        /// Control ddlOpcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOpcion;
+        
+        /// <summary>
+        /// Control UpdatePanel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// Control lblBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBusqueda;
+        
+        /// <summary>
+        /// Control ddlBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBusqueda;
         
         /// <summary>
         /// Control txtFechaInicial.

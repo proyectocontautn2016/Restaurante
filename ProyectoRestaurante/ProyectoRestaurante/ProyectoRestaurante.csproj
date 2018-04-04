@@ -152,7 +152,9 @@
     <Content Include="MantenimientoUsuarios.aspx" />
     <Content Include="packages.config" />
     <Content Include="ReporteProductos.aspx" />
+    <Content Include="ReporteVentasFecha.aspx" />
     <Content Include="ReporteVentasporUsuario.aspx" />
+    <Content Include="ReporteVentasxMesaMeseroProducto.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -209,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="seleccionarProducto.aspx" />
+    <Content Include="VentasUsuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +349,13 @@
     <Compile Include="ReporteProductos.aspx.designer.cs">
       <DependentUpon>ReporteProductos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteVentasFecha.aspx.cs">
+      <DependentUpon>ReporteVentasFecha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentasFecha.aspx.designer.cs">
+      <DependentUpon>ReporteVentasFecha.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReporteVentasporUsuario.aspx.cs">
       <DependentUpon>ReporteVentasporUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -353,12 +363,26 @@
     <Compile Include="ReporteVentasporUsuario.aspx.designer.cs">
       <DependentUpon>ReporteVentasporUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ReporteVentasxMesaMeseroProducto.aspx.cs">
+      <DependentUpon>ReporteVentasxMesaMeseroProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentasxMesaMeseroProducto.aspx.designer.cs">
+      <DependentUpon>ReporteVentasxMesaMeseroProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="seleccionarProducto.aspx.cs">
       <DependentUpon>seleccionarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="seleccionarProducto.aspx.designer.cs">
       <DependentUpon>seleccionarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VentasUsuario.aspx.cs">
+      <DependentUpon>VentasUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VentasUsuario.aspx.designer.cs">
+      <DependentUpon>VentasUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

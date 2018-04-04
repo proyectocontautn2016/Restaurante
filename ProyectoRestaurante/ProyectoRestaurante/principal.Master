@@ -142,10 +142,11 @@
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes |<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="ReporteProductos.aspx">Reporte productos</a></li>
+                      <li><a href="VentasUsuario.aspx">Ventas a mi cargo</a></li>
                       <li><a href="ReporteVentasporUsuario.aspx">Reporte Ventas por Usuario</a></li>
-                      <li><a href="#">Reporte Ventas por Rango Fechas</a></li>
+                      <li><a href="ReporteVentasFecha.aspx">Reporte Ventas por Rango Fechas</a></li>
                       <li><a href="#">Reporte Ventas por Medio de Pago</a></li>
-                      <li><a href="#">Reporte Ventas por Mesa Mesero o Producto</a></li>
+                      <li><a href="ReporteVentasxMesaMeseroProducto.aspx">Reporte Ventas por Mesa, Mesero o Producto</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos |<span class="caret"></span></a>

@@ -9,33 +9,26 @@ using System.Web.UI.WebControls;
 
 namespace ProyectoRestaurante
 {
-    public partial class ReporteVentasporUsuario : System.Web.UI.Page
+    public partial class ReporteVentasFecha : System.Web.UI.Page
     {
-        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                List<UsuarioEntidad> lista = UsuarioLN.ObtenerTodos();
-                this.ddlUsuario.DataSource = lista;
-                this.ddlUsuario.DataTextField = "nombre";
-                this.ddlUsuario.DataValueField = "idUsuario";
-                this.ddlUsuario.DataBind();
-                this.ddlUsuario.SelectedIndex = 1;
-
                 DateTime fecha = DateTime.Today;
                 this.txtFechaFinal.Text = fecha.ToString("dd/MM/yyyy");
                 this.txtFechaInicial.Text = fecha.ToString("dd/MM/yyyy");
                 this.lblFecha.Text = fecha.ToString("dd/MM/yyyy");
                 this.imgLogo.ImageUrl = "img/infoRestaurante/FactDALEX.jpg";
-                llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text), this.ddlUsuario.SelectedValue);
+                UsuarioEntidad usuario = (UsuarioEntidad)Session["usuario"];
+                llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text));
             }
         }
 
-        private void llenarGrid(DateTime fecha1, DateTime fecha2, String VidUsuario)
+        private void llenarGrid(DateTime fecha1, DateTime fecha2)
         {
             List<EncabezadoFacturaEntidad> lista = new List<EncabezadoFacturaEntidad>();
-            lista = EncabezadoFacturaLN.ObtenerTodosUsuario(fecha1, fecha2, VidUsuario);
+            lista = EncabezadoFacturaLN.ObtenerTodos(fecha1, fecha2);
             grvListado.DataSource = lista;
             grvListado.DataBind();
 
@@ -54,16 +47,14 @@ namespace ProyectoRestaurante
             this.lblTotal.Text = "₡" + (tot + 0.00M);
         }
 
+        protected void txtBusqueda_Click(object sender, EventArgs e)
+        {
+            llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text));
+        }
 
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
             Response.Redirect("inicio.aspx");
-        }
-
-        protected void txtBusqueda_Click(object sender, EventArgs e)
-        {
-            llenarGrid(Convert.ToDateTime(this.txtFechaInicial.Text), Convert.ToDateTime(this.txtFechaFinal.Text), this.ddlUsuario.SelectedValue);
-                    
         }
     }
 }
