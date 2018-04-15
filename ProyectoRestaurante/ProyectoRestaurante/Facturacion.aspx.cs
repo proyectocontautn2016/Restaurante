@@ -166,7 +166,7 @@ namespace ProyectoRestaurante
                 total = iv + subTotal;
 
 
-                UsuarioEntidad usuario = (UsuarioEntidad)Session["usuario"];
+                UsuarioEntidad usuario = pedido.usuario;
                 EncabezadoFacturaEntidad factura = new EncabezadoFacturaEntidad();
                 factura.encabezadoPedido = pedido;
                 factura.restaurante.idRestaurante = 1;

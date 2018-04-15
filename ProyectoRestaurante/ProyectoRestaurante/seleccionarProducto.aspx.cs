@@ -69,5 +69,11 @@ namespace ProyectoRestaurante
         {
             args.IsValid = ((Convert.ToInt16(args.Value) >= 1) && (Convert.ToInt16(args.Value) <= 10));
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            int idMesa = ((EncabezadoPedidoEntidad)Session["pedido"]).mesa.idMesa;
+            Response.Redirect("accionMesa.aspx?idMesa=" + idMesa);
+        }
     }
 }

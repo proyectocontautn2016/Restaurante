@@ -194,11 +194,13 @@ namespace ProyectoRestaurante
         }
 
         private void cargarPedidoEnDataGridView(int pIdMesa) {
-            List<DetallePedidoEntidad> lista = new List<DetallePedidoEntidad>();
-            lista = EncabezadoPedidoLN.obtenerEncabezadoPedido(pIdMesa).listaDetalles;
-            grvPedido.DataSource = lista;
+            EncabezadoPedidoEntidad encabezadoPedido = new EncabezadoPedidoEntidad();
+            encabezadoPedido = EncabezadoPedidoLN.obtenerEncabezadoPedido(pIdMesa);
+            this.txtUsuarioAsignado.Text =  UsuarioLN.obtenerUsuarioId(encabezadoPedido.usuario.idUsuario).nombre;
+            grvPedido.DataSource =  encabezadoPedido.listaDetalles;
             grvPedido.DataBind();
         }
+
 
         private void hacerVisibleBotonAgregarProducto() {
             btnAgregarProducto.Enabled = true;

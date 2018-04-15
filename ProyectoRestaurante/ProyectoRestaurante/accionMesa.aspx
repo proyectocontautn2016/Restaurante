@@ -26,6 +26,11 @@
                         <asp:Label ID="Label2" runat="server" Text="Estado"  style="font-size:large"></asp:Label>
                         <asp:textbox id="txtEstado" Font-Size="Large" runat="server" ReadOnly="True" CssClass="form-control"></asp:textbox>
                     </div>
+
+                    <div class="form-group row">
+                        <asp:Label ID="Label4" runat="server" Text="Usuario asignada a mesa"  style="font-size:large"></asp:Label>
+                        <asp:textbox id="txtUsuarioAsignado" Font-Size="Large" runat="server" ReadOnly="True" CssClass="form-control"></asp:textbox>
+                    </div>
                 </div>
                 <div class="col-md-2"></div>
             </div>

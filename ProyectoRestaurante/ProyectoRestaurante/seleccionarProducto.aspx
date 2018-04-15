@@ -18,8 +18,8 @@
                      <div class="form-group row">
                         <label runat="server" id="Label1" for="">Cantidad</label>
                          <asp:TextBox ID="txtCantidad" Font-Size="Large"  TextMode="Number"  runat="server" CssClass="form-control"></asp:TextBox>
-                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  ControlToValidate="txtCantidad" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo cantidad es requerido"></asp:RequiredFieldValidator>
-                         <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtCantidad" ForeColor="Red" ErrorMessage="" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  ControlToValidate="txtCantidad" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo cantidad es requerido" ValidationGroup="validacion"></asp:RequiredFieldValidator>
+                         <asp:CustomValidator ValidationGroup="validacion" ID="CustomValidator1" runat="server" ControlToValidate="txtCantidad" ForeColor="Red" ErrorMessage="" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                          <asp:Label ID="lblMensaje"  ForeColor="red" runat="server" Text=""></asp:Label>
                      </div> 
                     <div class="form-group row">
@@ -29,7 +29,8 @@
 
                     <center>
                         <div class="form-group row">
-                            <asp:Button ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click"  runat="server" Text="Agregar" CssClass="btn btn-success" />
+                            <asp:Button ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" ValidationGroup="validacion" runat="server" Text="Agregar" CssClass="btn btn-success" />
+                            <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click"   runat="server" Text="Cancelar" CssClass="btn btn-success" />
                         </div>
                     </center>
                 </div>
