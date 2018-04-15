@@ -68,7 +68,7 @@
                         <div class="form-group row">
                             <label runat="server" style="font-size:large" id="Label5" for="">Nombre Cliente</label>
                             <asp:TextBox ID="txtNombreCliente" Font-Size="Large" runat="server" CssClass="form-control" ></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="registrar" ControlToValidate="txtNombreCliente" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Debe ingresar el nombre del cleiente"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="txtNombreCliente" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="Debe ingresar el nombre del cleiente"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -154,6 +154,16 @@
                                         <div class="form-group row">
                                             <asp:Label ID="lblCantidadPagadaTarjeta" runat="server" Text="Cantidad pagada con tarjeta ₡"></asp:Label>
                                             <asp:TextBox ID="txtCantidadPagadaTarjeta" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <asp:Label ID="lblMensajeError" runat="server" Text="" Font-Size="Large" ForeColor="#CC0000" Font-Bold="True"></asp:Label>
                                         </div>
                                     </div>
                                 </div>

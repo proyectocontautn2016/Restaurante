@@ -60,7 +60,7 @@ namespace DatosRestaurante
             comando.Parameters.AddWithValue("@fecha", encabezado.fecha);
             comando.Parameters.AddWithValue("@iv", encabezado.IV);
             comando.Parameters.AddWithValue("@subTotal", encabezado.Subtotal);
-            comando.Parameters.AddWithValue("@total", encabezado.Subtotal);
+            comando.Parameters.AddWithValue("@total", encabezado.Total);
             DataSet ds = null;
 
             using (Database db = DatabaseFactory.CreateDatabase("Default"))

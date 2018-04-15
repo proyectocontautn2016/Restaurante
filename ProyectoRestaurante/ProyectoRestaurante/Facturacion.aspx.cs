@@ -146,75 +146,76 @@ namespace ProyectoRestaurante
 
         protected void ddlTipoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.lblMensajeError.Text = "";
             habilitarCamposTiposPagos();
         }
 
         protected void btnFacturar_Click(object sender, EventArgs e)
         {
-            EncabezadoPedidoEntidad pedido = (EncabezadoPedidoEntidad)Session["pedido"];
-
-
-            Decimal subTotal = 0;
-            Decimal iv = 0;
-            Decimal total = 0;
-            foreach (DetallePedidoEntidad item in pedido.listaDetalles)
-            {
-                subTotal += item.cantidad * item.producto.precio;
-            }
-            iv = subTotal * PORC_IV;
-            total = iv + subTotal;
-
-
             int tipoPago = Convert.ToInt16(ddlTipoPago.SelectedValue);
-            UsuarioEntidad usuario = (UsuarioEntidad)Session["usuario"];
-            EncabezadoFacturaEntidad factura = new EncabezadoFacturaEntidad();
-            factura.encabezadoPedido = pedido;
-            factura.restaurante.idRestaurante = 1;
-            factura.usuario = usuario;
-            factura.nombreCliente = this.txtNombreCliente.Text;
-            factura.fecha = DateTime.Today;
+            if (validacionPago(tipoPago)) {
+                EncabezadoPedidoEntidad pedido = (EncabezadoPedidoEntidad)Session["pedido"];
+                Decimal subTotal = 0;
+                Decimal iv = 0;
+                Decimal total = 0;
+                foreach (DetallePedidoEntidad item in pedido.listaDetalles)
+                {
+                    subTotal += item.cantidad * item.producto.precio;
+                }
+                iv = subTotal * PORC_IV;
+                total = iv + subTotal;
 
-            List<MontoPorTipoPagoEntidad> listaFormaPago = new List<MontoPorTipoPagoEntidad>();
 
-            if (tipoPago == 1)
-            {
-                MontoPorTipoPagoEntidad montoPorTipoPagoEfectivo = new MontoPorTipoPagoEntidad();
-                montoPorTipoPagoEfectivo.monto = Convert.ToDecimal(txtCantidadPagadaEfectivo.Text);
-                montoPorTipoPagoEfectivo.TipoPago.idTipoPago = 1;
+                UsuarioEntidad usuario = (UsuarioEntidad)Session["usuario"];
+                EncabezadoFacturaEntidad factura = new EncabezadoFacturaEntidad();
+                factura.encabezadoPedido = pedido;
+                factura.restaurante.idRestaurante = 1;
+                factura.usuario = usuario;
+                factura.nombreCliente = this.txtNombreCliente.Text;
+                factura.fecha = DateTime.Today;
 
-                listaFormaPago.Add(montoPorTipoPagoEfectivo);
+                List<MontoPorTipoPagoEntidad> listaFormaPago = new List<MontoPorTipoPagoEntidad>();
+
+                if (tipoPago == 1)
+                {
+                    MontoPorTipoPagoEntidad montoPorTipoPagoEfectivo = new MontoPorTipoPagoEntidad();
+                    montoPorTipoPagoEfectivo.monto = Convert.ToDecimal(txtCantidadPagadaEfectivo.Text);
+                    montoPorTipoPagoEfectivo.TipoPago.idTipoPago = 1;
+
+                    listaFormaPago.Add(montoPorTipoPagoEfectivo);
+                }
+                else if (tipoPago == 2)
+                {
+                    MontoPorTipoPagoEntidad montoPorTipoPagoTarjeta = new MontoPorTipoPagoEntidad();
+                    montoPorTipoPagoTarjeta.monto = Convert.ToDecimal(txtCantidadPagadaTarjeta.Text);
+                    montoPorTipoPagoTarjeta.TipoPago.idTipoPago = 2;
+
+                    listaFormaPago.Add(montoPorTipoPagoTarjeta);
+                }
+                else {
+                    MontoPorTipoPagoEntidad montoPorTipoPagoEfectivo = new MontoPorTipoPagoEntidad();
+                    montoPorTipoPagoEfectivo.monto = Convert.ToDecimal(txtCantidadPagadaEfectivo.Text);
+                    montoPorTipoPagoEfectivo.TipoPago.idTipoPago = 1;
+                    listaFormaPago.Add(montoPorTipoPagoEfectivo);
+
+                    MontoPorTipoPagoEntidad montoPorTipoPagoTarjeta = new MontoPorTipoPagoEntidad();
+                    montoPorTipoPagoTarjeta.monto = Convert.ToDecimal(txtCantidadPagadaTarjeta.Text);
+                    montoPorTipoPagoTarjeta.TipoPago.idTipoPago = 2;
+
+                    listaFormaPago.Add(montoPorTipoPagoTarjeta);
+                }
+
+                factura.listaFormaPago = listaFormaPago;
+                factura.IV = iv;
+                factura.Subtotal = subTotal;
+                factura.Total = total;
+
+                EncabezadoFacturaLN.Nuevo(factura);
+                Session.Add("factura", factura);
+
+                actualizarEstadoMesa(1, pedido.mesa.idMesa);
+                Response.Redirect("FactImprimir.aspx");
             }
-            else if (tipoPago == 2)
-            {
-                MontoPorTipoPagoEntidad montoPorTipoPagoTarjeta = new MontoPorTipoPagoEntidad();
-                montoPorTipoPagoTarjeta.monto = Convert.ToDecimal(txtCantidadPagadaTarjeta.Text);
-                montoPorTipoPagoTarjeta.TipoPago.idTipoPago = 2;
-
-                listaFormaPago.Add(montoPorTipoPagoTarjeta);
-            }
-            else {
-                MontoPorTipoPagoEntidad montoPorTipoPagoEfectivo = new MontoPorTipoPagoEntidad();
-                montoPorTipoPagoEfectivo.monto = Convert.ToDecimal(txtCantidadPagadaEfectivo.Text);
-                montoPorTipoPagoEfectivo.TipoPago.idTipoPago = 1;
-                listaFormaPago.Add(montoPorTipoPagoEfectivo);
-
-                MontoPorTipoPagoEntidad montoPorTipoPagoTarjeta = new MontoPorTipoPagoEntidad();
-                montoPorTipoPagoTarjeta.monto = Convert.ToDecimal(txtCantidadPagadaTarjeta.Text);
-                montoPorTipoPagoTarjeta.TipoPago.idTipoPago = 2;
-
-                listaFormaPago.Add(montoPorTipoPagoTarjeta);
-            }
-
-            factura.listaFormaPago = listaFormaPago;
-            factura.IV = iv;
-            factura.Subtotal = subTotal;
-            factura.Total = total;
-
-            EncabezadoFacturaLN.Nuevo(factura);
-            Session.Add("factura", factura);
-
-            actualizarEstadoMesa(1, pedido.mesa.idMesa);
-            Response.Redirect("FactImprimir.aspx");
         }
 
         private void actualizarEstadoMesa(int pNuevoEstadoMesa, int pIdMesa)
@@ -228,5 +229,139 @@ namespace ProyectoRestaurante
         {
             Response.Redirect("disponibilidadMesas.aspx");
         }
+
+        private decimal obtenerTotal() {
+            EncabezadoPedidoEntidad pedido = (EncabezadoPedidoEntidad)Session["pedido"];
+            Decimal subTotal = 0;
+            Decimal iv = 0;
+            foreach (DetallePedidoEntidad item in pedido.listaDetalles)
+            {
+                subTotal += item.cantidad * item.producto.precio;
+            }
+            iv = subTotal * PORC_IV;
+            return  (iv + subTotal);
+        }
+
+
+        private bool validacionPago(int pTipoPago) {
+            bool bandera = true;
+            if (pTipoPago == 1)
+            {
+                if (this.txtCantidadPagadaEfectivo.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una cantidad a pagar en efectivo válida";
+                    return false;
+                }
+
+                if (Convert.ToDecimal(this.txtCantidadPagadaEfectivo.Text) < obtenerTotal())
+                {
+                    this.lblMensajeError.Text = "La cantidad a pagar en efectivo no puede ser menor que el total";
+                    return false;
+                }
+            }
+
+
+            else if (pTipoPago == 2)
+            {
+                if (this.txtNumeroTarjeta.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese un número de tarjeta válido";
+                    return false;
+                }
+                if (this.txtCantidadPagadaTarjeta.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una cantidad válida a pagar con tarjeta";
+                    return false;
+                }
+                if (this.txtMesVencimiento.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una fecha válida";
+                    return false;
+                }
+                if ((Convert.ToInt16(this.txtMesVencimiento.Text) > 12) || (Convert.ToInt16(this.txtMesVencimiento.Text) < 1))
+                {
+                    this.lblMensajeError.Text = "Ingrese una fecha válida";
+                    return false;
+                }
+                if (this.txtAnno.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una fecha válida";
+                    return false;
+                }
+                if ((Convert.ToInt16(this.txtMesVencimiento.Text) < DateTime.Today.Month) && (Convert.ToInt16(this.txtAnno.Text) == DateTime.Today.Year))
+                {
+                    this.lblMensajeError.Text = "La fecha de vencimeinto no puede ser menor a la fecha actual";
+                    return false;
+                }
+                if (Convert.ToInt16(this.txtAnno.Text) < DateTime.Today.Year)
+                {
+                    this.lblMensajeError.Text = "La fecha de vencimeinto no puede ser menor a la fecha actual";
+                    return false;
+                }
+                if ((Convert.ToDecimal(this.txtCantidadPagadaTarjeta.Text)) < obtenerTotal())
+                {
+                    this.lblMensajeError.Text = "La cantidad a pagar en con la tarjeta no puede ser menor que el total";
+                    return false;
+                }
+            }
+
+
+            else {
+                if (this.txtCantidadPagadaEfectivo.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una cantidad a pagar en efectivo válida";
+                    return false;
+                }
+
+
+
+                if (this.txtNumeroTarjeta.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese un número de tarjeta válido";
+                    return false;
+                }
+                if (this.txtCantidadPagadaTarjeta.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una cantidad válida a pagar con tarjeta";
+                    return false;
+                }
+                if (this.txtMesVencimiento.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una fecha válida";
+                    return false;
+                }
+                if ((Convert.ToInt16(this.txtMesVencimiento.Text) > 12)  || (Convert.ToInt16(this.txtMesVencimiento.Text) < 1))
+                {
+                    this.lblMensajeError.Text = "Ingrese una fecha válida";
+                    return false;
+                }
+                if (this.txtAnno.Text == "")
+                {
+                    this.lblMensajeError.Text = "Ingrese una fecha válida";
+                    return false;
+                }
+                if ((Convert.ToInt16(this.txtMesVencimiento.Text) < DateTime.Today.Month) && (Convert.ToInt16(this.txtAnno.Text) == DateTime.Today.Year))
+                {
+                    this.lblMensajeError.Text = "La fecha de vencimeinto no puede ser menor a la fecha actual";
+                    return false;
+                }
+                if (Convert.ToInt16(this.txtAnno.Text) < DateTime.Today.Year)
+                {
+                    this.lblMensajeError.Text = "La fecha de vencimeinto no puede ser menor a la fecha actual";
+                    return false;
+                }
+            
+
+                if (((Convert.ToDecimal(this.txtCantidadPagadaTarjeta.Text)) + Convert.ToDecimal(this.txtCantidadPagadaEfectivo.Text)) < obtenerTotal())
+                {
+                    this.lblMensajeError.Text = "La cantidad a pagar no puede ser menor al total";
+                    return false;
+                }
+
+            }
+
+            return bandera;
+        }
+
     }
 }

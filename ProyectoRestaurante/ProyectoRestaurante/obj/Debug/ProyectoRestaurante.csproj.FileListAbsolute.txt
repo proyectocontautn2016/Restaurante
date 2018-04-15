@@ -74,3 +74,6 @@ C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestau
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.xmlworker.dll
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.xml
 C:\Users\Alex\Documents\ProyectoFinalASPX\Restaurante\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\AjaxControlToolkit.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.xmlworker.dll
+C:\Users\Daniel\Documents\UTN\Programacion_Ambiente_Web_2\Proyecto\Restaurante\ProyectoRestaurante\ProyectoRestaurante\bin\itextsharp.xml
