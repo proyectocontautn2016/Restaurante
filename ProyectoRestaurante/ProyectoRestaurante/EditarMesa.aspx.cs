@@ -16,17 +16,26 @@ namespace ProyectoRestaurante
         {
             if (!IsPostBack)
             {
+                try
+                {
+                    MesaEntidad mesa = new MesaEntidad();
+                    int numero = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
+                    mesa = MesaLN.ObtenerMesa(numero);
+                    this.txtCantidad.Text = mesa.cantidadPersonas.ToString();
+                    this.txtNumero.Text = mesa.idMesa.ToString();
+                    this.ddlEstadoMesa.DataSource = EstadoMesaLN.ObtenerTodos();
+                    this.ddlEstadoMesa.DataTextField = "descripcion";
+                    this.ddlEstadoMesa.DataValueField = "estadoMesa";
+                    this.ddlEstadoMesa.DataBind();
+                    this.ddlEstadoMesa.SelectedValue = mesa.estadoMesa.estadoMesa.ToString();
+                }
+                catch (Exception)
+                {
 
-                MesaEntidad mesa = new MesaEntidad();
-                int numero = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
-                mesa = MesaLN.ObtenerMesa(numero);
-                this.txtCantidad.Text = mesa.cantidadPersonas.ToString();
-                this.txtNumero.Text = mesa.idMesa.ToString();
-                this.ddlEstadoMesa.DataSource = EstadoMesaLN.ObtenerTodos();
-                this.ddlEstadoMesa.DataTextField = "descripcion";
-                this.ddlEstadoMesa.DataValueField = "estadoMesa";
-                this.ddlEstadoMesa.DataBind();
-                this.ddlEstadoMesa.SelectedValue = mesa.estadoMesa.estadoMesa.ToString();
+                    Response.Redirect("MantenimientoMesas.aspx");
+                }
+
+               
 
 
             }

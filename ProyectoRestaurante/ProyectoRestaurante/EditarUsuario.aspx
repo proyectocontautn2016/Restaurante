@@ -60,6 +60,7 @@
             <div class="col-md-8">
                  <asp:TextBox ID="txtEmail" Font-Size="Large" runat="server" CssClass="form-control"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="registrar" ControlToValidate="txtEmail" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo email es requerido"></asp:RequiredFieldValidator>
+                 <asp:RegularExpressionValidator ControlToValidate="txtEmail" ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" ID="RegularExpressionValidator1" runat="server" ErrorMessage="Formato de correo erroneo"></asp:RegularExpressionValidator>
             </div>
          </div>
 

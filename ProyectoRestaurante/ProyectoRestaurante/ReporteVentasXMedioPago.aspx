@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="ReporteVentasxMesaMeseroProducto.aspx.cs" Inherits="ProyectoRestaurante.ReporteVentasxMesaMeseroProducto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="ReporteVentasXMedioPago.aspx.cs" Inherits="ProyectoRestaurante.ReporteVentasXMedioPago" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-       <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
+    <div class="row divRedondear" style="background-color:white; padding-bottom:3%;">
 
         <div class="col-md-9" id="printarea">
 
@@ -36,7 +36,7 @@
 	    background-color: #BDBDBD;
 	}
             </style>
-            <center><h3>Reporte de Ventas por Usuario</h3></center>
+            <center><h3>Reporte de Ventas Medio de Pago</h3></center>
 
              <br />
                 <div class="row">
@@ -74,7 +74,9 @@
                             <asp:BoundField  DataField="fecha" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Fecha" />
                             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" />
                            <asp:BoundField DataField="IV" HeaderText="IVA" />
-                                <asp:BoundField DataField="Total" HeaderText="Total" />
+                           <asp:BoundField DataField="Total" HeaderText="Total" />
+                            <asp:BoundField DataField="miTipoPago.TipoPago.descripcion" HeaderText="Tipo Pago" />
+                            <asp:BoundField DataField="miTipoPago.monto" HeaderText="Monto" />
                             </Columns>
                             </asp:GridView> 
 
@@ -127,25 +129,13 @@
 
         <div class="col-md-3" style="margin-top:20px">
 
-              <center><label runat="server" style="font-size:large" id="Label5" for="">Busqueda por Mesa, Mesero o Producto</label></center><br />
-               <center><asp:DropDownList ID="ddlOpcion" Font-Size="Small" runat="server" CssClass="" OnSelectedIndexChanged="ddlOpcion_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+            
+                  <center><label runat="server" style="font-size:large" id="Label4" for="">Tipo de Pago</label></center><br />
+               <center><asp:DropDownList ID="ddlTipoPago" Font-Size="Small" runat="server" CssClass=""></asp:DropDownList>
                     </center> <br /><br />
 
-             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                        <center>  <asp:Label ID="lblBusqueda" runat="server" Text="" style="font-size:large"></asp:Label> </center> <br />
-                            
-                        <center>  <asp:DropDownList ID="ddlBusqueda" Font-Size="Small" runat="server" CssClass=""></asp:DropDownList> </center>
-                                 <br /><br />
-         
-                        </ContentTemplate>
-                        <Triggers>
-                         <asp:AsyncPostBackTrigger ControlID="ddlOpcion" EventName="SelectedIndexChanged" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-
-            
             <center><span style="font-size:18px; font-weight:bold">Fecha Inicial</span> <br /><br /><asp:TextBox ID="txtFechaInicial" runat="server"> </asp:TextBox>
+
                        <ajaxToolkit:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFechaInicial" Format="dd/MM/yyyy" PopupButtonID="imgPopup"></ajaxToolkit:CalendarExtender>
                     </center> <br /><br />
                       <center><span style="font-size:18px; font-weight:bold">Fecha Final</span> <br /><br /><asp:TextBox ID="txtFechaFinal" runat="server"></asp:TextBox>
@@ -181,6 +171,4 @@
 
     }
 </script>
-
-
 </asp:Content>

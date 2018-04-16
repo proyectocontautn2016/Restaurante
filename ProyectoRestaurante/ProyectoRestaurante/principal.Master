@@ -136,20 +136,20 @@
                 <div class="navbar-header">
                   <a class="navbar-brand" href="inicio.aspx">DALEX |</a>
                 </div>
-                <ul class="nav navbar-nav">
+               <div id="tipoMenu" runat="server">
+                      <ul class="nav navbar-nav">
                   <li class=""><a href="disponibilidadMesas.aspx">Disponibilidad Mesas |</a></li>
-                  <li class=""><a href="#">Consultar Comandas Procesadas |</a></li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes |<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="ReporteProductos.aspx">Reporte productos</a></li>
                       <li><a href="VentasUsuario.aspx">Ventas a mi cargo</a></li>
-                      <li><a href="ReporteVentasporUsuario.aspx">Reporte Ventas por Usuario</a></li>
-                      <li><a href="ReporteVentasFecha.aspx">Reporte Ventas por Rango Fechas</a></li>
-                      <li><a href="#">Reporte Ventas por Medio de Pago</a></li>
-                      <li><a href="ReporteVentasxMesaMeseroProducto.aspx">Reporte Ventas por Mesa, Mesero o Producto</a></li>
+                      <li runat="server" id="repoUsu"><a href="ReporteVentasporUsuario.aspx">Reporte Ventas por Usuario</a></li>
+                      <li runat="server" id="repoFecha"><a href="ReporteVentasFecha.aspx">Reporte Ventas por Rango Fechas</a></li>
+                      <li runat="server" id="repoPago"><a href="ReporteVentasXMedioPago.aspx">Reporte Ventas por Medio de Pago</a></li>
+                      <li runat="server" id="repoPro"><a href="ReporteVentasxMesaMeseroProducto.aspx">Reporte Ventas por Mesa, Mesero o Producto</a></li>
                     </ul>
                   </li>
-                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos |<span class="caret"></span></a>
+                  <li id="idMantenimiento" runat="server" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mantenimientos |<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="MantenimientoUsuarios.aspx">Mantenimiento Usuarios</a></li>
                       <li><a href="MantenimientoProductos.aspx">Mantenimiento Productos</a></li>
@@ -157,6 +157,7 @@
                     </ul>
                   </li>
                 </ul>
+                 </div>
                  <div style="text-align:right; margin-top:10px;">
               <asp:Label ID="lblNombreUsuario" ForeColor="white" Font-Bold="true" runat="server" Text=""></asp:Label>&nbsp;&nbsp;
              <asp:Label ID="lblFecha" ForeColor="white" Font-Bold="true" runat="server" Text=""></asp:Label>&nbsp;&nbsp;

@@ -154,6 +154,7 @@
     <Content Include="ReporteProductos.aspx" />
     <Content Include="ReporteVentasFecha.aspx" />
     <Content Include="ReporteVentasporUsuario.aspx" />
+    <Content Include="ReporteVentasXMedioPago.aspx" />
     <Content Include="ReporteVentasxMesaMeseroProducto.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -362,6 +363,13 @@
     </Compile>
     <Compile Include="ReporteVentasporUsuario.aspx.designer.cs">
       <DependentUpon>ReporteVentasporUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVentasXMedioPago.aspx.cs">
+      <DependentUpon>ReporteVentasXMedioPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentasXMedioPago.aspx.designer.cs">
+      <DependentUpon>ReporteVentasXMedioPago.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReporteVentasxMesaMeseroProducto.aspx.cs">
       <DependentUpon>ReporteVentasxMesaMeseroProducto.aspx</DependentUpon>

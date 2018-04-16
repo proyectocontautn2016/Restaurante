@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-8">
                  <asp:TextBox ID="txtComentario" TextMode="MultiLine" Height="200px" Font-Size="Large" runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ValidationGroup="registrar" ControlToValidate="txtComentario" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo Comentario es requerido"></asp:RequiredFieldValidator>
+       
             </div>
          </div>
 

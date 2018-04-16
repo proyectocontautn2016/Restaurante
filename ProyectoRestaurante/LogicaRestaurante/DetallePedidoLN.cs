@@ -45,7 +45,16 @@ namespace LogicaRestaurante
                 {
                     elemento.estado = false;
                 }
-               
+
+                if (Convert.ToInt16(fila["estadoProducto"].ToString()) == 1)
+                {
+                    elemento.producto.estado = true;
+                }
+                else
+                {
+                    elemento.producto.estado = false;
+                }
+
 
                 lista.Add(elemento);
             }

@@ -209,8 +209,8 @@ namespace ProyectoRestaurante
                 factura.IV = iv;
                 factura.Subtotal = subTotal;
                 factura.Total = total;
-
-                EncabezadoFacturaLN.Nuevo(factura);
+                EncabezadoFacturaEntidad fact = EncabezadoFacturaLN.Nuevo(factura);
+                factura.idEncabezadoFactura = fact.idEncabezadoFactura;
                 Session.Add("factura", factura);
 
                 actualizarEstadoMesa(1, pedido.mesa.idMesa);

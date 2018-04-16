@@ -515,6 +515,21 @@ select EF.id, EF.idEncabezadoPedido, EF.idRestaurante, EF.fecha, EF.subTotal, EF
 group by EF.id, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa, EF.idEncabezadoPedido, EF.idRestaurante
 END
 
+
+
+
+
+
+CREATE PROCEDURE [dbo].[PA_SeleccionarEncabezadosFacturaTipoPago] 
+ @fechaInicial datetime,
+ @fechaFinal datetime
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+select e.id, e.fecha, e.subTotal, e.iv, e.total, t.idTipoPago, p.descripcion, t.monto from EncabezadoFactura e, EncabezadoFacturaTipoPago t, tipoPago p where  e.id = t.idEncabezadoFactura and t.idTipoPago = p.id and e.fecha >= @fechaInicial and e.fecha <= @fechaFinal
+END
 --select EF.id, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa from EncabezadoFactura EF, EncabezadoPedido EP, detallePedido d where EF.idEncabezadoPedido = EP.id and EP.id = d.idEncabezadoPedido and d.idProducto = 13 and EF.fecha >= '20180331' and EF.fecha <= '20180403'
 --group by EF.id, EF.fecha, EF.subTotal, EF.iv, EF.total, EF.idUsuario, EP.idMesa
 
@@ -673,7 +688,7 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	Select d.*, p.nombre, p.imagen, p.precio as 'precioProducto' from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido and d.idProducto = p.id;
+	Select d.*, p.nombre, p.imagen, p.precio as 'precioProducto', p.estado as 'estadoProducto' from detallePedido d, producto p where d.idEncabezadoPedido = @idEncabezadoPedido and d.idProducto = p.id;
 END
 
 

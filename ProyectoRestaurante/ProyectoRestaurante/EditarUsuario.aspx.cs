@@ -17,31 +17,39 @@ namespace ProyectoRestaurante
 
             if (!IsPostBack)
             {
+                try
+                {
+                    UsuarioEntidad usuario = new UsuarioEntidad();
+                    String identificación = (Request.QueryString["idIdentificacion"].ToString());
+                    usuario = UsuarioLN.obtenerUsuarioId(identificación);
+                    this.txtDireccion.Text = usuario.direccion;
+                    this.txtEmail.Text = usuario.email;
+                    this.txtIdentificación.Text = usuario.idUsuario;
+                    this.txtNombre.Text = usuario.nombre;
+                    password = usuario.password;
+                    this.txtTelefono.Text = usuario.telefono;
+                    this.ddlRol.DataSource = RolLN.ObtenerTodos();
+                    this.ddlRol.DataTextField = "descripcion";
+                    this.ddlRol.DataValueField = "idRol";
+                    this.ddlRol.DataBind();
+                    this.ddlRol.SelectedValue = usuario.rol.idRol.ToString();
 
-                UsuarioEntidad usuario = new UsuarioEntidad();
-                String identificación = (Request.QueryString["idIdentificacion"].ToString());
-                usuario = UsuarioLN.obtenerUsuarioId(identificación);
-                this.txtDireccion.Text = usuario.direccion;
-                this.txtEmail.Text = usuario.email;
-                this.txtIdentificación.Text = usuario.idUsuario;
-                this.txtNombre.Text = usuario.nombre;
-                password = usuario.password;
-                this.txtTelefono.Text = usuario.telefono;
-                this.ddlRol.DataSource = RolLN.ObtenerTodos();
-                this.ddlRol.DataTextField = "descripcion";
-                this.ddlRol.DataValueField = "idRol";
-                this.ddlRol.DataBind();
-                this.ddlRol.SelectedValue = usuario.rol.idRol.ToString();
-
-                ListItemCollection items = new ListItemCollection
+                    ListItemCollection items = new ListItemCollection
                 {
                     new ListItem("Desactivo", "0"),
                     new ListItem("Activo", "1"),
-                   
+
                 };
-                this.ddlEstado.DataSource = items;
-                this.ddlEstado.DataBind();
-                this.ddlEstado.SelectedIndex = usuario.estado;
+                    this.ddlEstado.DataSource = items;
+                    this.ddlEstado.DataBind();
+                    this.ddlEstado.SelectedIndex = usuario.estado;
+                }
+                catch (Exception)
+                {
+
+                    Response.Redirect("MantenimientoUsuarios.aspx");
+                }
+                
 
 
             }

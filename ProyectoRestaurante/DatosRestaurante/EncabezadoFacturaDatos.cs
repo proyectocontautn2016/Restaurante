@@ -28,6 +28,23 @@ namespace DatosRestaurante
             return ds;
         }
 
+        public static DataSet SeleccionarTodosTipoPago(DateTime fechaInicial, DateTime fechaFinal)
+        {
+            SqlCommand comando = new SqlCommand("PA_SeleccionarEncabezadosFacturaTipoPago");
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@fechaInicial", fechaInicial);
+            comando.Parameters.AddWithValue("@fechaFinal", fechaFinal);
+            DataSet ds = null;
+
+            using (Database db = DatabaseFactory.CreateDatabase("Default"))
+            {
+                ds = db.ExecuteReader(comando, "EncabezadoFactura");
+
+            }
+
+            return ds;
+        }
+
 
         public static DataSet SeleccionarTodosXProducto(int idProducto, DateTime fechaInicial, DateTime fechaFinal)
         {

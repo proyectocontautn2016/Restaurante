@@ -64,6 +64,9 @@
                     <div class="col-md-4">
                         <asp:Button ID="btnAgregarProducto" OnClick="btnAgregarProducto_Click" runat="server" Text="Agregar Producto" CssClass="btn btn-success" />
                     </div>
+                      <div class="col-md-4">
+                        <asp:Button ID="btnCancelar" OnClick="btnCancelar_Click" runat="server" Text="Cancelar Pedido" CssClass="btn btn-danger" />
+                    </div>
                     <div class="col-md-4"></div>
                 </div>
                 <br /><br />

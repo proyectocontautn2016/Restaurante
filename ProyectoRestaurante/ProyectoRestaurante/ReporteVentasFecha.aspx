@@ -70,7 +70,7 @@
                                 <EmptyDataRowStyle forecolor="Red" CssClass="table table-bordered" />
                             <Columns>
                             <asp:BoundField DataField="idEncabezadoFactura" HeaderText="N Factura" />
-                            <asp:BoundField  DataField="fecha" HeaderText="Fecha" />
+                            <asp:BoundField  DataField="fecha" DataFormatString="{0:MM/dd/yyyy}" HeaderText="Fecha" />
                             <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" />
                            <asp:BoundField DataField="IV" HeaderText="IVA" />
                                 <asp:BoundField DataField="Total" HeaderText="Total" />

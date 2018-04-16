@@ -51,9 +51,12 @@ namespace LogicaRestaurante
 
 
                 List<DetallePedidoEntidad> listaDetalles = new List<DetallePedidoEntidad>();
+                List<DetallePedidoEntidad> listaActiva = new List<DetallePedidoEntidad>();
                 listaDetalles = DetallePedidoLN.ObtenerTodos(elemento.idEncabezadoPedido);
-                elemento.listaDetalles = listaDetalles;
-
+                //listaActiva = (listaDetalles.Find(elemento => (elemento.estado == true) && (elemento.mesa.idMesa == pIdMesa) && (elemento.facturado == false)));
+                listaActiva = listaDetalles.Where(element => element.estado == true).ToList();
+                elemento.listaDetalles = listaActiva;
+                //elemento.listaDetalles = listaDetalles;
                 lista.Add(elemento);
             }
 

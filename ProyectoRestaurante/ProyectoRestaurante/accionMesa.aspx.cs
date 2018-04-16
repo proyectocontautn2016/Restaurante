@@ -13,6 +13,7 @@ namespace ProyectoRestaurante
     {
     
         static int mesaPedido;
+        static bool editar = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,6 +23,7 @@ namespace ProyectoRestaurante
                     if (Session["pedido"] != null)
                     {
                         Session.Remove("pedido");
+                        
                     }
                     llenarCampos();
                 }
@@ -37,6 +39,13 @@ namespace ProyectoRestaurante
             int numero = Convert.ToInt16(Request.QueryString["idMesa"].ToString());
             mesaPedido = numero;
             mesa = MesaLN.ObtenerMesa(numero);
+            if((mesa.estadoMesa.estadoMesa == 7) || (mesa.estadoMesa.estadoMesa == 8) || (mesa.estadoMesa.estadoMesa == 9))
+            {
+                editar = true;
+            }else
+            {
+                editar = false;
+            }
             btnAgregarProducto.Enabled = false;
             btnAgregarProducto.Visible = false;
             imgEstadoMesa.ImageUrl = "~/img/mesaEstados/" + mesa.estadoMesa.estadoMesa + ".jpg";
@@ -44,7 +53,10 @@ namespace ProyectoRestaurante
             txtMesaId.Text = mesa.idMesa.ToString();
             txtCantidadPersonas.Text = mesa.cantidadPersonas.ToString();
             txtEstado.Text = mesa.estadoMesa.descripcion;
+            btnCancelar.Visible = false;
+            btnCancelar.Enabled = false;
             cargarComboAccionMesa(mesa.estadoMesa.estadoMesa);
+           
         }
 
 
@@ -72,6 +84,8 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(0, new ListItem("--Seleccionar acción--", "0"));
                     ddlAccionMesa.Items.Insert(1, new ListItem("Comanda en proceso", "4"));
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Pendiente", "5"));
+                    btnCancelar.Enabled = true;
+                    btnCancelar.Visible = true;
                     cargarPedidoEnDataGridView(idMesa);
                     hacerVisibleBotonAgregarProducto();
                 }
@@ -81,7 +95,8 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(0, new ListItem("--Seleccionar acción--", "0"));
                     ddlAccionMesa.Items.Insert(1, new ListItem("Comanda Pendiente", "5"));
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Entregada", "7"));
-
+                    btnCancelar.Enabled = true;
+                    btnCancelar.Visible = true;
                     cargarPedidoEnDataGridView(idMesa);
                     hacerVisibleBotonAgregarProducto();
                 }
@@ -91,7 +106,8 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(0, new ListItem("--Seleccionar acción--", "0"));
                     ddlAccionMesa.Items.Insert(1, new ListItem("Comanda en proceso", "4"));
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Entregada", "7"));
-
+                    btnCancelar.Enabled = true;
+                    btnCancelar.Visible = true;
                     cargarPedidoEnDataGridView(idMesa);
                     hacerVisibleBotonAgregarProducto();
                 }
@@ -101,6 +117,7 @@ namespace ProyectoRestaurante
                     ddlAccionMesa.Items.Insert(0, new ListItem("--Seleccionar acción--", "0"));
                     ddlAccionMesa.Items.Insert(1, new ListItem("Comanda Pendiente", "5"));
                     ddlAccionMesa.Items.Insert(2, new ListItem("Comanda Finalizada", "8"));
+                    
 
                     cargarPedidoEnDataGridView(idMesa);
                 }
@@ -151,8 +168,17 @@ namespace ProyectoRestaurante
 
             if ((nuevoEstadoMesa == 4) || (nuevoEstadoMesa == 5) || (nuevoEstadoMesa == 7) || (nuevoEstadoMesa == 8) || (nuevoEstadoMesa == 9))
             {
+                if ((nuevoEstadoMesa == 7) || (nuevoEstadoMesa == 8) || (nuevoEstadoMesa == 9))
+                {
+                    editar = true;
+                }else
+                {
+                   editar = false;
+                }
                 actualizarEstadoMesa(nuevoEstadoMesa);
                 Response.Redirect("accionMesa.aspx?idMesa=" + idMesa);
+
+               
             }
 
             if (nuevoEstadoMesa == 100)
@@ -199,6 +225,11 @@ namespace ProyectoRestaurante
             this.txtUsuarioAsignado.Text =  UsuarioLN.obtenerUsuarioId(encabezadoPedido.usuario.idUsuario).nombre;
             grvPedido.DataSource =  encabezadoPedido.listaDetalles;
             grvPedido.DataBind();
+            if(editar == true)
+            {
+                grvPedido.Columns[4].Visible = false;
+            }
+           
         }
 
 
@@ -233,6 +264,16 @@ namespace ProyectoRestaurante
 
             Response.Redirect("EditarPedido.aspx?idDetallePedido=" + detalle.idDetallePedido + "&idEncabezadoPedido=" + detalle.idEncabezadoPedido );
 
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            int idMesa = Convert.ToInt16(this.txtMesaId.Text);
+            EncabezadoPedidoEntidad pedido = EncabezadoPedidoLN.obtenerEncabezadoPedido(idMesa);
+            actualizarEstadoMesa(1);
+            pedido.estado = false;
+            EncabezadoPedidoLN.Modificar(pedido);
+            Response.Redirect("disponibilidadMesas.aspx");
         }
     }
 }

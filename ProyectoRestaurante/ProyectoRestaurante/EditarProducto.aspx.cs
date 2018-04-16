@@ -21,41 +21,50 @@ namespace ProyectoRestaurante
         {
             if (!IsPostBack)
             {
+                try
+                {
+                    ProductoEntidad producto = new ProductoEntidad();
+                    int idProducto = Convert.ToInt16(Request.QueryString["idProducto"].ToString());
+                    id = idProducto;
+                    producto = ProductoLN.ObtenerProducto(idProducto);
+                    this.txtNombreProducto.Text = producto.nombre;
+                    this.txtDescripcion.Text = producto.descripcion;
+                    this.txtPrecio.Text = producto.precio.ToString();
+                    this.imagenProducto.ImageUrl = "img/productos/" + producto.imagen;
+                    this.imgPrev.ImageUrl = "img/prev/prev.jpg";
+                    URLProducto = producto.imagen;
 
-                ProductoEntidad producto = new ProductoEntidad();
-                int idProducto = Convert.ToInt16(Request.QueryString["idProducto"].ToString());
-                id = idProducto;
-                producto = ProductoLN.ObtenerProducto(idProducto);
-                this.txtNombreProducto.Text = producto.nombre;
-                this.txtDescripcion.Text = producto.descripcion;
-                this.txtPrecio.Text = producto.precio.ToString();
-                this.imagenProducto.ImageUrl = "img/productos/" + producto.imagen;
-                this.imgPrev.ImageUrl = "img/prev/prev.jpg";
-                URLProducto = producto.imagen;
 
 
+                    this.ddlTipoProducto.DataSource = TipoProductoLN.ObtenerTodos();
+                    this.ddlTipoProducto.DataTextField = "descripcion";
+                    this.ddlTipoProducto.DataValueField = "idTipoProducto";
+                    this.ddlTipoProducto.DataBind();
+                    this.ddlTipoProducto.SelectedValue = producto.tipoProducto.idTipoProducto.ToString();
 
-                this.ddlTipoProducto.DataSource = TipoProductoLN.ObtenerTodos();
-                this.ddlTipoProducto.DataTextField = "descripcion";
-                this.ddlTipoProducto.DataValueField = "idTipoProducto";
-                this.ddlTipoProducto.DataBind();
-                this.ddlTipoProducto.SelectedValue = producto.tipoProducto.idTipoProducto.ToString();
-
-                ListItemCollection items = new ListItemCollection
+                    ListItemCollection items = new ListItemCollection
                 {
                     new ListItem("Desactivo", "0"),
                     new ListItem("Activo", "1"),
 
                 };
-                this.ddlEstado.DataSource = items;
-                this.ddlEstado.DataBind();
-                int vEstado = 0;
-                if (producto.estado == true)
-                {
-                    vEstado = 1;
+                    this.ddlEstado.DataSource = items;
+                    this.ddlEstado.DataBind();
+                    int vEstado = 0;
+                    if (producto.estado == true)
+                    {
+                        vEstado = 1;
+                    }
+                    this.ddlEstado.SelectedIndex = vEstado;
+                    tipo = producto.tipoProducto.descripcion;
                 }
-                this.ddlEstado.SelectedIndex = vEstado;
-                tipo = producto.tipoProducto.descripcion;
+                catch (Exception)
+                {
+
+                    Response.Redirect("MantenimientoProductos.aspx");
+                }
+
+                
 
             }
         }

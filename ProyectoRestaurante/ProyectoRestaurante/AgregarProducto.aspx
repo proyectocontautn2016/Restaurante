@@ -56,7 +56,7 @@
                 <label runat="server" style="font-size:large" id="Label4" for="">Precio</label>
             </div>
             <div class="col-md-8">
-                 <asp:TextBox ID="txtPrecio" Font-Size="Large" runat="server" CssClass="form-control" ></asp:TextBox>
+                 <asp:TextBox ID="txtPrecio" TextMode="Number" Font-Size="Large" runat="server" CssClass="form-control" ></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="registrar" ControlToValidate="txtPrecio" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo precio es requerido"></asp:RequiredFieldValidator>
             </div>
          </div>

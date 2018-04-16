@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-8">
         <asp:TextBox ID="txtCantidad" Font-Size="Large"  TextMode="Number"  runat="server" CssClass="form-control"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  ControlToValidate="txtCantidad" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo cantidad es requerido"></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="registrar"  ControlToValidate="txtCantidad" ForeColor="Red" Display="Dynamic" runat="server" ErrorMessage="El campo cantidad es requerido"></asp:RequiredFieldValidator>
         <asp:CustomValidator ID="cumCantidad" runat="server" ErrorMessage="La cantidad debe estar entre 1 y 12 personas" ControlToValidate="txtCantidad" OnServerValidate="cumCantidad_ServerValidate"></asp:CustomValidator>
          </div>
         </div>

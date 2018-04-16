@@ -106,9 +106,118 @@ namespace LogicaRestaurante
             return listaFacturas;
         }
 
+        public static List<EncabezadoFacturaEntidad> ObtenerTodosTipoPago(DateTime fecha1, DateTime fecha2, int vTipoPago)
+        {
+            List<EncabezadoFacturaEntidad> lista = new List<EncabezadoFacturaEntidad>();
+            DataSet ds = EncabezadoFacturaDatos.SeleccionarTodosTipoPago(fecha1, fecha2);
+
+            foreach (DataRow fila in ds.Tables[0].Rows)
+            {
+                EncabezadoFacturaEntidad elemento = new EncabezadoFacturaEntidad();
+                elemento.idEncabezadoFactura = Convert.ToInt16(fila["id"].ToString());
+                elemento.fecha = Convert.ToDateTime(fila["fecha"].ToString());
+                elemento.IV = Convert.ToDecimal(fila["iv"].ToString());
+                elemento.Subtotal = Convert.ToDecimal(fila["subTotal"].ToString());
+                elemento.Total = Convert.ToDecimal(fila["total"].ToString());
+                MontoPorTipoPagoEntidad tipoPago = new MontoPorTipoPagoEntidad();
+                tipoPago.encabezadoFactura = Convert.ToInt16(fila["id"].ToString());
+                tipoPago.monto = Convert.ToDecimal(fila["monto"].ToString());
+                tipoPago.TipoPago.idTipoPago = Convert.ToInt16(fila["idTipoPago"].ToString());
+                tipoPago.TipoPago.descripcion = fila["descripcion"].ToString();
+                elemento.miTipoPago.encabezadoFactura = Convert.ToInt16(fila["id"].ToString());
+                elemento.miTipoPago.TipoPago.idTipoPago = Convert.ToInt16(fila["idTipoPago"].ToString());
+                elemento.miTipoPago.TipoPago.descripcion = fila["descripcion"].ToString();
+                elemento.miTipoPago.monto = Convert.ToDecimal(fila["monto"].ToString());
+
+                List<MontoPorTipoPagoEntidad> listaPagos = new List<MontoPorTipoPagoEntidad>();
+                listaPagos.Add(tipoPago);
+                elemento.listaFormaPago = listaPagos;
+
+                lista.Add(elemento);
+
+            }
+            List<EncabezadoFacturaEntidad> listaTipoPago = new List<EncabezadoFacturaEntidad>();
+            EncabezadoFacturaEntidad compara = null;
+            for (int i = 0;  i < lista.Count; i++)
+            {
+                if(compara == null)
+                {
+                    compara = lista[i];
+                }else
+                {
+                    if(compara.idEncabezadoFactura == lista[i].idEncabezadoFactura)
+                    {
+                        if (vTipoPago == 2)
+                        {
+                            listaTipoPago.Add(lista[i]);
+                            listaTipoPago.Add(compara);
+                            compara = null;
+                        }else
+                        {
+                            compara = lista[i];
+                        }
+                        
+                    }
+                    else
+                    {
+                        if (vTipoPago == 0)
+                        {
+                            if (lista[i].miTipoPago.TipoPago.idTipoPago == 1)
+                            {
+                                listaTipoPago.Add(lista[i]);
+                            }
+                
+                            compara = lista[i];
+                        }
+                        else
+                        {
+                            if(vTipoPago == 1)
+                            {
+                                if (lista[i].miTipoPago.TipoPago.idTipoPago == 2)
+                                {
+                                    listaTipoPago.Add(lista[i]);
+                                }
+                            }
+
+                            compara = lista[i];
+                        }
+                    }
+                }
+
+                /*if(i == lista.Count - 1)
+                {
+                    if(compara != null)
+                    {
+                        if (vTipoPago == 0)
+                        {
+                            if(compara.miTipoPago.TipoPago.idTipoPago == 1)
+                            {
+                                listaTipoPago.Add(compara);
+                                compara = null;
+                            }
+                            
+                        }
+                        if (vTipoPago == 1)
+                        {
+                            if (compara.miTipoPago.TipoPago.idTipoPago == 2)
+                            {
+                                listaTipoPago.Add(compara);
+                                compara = null;
+                            }
+                        }
+                    }
+                }*/
+
+                
+
+            }
+
+            return listaTipoPago;
+        }
 
 
-        public static void Nuevo(EncabezadoFacturaEntidad encabezado)
+
+        public static EncabezadoFacturaEntidad Nuevo(EncabezadoFacturaEntidad encabezado)
         {
 
             DataSet ds = EncabezadoFacturaDatos.Insertar(encabezado); ;
@@ -126,7 +235,7 @@ namespace LogicaRestaurante
                 item.encabezadoFactura = elemento.idEncabezadoFactura;
                 MontoPorTipoPagoLN.Nuevo(item);
             }
-
+            return elemento;
         }
 
         public static void Modificar(EncabezadoFacturaEntidad encabezado)
